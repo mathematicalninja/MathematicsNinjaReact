@@ -1,0 +1,48 @@
+@font-face {
+	font-family: "Lora";
+	src: local("Lora"),
+		url("./Lora-VariableFont_wght.ttf") format("truetype");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "Caveat";
+	src: local("Caveat"),
+		url("./Caveat-VariableFont_wght.ttf") format("truetype");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "DancingScript";
+	src: local("DancingScript"),
+		url("./DancingScript-VariableFont_wght.ttf") format("truetype");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "Hack";
+	src: local("Hack"),
+		url("./Hack-Regular.ttf") format("truetype");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "Lemonada";
+	src: local("Lemonada"),
+		url("./Lemonada-VariableFont_wght.ttf") format("truetype");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "ComicNeue";
+	src: local("ComicNeue"),
+		url("./ComicNeue-Regular.ttf") format("truetype");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "Monoid";
+	src: local("Monoid"),
+		url("./Monoid-Regular.ttf") format("truetype");
+	font-weight: normal;
+}
