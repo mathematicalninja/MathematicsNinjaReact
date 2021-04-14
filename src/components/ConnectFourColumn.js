@@ -2,32 +2,30 @@ import React from 'react';
 import Tile from "./Tile.js";
 import "./ConnectFourColumn.scss"
 
-
 class ConnectFourColumn extends React.Component {
     constructor(props) {
         super(props);
-        const rowMaker = () => {
-            const rows = [];
-            const rowValues = [];
-            for (let i = 0; i < this.props.numberOfRows; i++) {
-                rowValues.push(null)
-                rows.push(
-                    <Tile
-                        key={i}
-                        handleClick={this.props.handleClick(i)}
-                        tileType=""
-                    />
-                )
-            }
-            return [rows, rowValues]
-        };
-        const rowDetails = rowMaker();
         this.state = {
             numberOfRows: this.props.numberOfRows,
-            rows: rowDetails[0],
-            rowValues: rowDetails[1],
+            rowValues: Array(this.props.numberOfRows).fill(""),
         };
     };
+
+    // rowMaker() {
+    //     const rows = [];
+    //     const rowValues = [];
+    //     for (let i = 0; i < this.props.numberOfRows; i++) {
+    //         rowValues.push(null)
+    //         rows.push(
+    //             <Tile
+    //                 key={i}
+    //                 handleClick={this.props.handleClick(i)}
+    //                 tileType={this.state.rowValues[i]}
+    //             />
+    //         )
+    //     }
+    //     return rows
+    // };
 
     handleClick(i) {
         const tempValues = this.state.rowValues.slice();
@@ -38,9 +36,24 @@ class ConnectFourColumn extends React.Component {
     }
 
     render() {
+        const rowMaker = () => {
+            const rows = [];
+            const rowValues = [];
+            for (let i = 0; i < this.props.numberOfRows; i++) {
+                rowValues.push(null)
+                rows.push(
+                    <Tile
+                        key={i}
+                        handleClick={this.props.handleClick(i)}
+                        tileType={this.state.rowValues[i]}
+                    />
+                )
+            }
+            return rows
+        };
         return (
             <div className="ConnectFourColumn">
-                {this.state.rows}
+                {rowMaker()}
             </div>
         );
     };
