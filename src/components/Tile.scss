@@ -1,0 +1,31 @@
+
+.tile {
+	background: #ddd;
+	border: 1px solid #999;
+	float: left;
+	font-size: 60px;
+	font-weight: bold;
+	line-height: 34px;
+	height: 120px;
+	margin-right: -1px;
+	margin-top: -1px;
+	padding: 0;
+	text-align: center;
+	width: 120px;
+}
+
+.tile-winner {
+	@extend .tile;
+	background: rgb(121, 29, 121);
+}
+
+
+.tile-current {
+	@extend .tile;
+	background: rgb(18, 147, 156);
+	border-radius: 100%;
+}
+
+.tile:focus {
+	outline: none;
+}
