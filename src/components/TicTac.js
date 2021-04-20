@@ -9,9 +9,9 @@ class TicTac extends React.Component {
         //takes input squareSize or defaults to 3 by 3
         let squareSize = props.squareSize ? props.squareSize : 3
         this.state = {
-            playerOne: "💜",
-            playerTwo: "☕",
-            currentPlayerOne: true,
+            playerLogos: ["💜", "☕", "🦇"],
+            currentPlayer: 0,
+            maxPlayers: 2,
             moveNumber: 0,
             squareSize: squareSize,
             history: [this.blankBoard(squareSize)],
@@ -38,18 +38,18 @@ class TicTac extends React.Component {
     }
     historyUpdate(newBoard, newestTile) {
         let currentHistory = this.state.history.slice();
+        const currentMove = this.state.moveNumber;
         currentHistory.push({
             squares: newBoard,
             currentTile: newestTile,
             winner: this.calculateWinner(newBoard),
             // winningLine: null
         })
+
         this.setState({
             history: currentHistory,
+            moveNumber: currentMove + 1
         })
-        // console.log("this")
-        // console.log(this)
-        // this.forceUpdate()
 
     }
     calculateWinner(currentBoardSquares) {
@@ -57,8 +57,6 @@ class TicTac extends React.Component {
     }
     boardRender() {
         const currentBoard = this.state.history[this.state.history.length - 1]
-        console.log(this.state.history.length)
-        // console.log(this.state.history[this.state.history.length - 1])
         return <Board
             currentBoard={currentBoard}
             handleClick={
@@ -75,9 +73,8 @@ class TicTac extends React.Component {
         if (currentBoard.squares[colIndex][rowIndex]) {
             return
         } else {
-            // alert("Nooooo!")
             let tempSquare = {
-                content: "X",
+                content: this.state.playerLogos[this.state.moveNumber % this.state.maxPlayers],
                 tileClass: "Tile-winner",
             }
             // splitting out the column, and replacing this tile (row) with new data
@@ -88,6 +85,7 @@ class TicTac extends React.Component {
             newBoardSquares[colIndex] = tempColumn;
 
             this.historyUpdate(newBoardSquares, [colIndex, rowIndex])
+
             return newBoardSquares[colIndex][rowIndex]
         }
     }
