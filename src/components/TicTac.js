@@ -56,7 +56,18 @@ class TicTac extends React.Component {
     }
     boardRender() {
         // console.log(this.state)
-        return <Board currentBoard={this.state.history[0]} />
+        return <Board
+            currentBoard={this.state.history[0]}
+            handleClick={
+                (c, r) => {
+                    this.handleClick(c, r)
+                }
+            }
+        />
+    }
+    handleClick(colIndex, rowIndex) {
+        // alert("Hi")
+        console.log(colIndex, rowIndex)
     }
     controlsRender() {
         return <div>Here's where the controls should go.</div>

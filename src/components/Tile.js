@@ -13,6 +13,7 @@ class Tile extends react.Component {
     render() {
         return <button
             class={this.state.tileClass}
+            onClick={this.props.onClick}
         >{this.state.content}</button>
 
     }
