@@ -16,7 +16,7 @@ class Board extends react.Component {
         for (let column of currentColumns) {
             let colReturn = []
             for (let row of column) {
-
+                // tileData needs to be in such a fasion as to be upliftable to board.onclick(DATA){this.setState(stuff)}
                 colReturn.push(<Tile tileData={row} />)
             }
             boardReturn.push(
@@ -24,16 +24,12 @@ class Board extends react.Component {
                     {colReturn}
                 </div>
             )
-
         }
-        console.log(boardReturn)
         return boardReturn
     }
     render() {
         return <div className="boardGrid">
-            {this.boardBuilder()}Here's where the board should exist.
-            {/* {this.state.currentTile} */}
-
+            {this.boardBuilder()}
         </div>
     }
 }

@@ -62,9 +62,16 @@ class TicTac extends React.Component {
         return <div>Here's where the controls should go.</div>
     }
     render() {
-        return <div>
-            {this.boardRender()}
-            {this.controlsRender()}
+        return <div className="GameContainer">
+            <div className="GameStatus">
+                Hello, this is Tic-Tac-Toe.
+            </div>
+            <div className="gameBoard">
+                {this.boardRender()}
+            </div>
+            <div className="gameControls">
+                {this.controlsRender()}
+            </div>
         </div>
     }
 }
