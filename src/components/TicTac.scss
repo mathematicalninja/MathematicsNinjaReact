@@ -1,0 +1,21 @@
+.gameContainer {
+	/* display: flex;
+	flex-direction: row; */
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto;
+	grid-template-areas:
+	"gameStatus ."
+	"gameBoard gameControls";
+}
+
+.gameStatus{
+	font-family: "DancingScript";
+    grid-area:gameStatus;
+}
+.gameBoard{
+    grid-area:gameBoard;
+}
+.gameControls{
+    grid-area:gameControls;
+}
