@@ -37,7 +37,6 @@ class TicTac extends React.Component {
 
     }
     historyUpdate(newBoard, newestTile) {
-
         let currentHistory = this.state.history.slice();
         currentHistory.push({
             squares: newBoard,
@@ -48,6 +47,9 @@ class TicTac extends React.Component {
         this.setState({
             history: currentHistory,
         })
+        // console.log("this")
+        // console.log(this)
+        // this.forceUpdate()
 
     }
     calculateWinner(currentBoardSquares) {
@@ -56,6 +58,7 @@ class TicTac extends React.Component {
     boardRender() {
         const currentBoard = this.state.history[this.state.history.length - 1]
         console.log(this.state.history.length)
+        // console.log(this.state.history[this.state.history.length - 1])
         return <Board
             currentBoard={currentBoard}
             handleClick={
@@ -85,7 +88,7 @@ class TicTac extends React.Component {
             newBoardSquares[colIndex] = tempColumn;
 
             this.historyUpdate(newBoardSquares, [colIndex, rowIndex])
-
+            return newBoardSquares[colIndex][rowIndex]
         }
     }
     controlsRender() {
