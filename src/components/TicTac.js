@@ -1,5 +1,6 @@
 import React from "react";
 import Board from "./Board.js";
+import HistoryControls from "./HistoryControls.js"
 
 import "./TicTac.scss"
 
@@ -15,7 +16,7 @@ class TicTac extends React.Component {
             moveNumber: 0,
             squareSize: squareSize,
             history: [this.blankBoard(squareSize)],
-
+            winningLines: this.lineMaker(squareSize)
         }
     }
     blankBoard(squareSize) {
@@ -36,14 +37,113 @@ class TicTac extends React.Component {
         }
 
     }
+
+    lineMaker(squareSize) {
+        //-----------------------------------------------------
+        //
+        // needs to be refactored to give [x,y] pairs rather than [x+y*k] singles
+        //
+        //-----------------------------------------------------
+
+
+
+
+        let winLines = []
+        // add rows
+        for (let y = 0; y < squareSize; y++) {
+            let winRow = [];
+            for (let x = 0; x < squareSize; x++) {
+                winRow.push([x, y]);
+            };
+            winLines.push(winRow);
+        };
+        // add columns
+        for (let x = 0; x < squareSize; x++) {
+            let winColumn = [];
+            for (let y = 0; y < squareSize; y++) {
+                winColumn.push([x, y]);
+            }
+            winLines.push(winColumn);
+        }
+        // add \diagonal
+        let diagOne = []
+        for (let k = 0; k < squareSize; k++) {
+            diagOne.push([k, k])
+        }
+        winLines.push(diagOne)
+
+
+
+        // add minor \diagonals length>=3
+        if (squareSize > 3) {
+            // d is the range of differences in size (between 3 and squareSize), so squareSize-d is the length of the minor diagonal
+            for (let d = squareSize - 3; d >= 3 - squareSize; d--) {
+                let minorDiag = []
+
+                for (let y = 0; y < squareSize; y++) {
+                    let tileIndex = y * (1 + squareSize) + d
+                    if (
+                        // doesn't go off of the left
+                        tileIndex >= y * squareSize
+                        &&
+                        //doesn't go off of the right
+                        tileIndex < (y + 1) * squareSize
+                    ) {
+                        minorDiag.push([tileIndex - y * squareSize, y])
+                    }
+                }
+                winLines.push(minorDiag)
+            }
+        }
+
+
+
+
+        // add /diagonal
+        let diagTwo = []
+        for (let k = 0; k < squareSize; k++) {
+            diagTwo.push([(squareSize - k - 1), k])
+            // diagTwo.push((squareSize - k - 1) + k * squareSize)
+        }
+        winLines.push(diagTwo)
+        // add minor /diagonals length>=3
+        if (squareSize > 3) {
+            // d is the range of differences in size (between 3 and squareSize), so squareSize-d is the length of the minor diagonal
+            for (let d = squareSize - 3; d >= 3 - squareSize; d--) {
+                let minorDiag = []
+
+                for (let y = 0; y < squareSize; y++) {
+                    let tileIndex = (squareSize - y - 1) + y * squareSize + d
+                    if (
+                        // doesn't go off of the left
+                        tileIndex >= y * squareSize
+                        &&
+                        //doesn't go off of the right
+                        tileIndex < (y + 1) * squareSize
+                    ) {
+                        minorDiag.push([tileIndex - y * squareSize, y])
+                        // minorDiag.push(tileIndex)
+                    }
+                }
+                winLines.push(minorDiag)
+            }
+        }
+
+        console.log(winLines)
+        return winLines
+    }
+
+
+
     historyUpdate(newBoard, newestTile) {
-        let currentHistory = this.state.history.slice();
+        let currentHistory = this.state.history.slice(0, this.state.moveNumber + 1);
         const currentMove = this.state.moveNumber;
+        const [winner, winningLine] = this.calculateAnyWinner(newBoard) ? this.calculateAnyWinner(newBoard) : [null, null]
         currentHistory.push({
             squares: newBoard,
             currentTile: newestTile,
-            winner: this.calculateWinner(newBoard),
-            // winningLine: null
+            winner: winner,
+            winningLine: winningLine,
         })
 
         this.setState({
@@ -52,11 +152,38 @@ class TicTac extends React.Component {
         })
 
     }
-    calculateWinner(currentBoardSquares) {
+    calculateWinner(currentBoardSquares_index_in_history) {
         return null;
     }
+
+    calculateAnyWinner(squares) {
+        for (let indexOfLine = 0; indexOfLine < this.state.winningLines.length; indexOfLine++) {
+            let thisLine = this.state.winningLines[indexOfLine]
+            let x_0 = thisLine[0][0]
+            let y_0 = thisLine[0][1]
+            let a = squares[x_0][y_0] ? squares[x_0][y_0].content : null
+            if (a) {
+                let count = 0;
+                for (let k = 0; k < thisLine.length; k++) {
+                    let x = thisLine[k][0]
+                    let y = thisLine[k][1]
+                    let value = squares[x][y] ? squares[x][y].content : null
+                    if (value == a)
+                        count++
+                }
+                if (count == thisLine.length) {
+                    // alert("winner is " + a + " with " + thisLine)
+                    return [a, thisLine]
+                }
+            }
+        }
+
+        return null
+    }
+
+
     boardRender() {
-        const currentBoard = this.state.history[this.state.history.length - 1]
+        const currentBoard = this.state.history[this.state.moveNumber]
         return <Board
             currentBoard={currentBoard}
             handleClick={
@@ -68,14 +195,15 @@ class TicTac extends React.Component {
     }
     handleClick(colIndex, rowIndex) {
         // history is an array of states the game was in.
-        let currentBoard = this.state.history[this.state.history.length - 1]
+        let currentBoard = this.state.history[this.state.moveNumber]
         // history[i].squares is the state the squares were in then
         if (currentBoard.squares[colIndex][rowIndex]) {
             return
-        } else {
+        } else if (currentBoard.winner) { return }
+        else {
             let tempSquare = {
                 content: this.state.playerLogos[this.state.moveNumber % this.state.maxPlayers],
-                tileClass: "Tile-winner",
+                tileClass: "Tile",
             }
             // splitting out the column, and replacing this tile (row) with new data
             let tempColumn = currentBoard.squares[colIndex].slice();
@@ -89,8 +217,16 @@ class TicTac extends React.Component {
             return newBoardSquares[colIndex][rowIndex]
         }
     }
+    timeTravel(i) {
+        this.setState({
+            moveNumber: i,
+        })
+    }
     controlsRender() {
-        return <div>Here's where the controls should go.</div>
+        return <HistoryControls
+            history={this.state.history}
+            timeTravel={(i) => this.timeTravel(i)}
+        />
     }
     render() {
         return <div className="gameContainer">
@@ -101,6 +237,7 @@ class TicTac extends React.Component {
                 {this.boardRender()}
             </div>
             <div className="gameControls">
+                Rewind buttons.
                 {this.controlsRender()}
             </div>
         </div>

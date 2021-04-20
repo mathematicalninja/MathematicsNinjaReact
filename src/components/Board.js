@@ -5,12 +5,11 @@ import "./Board.scss"
 
 function Board(props) {
 
-    let currentColumns = props.currentBoard.squares;
+    const currentColumns = props.currentBoard.squares;
     const boardReturn = []
     for (let colIndex = 0; colIndex < currentColumns.length; colIndex++) {
         let colReturn = []
         for (let rowIndex = 0; rowIndex < currentColumns[colIndex].length; rowIndex++) {
-
             let tileData = currentColumns[colIndex][rowIndex] ? currentColumns[colIndex][rowIndex] : {
                 content: null,
                 tileClass: "Tile",
