@@ -1,17 +1,13 @@
-import React from 'react';
-import "./Tile.scss"
+import react from "react";
+import "./Tile.scss";
 
-function Tile(props) {
-    return (
-        <div>
-            <button
-                className={"tile" + props.tileType}
-                onClick={props.handleClick}
-            >
-            </button>
-        </div>
-    );
-};
+class Tile extends react.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return <button class="Tile" />
+    }
+}
 
-
-export default Tile;
+export default Tile

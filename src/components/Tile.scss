@@ -1,7 +1,7 @@
-
-.tile {
-	background: #ddd;
-	border: 1px solid #999;
+@import "../styles/global.scss";
+.Tile {
+	background: $bg-colour;
+	border: 1px solid $border-colour;
 	float: left;
 	font-size: 60px;
 	font-weight: bold;
@@ -14,18 +14,18 @@
 	width: 120px;
 }
 
-.tile-winner {
-	@extend .tile;
-	background: rgb(121, 29, 121);
+.Tile-current  {
+	@extend .Tile;
+	background: $current-player-colour;
 }
 
-
-.tile-current {
-	@extend .tile;
-	background: rgb(18, 147, 156);
-	border-radius: 100%;
-}
-
-.tile:focus {
+.Tile:focus {
 	outline: none;
+}
+
+
+.Tile-winner {
+	@extend .Tile;
+	background: $win-colour;
+    border-radius:100%;
 }
