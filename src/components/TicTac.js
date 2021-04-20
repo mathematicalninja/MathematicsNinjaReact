@@ -33,20 +33,12 @@ class TicTac extends React.Component {
             squares: newBoard,
             currentTile: null,
             winner: null,
-            // winningLine: null
+            winningLine: null
         }
 
     }
 
     lineMaker(squareSize) {
-        //-----------------------------------------------------
-        //
-        // needs to be refactored to give [x,y] pairs rather than [x+y*k] singles
-        //
-        //-----------------------------------------------------
-
-
-
 
         let winLines = []
         // add rows
@@ -138,7 +130,7 @@ class TicTac extends React.Component {
     historyUpdate(newBoard, newestTile) {
         let currentHistory = this.state.history.slice(0, this.state.moveNumber + 1);
         const currentMove = this.state.moveNumber;
-        const [winner, winningLine] = this.calculateAnyWinner(newBoard) ? this.calculateAnyWinner(newBoard) : [null, null]
+        const [winner, winningLine] = this.calculateWinner(newBoard) ? this.calculateWinner(newBoard) : [null, null]
         currentHistory.push({
             squares: newBoard,
             currentTile: newestTile,
@@ -152,11 +144,8 @@ class TicTac extends React.Component {
         })
 
     }
-    calculateWinner(currentBoardSquares_index_in_history) {
-        return null;
-    }
 
-    calculateAnyWinner(squares) {
+    calculateWinner(squares) {
         for (let indexOfLine = 0; indexOfLine < this.state.winningLines.length; indexOfLine++) {
             let thisLine = this.state.winningLines[indexOfLine]
             let x_0 = thisLine[0][0]
@@ -172,7 +161,6 @@ class TicTac extends React.Component {
                         count++
                 }
                 if (count == thisLine.length) {
-                    // alert("winner is " + a + " with " + thisLine)
                     return [a, thisLine]
                 }
             }
