@@ -30,9 +30,9 @@ class Board extends react.Component {
         return boardReturn
     }
     render() {
-        return <div>
+        return <div className="boardGrid">
             {this.boardBuilder()}Here's where the board should exist.
-            {this.state.currentTile}
+            {/* {this.state.currentTile} */}
 
         </div>
     }
