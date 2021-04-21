@@ -131,18 +131,49 @@ class TicTac extends React.Component {
         let currentHistory = this.state.history.slice(0, this.state.moveNumber + 1);
         const currentMove = this.state.moveNumber;
         const [winner, winningLine] = this.calculateWinner(newBoard) ? this.calculateWinner(newBoard) : [null, null]
-        currentHistory.push({
+        const unstyledBoard = {
             squares: newBoard,
             currentTile: newestTile,
             winner: winner,
             winningLine: winningLine,
-        })
+        }
+        let previousMove = null;
+        if (this.state.moveNumber) {
+            previousMove = this.state.history[this.state.moveNumber].currentTile
+        }
+
+        this.changeStyling(unstyledBoard, previousMove)
+
+        currentHistory.push(unstyledBoard)
 
         this.setState({
             history: currentHistory,
             moveNumber: currentMove + 1
         })
 
+    }
+
+    changeStyling(currentBoard, previousMove) {
+
+        // currnetly this mutates data rather than cloneing it.
+
+
+        console.log(currentBoard, previousMove, currentBoard.currentTile)
+        let styledBoard = currentBoard;
+        if (styledBoard.currentTile) {
+            let [x, y] = styledBoard.currentTile
+            styledBoard.squares[x][y].tileClass = "Tile-current"
+        }
+        if (previousMove) {
+            let [x, y] = previousMove
+            styledBoard.squares[x][y].tileClass = "Tile"
+        }
+        if (styledBoard.winningLine) {
+            for (let [x, y] of styledBoard.winningLine) {
+                styledBoard.squares[x][y].tileClass = "Tile-winner"
+            }
+        }
+        return styledBoard
     }
 
     calculateWinner(squares) {
