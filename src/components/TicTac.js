@@ -160,14 +160,16 @@ class TicTac extends React.Component {
 
         console.log(currentBoard, previousMove, currentBoard.currentTile)
         let styledBoard = currentBoard;
-        if (styledBoard.currentTile) {
-            let [x, y] = styledBoard.currentTile
-            styledBoard.squares[x][y].tileClass = "Tile-current"
-        }
         if (previousMove) {
             let [x, y] = previousMove
             styledBoard.squares[x][y].tileClass = "Tile"
         }
+
+        if (styledBoard.currentTile) {
+            let [x, y] = styledBoard.currentTile
+            styledBoard.squares[x][y].tileClass = "Tile-current"
+        }
+
         if (styledBoard.winningLine) {
             for (let [x, y] of styledBoard.winningLine) {
                 styledBoard.squares[x][y].tileClass = "Tile-winner"
