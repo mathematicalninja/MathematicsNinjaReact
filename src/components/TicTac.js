@@ -8,18 +8,18 @@ class TicTac extends React.Component {
     constructor(props) {
         super(props);
         //takes input squareSize or defaults to 3 by 3
-        let squareSize = props.squareSize ? props.squareSize : 3
+        let gridSize = props.gridSize ? props.gridSize : [7, 6]
         this.state = {
             playerLogos: ["💜", "☕", "🦇"],
             currentPlayer: 0,
             maxPlayers: 2,
             moveNumber: 0,
-            squareSize: squareSize,
-            history: [this.blankBoard(squareSize)],
-            winningLines: this.lineMaker(squareSize)
+            squareSize: gridSize,
+            history: [this.blankBoard(gridSize)],
+            winningLines: this.lineMaker(gridSize)
         }
     }
-    blankBoard(squareSize) {
+    blankBoard(gridSize) {
         // makes a squareSize^2 board, in a 2-tensor.
         // Layer 1 is coulumns, with each entry being row
         // (x,y) board[x][y]
@@ -28,7 +28,7 @@ class TicTac extends React.Component {
         // 1,2  2,2  3,2
         // 1,3  2,3  3,3
 
-        let newBoard = Array(squareSize).fill(Array(squareSize).fill(null));
+        let newBoard = Array(gridSize[0]).fill(Array(gridSize[1]).fill(null));
         return {
             squares: newBoard,
             currentTile: null,
@@ -39,41 +39,45 @@ class TicTac extends React.Component {
 
     }
 
-    lineMaker(squareSize) {
+    lineMaker(gridSize) {
 
+        // old implimentation still in tack---> needs to be refactored to gridSize =[x,y] widths
+        let squareSize = gridSize[0]
+        const xWidth = gridSize[0]
+        const yWidth = gridSize[1]
         let winLines = []
         // add rows
-        for (let y = 0; y < squareSize; y++) {
+        for (let y = 0; y < yWidth; y++) {
             let winRow = [];
-            for (let x = 0; x < squareSize; x++) {
+            for (let x = 0; x < xWidth; x++) {
                 winRow.push([x, y]);
             };
             winLines.push(winRow);
         };
         // add columns
-        for (let x = 0; x < squareSize; x++) {
+        for (let x = 0; x < xWidth; x++) {
             let winColumn = [];
-            for (let y = 0; y < squareSize; y++) {
+            for (let y = 0; y < yWidth; y++) {
                 winColumn.push([x, y]);
             }
             winLines.push(winColumn);
         }
         // add \diagonal
-        let diagOne = []
-        for (let k = 0; k < squareSize; k++) {
-            diagOne.push([k, k])
-        }
-        winLines.push(diagOne)
+        // let diagOne = []
+        // for (let k = 0; k < squareSize; k++) {
+        //     diagOne.push([k, k])
+        // }
+        // winLines.push(diagOne)
 
 
 
         // add minor \diagonals length>=3
-        if (squareSize > 3) {
+        if (squareSize >= 3) {
             // d is the range of differences in size (between 3 and squareSize), so squareSize-d is the length of the minor diagonal
             for (let d = squareSize - 3; d >= 3 - squareSize; d--) {
                 let minorDiag = []
 
-                for (let y = 0; y < squareSize; y++) {
+                for (let y = 0; y < yWidth; y++) {
                     let tileIndex = y * (1 + squareSize) + d
                     if (
                         // doesn't go off of the left
@@ -93,19 +97,19 @@ class TicTac extends React.Component {
 
 
         // add /diagonal
-        let diagTwo = []
-        for (let k = 0; k < squareSize; k++) {
-            diagTwo.push([(squareSize - k - 1), k])
-            // diagTwo.push((squareSize - k - 1) + k * squareSize)
-        }
-        winLines.push(diagTwo)
+        // let diagTwo = []
+        // for (let k = 0; k < squareSize; k++) {
+        //     diagTwo.push([(squareSize - k - 1), k])
+        //     // diagTwo.push((squareSize - k - 1) + k * squareSize)
+        // }
+        // winLines.push(diagTwo)
         // add minor /diagonals length>=3
-        if (squareSize > 3) {
+        if (squareSize >= 3) {
             // d is the range of differences in size (between 3 and squareSize), so squareSize-d is the length of the minor diagonal
             for (let d = squareSize - 3; d >= 3 - squareSize; d--) {
                 let minorDiag = []
 
-                for (let y = 0; y < squareSize; y++) {
+                for (let y = 0; y < yWidth; y++) {
                     let tileIndex = (squareSize - y - 1) + y * squareSize + d
                     if (
                         // doesn't go off of the left
@@ -121,7 +125,7 @@ class TicTac extends React.Component {
                 winLines.push(minorDiag)
             }
         }
-
+        console.log(winLines)
         return winLines
     }
 
