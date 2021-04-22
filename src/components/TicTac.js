@@ -168,12 +168,8 @@ class TicTac extends React.Component {
 
 
         let styledBoard = currentBoard;
-        // console.log(styledBoard, previousMoves, currentBoard.currentTile)
         if (previousMoves) {
             for (let move of previousMoves) {
-                // console.log(move)
-                console.log(styledBoard.squares[move[0]][move[1]])
-                console.log(styledBoard.squares[move[0]][move[1]].tileClass)
                 if (
                     styledBoard.squares[move[0]][move[1]]
                 ) {
@@ -183,7 +179,6 @@ class TicTac extends React.Component {
 
             for (let x = 0; x < styledBoard.squares.length; x++) {
                 for (let y = 0; y < styledBoard.squares[x].length; y++) {
-                    // console.log(styledBoard.squares)
                     if (styledBoard.squares[x][y]) {
                         styledBoard.squares[x][y].tileClass = "Tile"
                     }
@@ -215,10 +210,10 @@ class TicTac extends React.Component {
                     let x = thisLine[k][0]
                     let y = thisLine[k][1]
                     let value = squares[x][y] ? squares[x][y].content : null
-                    if (value == a)
+                    if (value === a)
                         count++
                 }
-                if (count == thisLine.length) {
+                if (count === thisLine.length) {
                     return [a, thisLine]
                 }
             }
