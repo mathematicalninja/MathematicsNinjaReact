@@ -33,7 +33,8 @@ class TicTac extends React.Component {
             squares: newBoard,
             currentTile: null,
             winner: null,
-            winningLine: null
+            winningLine: null,
+            moveList: [],
         }
 
     }
@@ -121,7 +122,6 @@ class TicTac extends React.Component {
             }
         }
 
-        console.log(winLines)
         return winLines
     }
 
@@ -131,18 +131,27 @@ class TicTac extends React.Component {
         let currentHistory = this.state.history.slice(0, this.state.moveNumber + 1);
         const currentMove = this.state.moveNumber;
         const [winner, winningLine] = this.calculateWinner(newBoard) ? this.calculateWinner(newBoard) : [null, null]
+        // const previousMoves =
+        // -----------------------------------------------------
+        //
+        // here I need to put in a "prev moves += current move" style update.
+        // or re-factor currentMove to moveList (reverse ordered, so moveList[0] is the current)
+        //
+        // -----------------------------------------------------
+        const newMoveList = this.state.history[this.state.moveNumber].moveList.concat([newestTile])
         const unstyledBoard = {
             squares: newBoard,
             currentTile: newestTile,
             winner: winner,
             winningLine: winningLine,
+            moveList: newMoveList,
         }
-        let previousMove = null;
+        let previousMoves = null;
         if (this.state.moveNumber) {
-            previousMove = this.state.history[this.state.moveNumber].currentTile
+            previousMoves = this.state.history[this.state.moveNumber].moveList
         }
 
-        this.changeStyling(unstyledBoard, previousMove)
+        this.changeStyling(unstyledBoard, previousMoves)
 
         currentHistory.push(unstyledBoard)
 
@@ -153,31 +162,47 @@ class TicTac extends React.Component {
 
     }
 
-    changeStyling(currentBoard, previousMove) {
+    changeStyling(currentBoard, previousMoves) {
 
         // currnetly this mutates data rather than cloneing it.
 
 
-        console.log(currentBoard, previousMove, currentBoard.currentTile)
         let styledBoard = currentBoard;
-        if (previousMove) {
-            let [x, y] = previousMove
-            styledBoard.squares[x][y].tileClass = "Tile"
-        }
-
-        if (styledBoard.currentTile) {
-            let [x, y] = styledBoard.currentTile
-            styledBoard.squares[x][y].tileClass = "Tile-current"
-        }
-
-        if (styledBoard.winningLine) {
-            for (let [x, y] of styledBoard.winningLine) {
-                styledBoard.squares[x][y].tileClass = "Tile-winner"
+        // console.log(styledBoard, previousMoves, currentBoard.currentTile)
+        if (previousMoves) {
+            for (let move of previousMoves) {
+                // console.log(move)
+                console.log(styledBoard.squares[move[0]][move[1]])
+                console.log(styledBoard.squares[move[0]][move[1]].tileClass)
+                if (
+                    styledBoard.squares[move[0]][move[1]]
+                ) {
+                    styledBoard.squares[move[0]][move[1]].tileClass = "Tile"
+                }
             }
-        }
-        return styledBoard
-    }
 
+            for (let x = 0; x < styledBoard.squares.length; x++) {
+                for (let y = 0; y < styledBoard.squares[x].length; y++) {
+                    // console.log(styledBoard.squares)
+                    if (styledBoard.squares[x][y]) {
+                        styledBoard.squares[x][y].tileClass = "Tile"
+                    }
+                }
+            }
+
+            if (styledBoard.currentTile) {
+                let [x, y] = styledBoard.currentTile
+                styledBoard.squares[x][y].tileClass = "Tile-current"
+            }
+
+            if (styledBoard.winningLine) {
+                for (let [x, y] of styledBoard.winningLine) {
+                    styledBoard.squares[x][y].tileClass = "Tile-winner"
+                }
+            }
+            return styledBoard
+        }
+    }
     calculateWinner(squares) {
         for (let indexOfLine = 0; indexOfLine < this.state.winningLines.length; indexOfLine++) {
             let thisLine = this.state.winningLines[indexOfLine]
@@ -239,6 +264,8 @@ class TicTac extends React.Component {
         }
     }
     timeTravel(i) {
+        // restyle here
+        this.changeStyling(this.state.history[i], this.state.history[i].moveList)
         this.setState({
             moveNumber: i,
         })
