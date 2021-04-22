@@ -125,7 +125,6 @@ class TicTac extends React.Component {
                 winLines.push(minorDiag)
             }
         }
-        console.log(winLines)
         return winLines
     }
 
