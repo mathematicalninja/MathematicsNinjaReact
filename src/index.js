@@ -8,10 +8,12 @@ import './index.scss';
 import TicTac from "./components/TicTac.js"
 import ConnectFour from "./components/connectFour.js"
 
+
+
 // ========================================
 
 ReactDOM.render(
 	// <TicTac gridSize={[3, 3]} />,
-	<ConnectFour />,
+	<ConnectFour gridSize={[7, 6]} />,
 	document.getElementById('root')
 );
