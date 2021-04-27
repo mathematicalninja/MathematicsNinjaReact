@@ -6,13 +6,12 @@ import './index.scss';
 // import ConnectFourColumn from "./components/ConnectFourColumn.js"
 // import Tile from "./components/Tile.js"
 import TicTac from "./components/TicTac.js"
+import ConnectFour from "./components/connectFour.js"
 
 // ========================================
 
 ReactDOM.render(
-	// <ConnectFourBoard numberOfColumns={7} numberOfRows={6} />,
-	<TicTac squareSize={3} />,
-	// <ConnectFourColumn numberOfRows={6} />,
-	// <Tile tileType=""></Tile>,
+	// <TicTac gridSize={[3, 3]} />,
+	<ConnectFour />,
 	document.getElementById('root')
 );

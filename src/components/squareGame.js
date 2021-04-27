@@ -18,7 +18,7 @@ class squareGame extends React.Component {
     // handleClick, boardRender, and controls render are stable, as they call the less stable functions above.
     constructor(props) {
         super(props);
-        //takes input squareSize or defaults to 3 by 3
+        //takes input gridSize or defaults to 3 by 3
         let gridSize = props.gridSize ? props.gridSize : [3, 3]
         this.state = {
             playerLogos: ["💜", "🦇", "☕",],
@@ -32,7 +32,7 @@ class squareGame extends React.Component {
     }
 
     blankBoard(gridSize) {
-        // makes a squareSize^2 board, in a 2-tensor.
+        // makes a gridSize board, in a 2-tensor.
         // Layer 1 is coulumns, with each entry being row
         // (x,y) board[x][y]
         // (col,row) => board[col][row]
@@ -54,17 +54,34 @@ class squareGame extends React.Component {
     lineMaker(gridSize, minLength, maxLength) {
 
         // old implimentation still in tack---> needs to be refactored to gridSize =[x,y] widths
+
+        // placeholder variable, to allow code to be tested
         let squareSize = gridSize[0]
 
 
         // from here stems the flow of changes.
-        const minLen = minLength ? minLength : 3
-        const maxLen = maxLength ? maxLength : 34
-
-
 
         const xWidth = gridSize[0]
         const yWidth = gridSize[1]
+        // min(A, B)
+        // is A < B ? Yes A: No B
+        // (A<B)?A:B
+        const minWidth = minLength ? minLength : (xWidth < yWidth) ? xWidth : yWidth
+
+        // maxWidth mat be unnessessery
+
+        // max(A,B)
+        // is A>B? Yes A: No B
+        // (A>B)?A:B
+        const maxWidth = maxLength ? maxLength : (xWidth > yWidth) ? xWidth : yWidth
+
+        // if the min digonal isn't set, it's assumed to be 3 (or 1,2 if the grid is stupid small)
+        // if max diagonal length isn't set, it's assumed to be the shorter of width/height (as that's the longest a diagonal can be)
+        minLength = (typeof minLength !== 'undefined') ? minLength : (minWidth < 3) ? minWidth : 3
+        maxLength = (typeof maxLength !== 'undefined') ? maxLength : minWidth
+
+
+
         let winLines = []
         // add rows
         for (let y = 0; y < yWidth; y++) {
@@ -82,19 +99,22 @@ class squareGame extends React.Component {
             }
             winLines.push(winColumn);
         }
+
+        /*obolete code
         // add \diagonal
         // let diagOne = []
         // for (let k = 0; k < squareSize; k++) {
         //     diagOne.push([k, k])
         // }
         // winLines.push(diagOne)
-
+        obsolete code*/
 
 
         // add minor \diagonals length>=3
-        if (squareSize >= 3) {
-            // d is the range of differences in size (between 3 and squareSize), so squareSize-d is the length of the minor diagonal
-            for (let d = squareSize - 3; d >= 3 - squareSize; d--) {
+        if (minWidth >= 3) {
+            // d ranges between the minLength of a diagonal, and the minWidth of the grid
+            // minWidth -d = length of this minor diagonal
+            for (let d = minWidth - 3; d >= 3 - minWidth; d--) {
                 let minorDiag = []
 
                 for (let y = 0; y < yWidth; y++) {
