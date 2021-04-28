@@ -8,7 +8,7 @@ class Logo extends React.Component {
         console.log("Logo load")
     }
     render() {
-        return <div id="LogoSquare" className="logo">Let ε>0.
+        return <div id="LogoSquare" className="logo">Let ε{">"}0.
 </div>
     }
 }

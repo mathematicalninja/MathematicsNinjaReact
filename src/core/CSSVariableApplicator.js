@@ -11,13 +11,33 @@ class CSSVariableApplicator extends React.Component {
             this.updateCSSVariables(this.props.variables);
         }
     }
-    updateCSSVariables(variables) {
-        console.log(variables)
-        variables.forEach((value, prop) => {
-            console.log(value, prop)
-            document.documentElement.style.setProperty(prop, value);
-        });
+    updateCSSVariables(themeObject) {
+        /*themeObject{
+            colourClass:{
+                colourKey:#hexvalue,
+                ...
+            },
+            colourClass2:{...},
+            ...
+        }*/
+        const colourClasses = Object.keys(themeObject);
+
+        colourClasses.forEach(
+            (colourClass) => {
+                const colourKeys = Object.keys(themeObject[colourClass]);
+                colourKeys.forEach(
+                    (colourkey) => {
+                        const colourCode = themeObject[colourClass][colourkey]
+                        const cssVariable = `--${colourClass}-${colourkey}`
+                        console.log(cssVariable, colourCode)
+                        document.documentElement.style.setProperty(cssVariable, colourCode);
+                    }
+                );
+
+            }
+        );
     }
+
     render() {
         return <div>{this.props.children}</div>;
     }

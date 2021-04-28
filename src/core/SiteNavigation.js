@@ -7,7 +7,7 @@ class SiteNavigation extends React.Component {
         console.log("SiteNavigation load")
     }
     render() {
-        return <div>Here's where everything goes.</div>
+        return <div>Here's where the Nav Bar goes.</div>
     }
 }
 
