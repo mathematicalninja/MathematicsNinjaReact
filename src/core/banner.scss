@@ -1,0 +1,18 @@
+@import "../styles/global.scss";
+
+$theme-colors: (
+  "success": #28a745,
+  "info": #17a2b8,
+  "warning": #ffc107,
+);
+
+#BannerBox {
+  width: 100px;
+  height: 100px;
+//   background: $player-one-colour;
+  background-color: var(--theme-primary-color);
+}
+
+.banner {
+    color:#111
+}
