@@ -1,0 +1,14 @@
+.swatchContainer{
+    	/* display: flex;
+	flex-direction: row; */
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-areas:
+	"swatches switchTheme"
+}
+.swatches{
+    grid-area:swatches;
+}
+.switchTheme{
+    grid-area:switchTheme;
+}
