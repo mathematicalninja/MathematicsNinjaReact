@@ -12,7 +12,7 @@ class Banner extends React.Component {
         const isText = <span> is an </span>
         const artText = <span
             style={{
-                "font-family": "DancingScript",
+                "fontFamily": "DancingScript",
                 "color": "var(--Accent-1)"
             }}> Artform.</span>
         return [mathsText, isText, artText]
