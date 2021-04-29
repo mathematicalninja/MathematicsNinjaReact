@@ -31,8 +31,6 @@ class SiteNavigation extends React.Component {
             navigationBarItems.push(
                 <button
                     onClick={() =>
-                        // console.log(internalRefrence)
-
                         this.choosePage(internalRefrence)
                     }
                     key={internalRefrence}
@@ -47,14 +45,13 @@ class SiteNavigation extends React.Component {
         }
         css_grid_template_areas += " .\""
         css_grid_template_columns += ` ${css_margin}`
-        console.log(css_grid_template_areas)
-        console.log(css_grid_template_columns)
         return <div
             className="navigationBar"
             style={{
                 display: "grid",
                 "grid-template-areas": css_grid_template_areas,
-                "grid-template-columns": css_grid_template_columns
+                "grid-template-columns": css_grid_template_columns,
+                "margin-bottom": "0.2vw"
             }}
         >
             {navigationBarItems}

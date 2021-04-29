@@ -5,8 +5,11 @@ class ColourSwatchGrid extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            theme: props.theme
+            theme: props.theme,
+            colour: props.bgColour,
+            bgColour: props.bgColour,
         }
+        this.switchColour = props.switchColour
     }
 
     themeStrips(themeObject) {
@@ -35,23 +38,30 @@ class ColourSwatchGrid extends React.Component {
                 const cssVariable = `--${colourSetName}-${colourKey}`
 
                 const styleText = {
+                    // color being `var(${cssVariable})` out blanks the text
+
                     "width": "100px",
                     "height": "100px",
-                    "background": `var(${cssVariable})`
+                    "background": `var(${cssVariable})`,
+                    "color": `var(${cssVariable})`,
+                    // "color": this.state.colour,
+                    border: "0px none",
+                    "margin": "2px"
+
                 }
 
                 // `width: 100px;height: 100px;background - color: var(${cssVariable});`
-                // console.log(colourSet[colourKeys[colourKey]])
                 swatch.push(
                     <button style={styleText}
-                        key={cssVariable}>
+                        key={`${cssVariable} ${this.state.colour}`}
+                        onClick={() => this.switchColour(`var(${cssVariable})`)}
+                    >
                         {cssVariable}
                         <br></br>
                         {colourSet[colourKeys[colourKey]]}
 
                     </button>
                 )
-                // console.log(cssVariable, colourCode)
             }
         );
         return <div key={colourSetName}>{swatch}</div>
@@ -72,7 +82,7 @@ class ColourSwatchGrid extends React.Component {
 class ThemeSwapControls extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { themes: props.themes }
+        this.state = {themes: props.themes}
         this.switchTheme = props.switchTheme
     }
 
@@ -94,12 +104,6 @@ class ThemeSwapControls extends React.Component {
         return <div>{themeButtons}</div>
     }
 
-    // switchTheme(themeName) {
-    //     // console.log(themeName)
-    //     return
-    //     // this.setState = { theme: this.state.themes[themeName] }
-    // }
-
     render() {
         return <div className="switchTheme" key="swatchTheme">{this.renderThemeSwitchButtons()}</div>
     }
@@ -113,34 +117,36 @@ class ColourSwatch extends React.Component {
     */
     constructor(props) {
         super(props)
-        console.log("Colour props", props)
+        const startTheme = props.theme ? props.theme : props.themes.Default
         this.state = {
             themes: props.themes,
-            theme: props.theme ? props.theme : props.themes.Default
+            theme: startTheme,
+            backgroundColour: "var(--Secondary-5)",
         }
-        // this.parentSetState = props.setState
-        console.log(this.state)
+        this.updateColourScheme = props.updateColourScheme
+        this.handleThemeChange = (themeName) => props.updateColourScheme(this.state.themes[themeName])
     }
 
-    handleThemeChange(themeName) {
-        this.setState({ theme: this.state.themes[themeName] }, console.log(this.state.theme))
-    }
-
-    handleColourClick() {
-
+    handleColourClick(colourNameIn_CSS_VarWrapperAsText) {
+        this.setState({backgroundColour: colourNameIn_CSS_VarWrapperAsText})
     }
 
     render() {
         return <div className="TheWholeColourThing"
             style={{
-                "background-color": this.state.theme.Secondary[0],
+                "background-color": this.state.backgroundColour,
             }}
 
         >
-            <ColourSwatchGrid theme={this.state.theme} />
+            <ColourSwatchGrid
+                theme={this.state.theme}
+                switchColour={(CSSVar) => this.handleColourClick(CSSVar)}
+                bgColour={this.state.backgroundColour}
+                colour={this.state.backgroundColour}
+            />
             <ThemeSwapControls
                 themes={this.state.themes}
-                switchTheme={this.handleThemeChange}
+                switchTheme={(themeName) => this.handleThemeChange(themeName)}
             />
         </div>
     }

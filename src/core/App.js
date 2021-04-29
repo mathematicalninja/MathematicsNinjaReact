@@ -23,17 +23,19 @@ class App extends React.Component {
             page: props.page,
         };
     }
-    updateColourScheme(props) {
-        this.setState(props)
-        this.render()
+    updateColourScheme(theme) {
+        this.setState({theme: theme})
+        // this.render()
     }
     choosePage(reactClassTag) {
         switch (reactClassTag) {
             case "ColourSwatch":
+                const keyInput = this.state.theme
                 return <ColourSwatch
                     theme={this.state.theme}
                     themes={this.state.themes}
-                // setState={this.updateColourScheme}
+                    key={keyInput}
+                    updateColourScheme={(theme) => this.updateColourScheme(theme)}
 
                 />
 
@@ -51,14 +53,12 @@ class App extends React.Component {
         }
     }
     updatePageContent(internalReferenceName) {
-        this.setState({ page: internalReferenceName })
-
-        // this.render()
-        // console.log(internalReferenceName)
+        this.setState({page: internalReferenceName})
     }
     render() {
         return (
-            <CSSVariableApplicator theme={this.state.theme}>
+            <CSSVariableApplicator theme={this.state.theme}
+                key="this.state.theme">
                 <PageLayout
                     pageContent={this.choosePage(this.state.page)}
                     updatePageContent={(ref) => this.updatePageContent(ref)} />

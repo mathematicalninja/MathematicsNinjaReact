@@ -29,7 +29,6 @@ class CSSVariableApplicator extends React.Component {
                     (colourkey) => {
                         const colourCode = themeObject[colourClass][colourkey]
                         const cssVariable = `--${colourClass}-${colourkey}`
-                        // console.log(cssVariable, colourCode)
                         document.documentElement.style.setProperty(cssVariable, colourCode);
                     }
                 );

@@ -9,6 +9,8 @@
 .swatches{
     grid-area:swatches;
 	margin:0 auto;
+	margin-top: 13px;
+	margin-bottom: 10px;
 }
 // .switchTheme{
 //     grid-area:switchTheme;
@@ -16,5 +18,5 @@
 .themButton{
     grid-area:switchTheme;
 	width: 100px;
-  margin: 0 auto;
+   margin: 0 auto;
 }
