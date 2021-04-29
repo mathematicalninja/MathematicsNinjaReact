@@ -33,7 +33,7 @@ class PageLayout extends React.Component {
             <div className="siteNavigation"
                 key="siteNavigation">
                 <SiteNavigation
-                    menueItems={["ColourSwatch", "TicTac", "GridGame"]}
+                    menueItems={[["Themes", "ColourSwatch"], ["Tic-Tac-Toe", "TicTac"], ["Grid Test", "GridGame"]]}
                     choosePage={(ref) => this.updatePageContent(ref)}
                 />
             </div>
