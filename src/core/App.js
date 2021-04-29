@@ -32,7 +32,8 @@ class App extends React.Component {
             case "ColourSwatch":
                 return <ColourSwatch
                     theme={this.state.theme}
-                    themes={this.state.themes} setState={this.updateColourScheme}
+                    themes={this.state.themes}
+                // setState={this.updateColourScheme}
 
                 />
 
