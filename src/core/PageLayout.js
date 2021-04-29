@@ -2,8 +2,11 @@ import React from "react";
 import Banner from "./banner.js"
 import Logo from "./logo.js"
 import SiteNavigation from "./SiteNavigation.js"
-import PageContent from "./PageContent.js"
+import pageContent from "./PageContent.js"
 import "./PageLayout.scss"
+
+
+
 
 class PageLayout extends React.Component {
     constructor(props) {
@@ -12,7 +15,8 @@ class PageLayout extends React.Component {
         this.state = {
             pageContent: props.pageContent,
         }
-        this.updatePageContent = props.updatePageContent
+        console.log("knjgrpbetahpibaegr", props)
+        this.updatePageContent = (content) => props.updatePageContent(content)
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -53,7 +57,7 @@ class PageLayout extends React.Component {
             </div>
             <div className="pageContent"
                 key="pageContent">
-                <PageContent pageContent={this.state.pageContent} />
+                {pageContent(this.state.pageContent)}
             </div>
         </div>
     }

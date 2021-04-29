@@ -4,10 +4,14 @@ import React from "react";
 class SiteNavigation extends React.Component {
     constructor(props) {
         super(props)
-        this.choosePage = props.choosePage
+        this.choosePage = (ref) => props.choosePage(ref)
+
+
         this.state = {
             menueItems: props.menueItems,
         }
+
+        console.log("nav choose page", this.choosePage)
     }
     renderNavigationBar(DataStructure) {
         const css_margin = "1fr"

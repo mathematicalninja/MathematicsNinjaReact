@@ -1,4 +1,5 @@
 import React from "react"
+// mostly a wrapper, so I an stylaise mini-windows etc later.
 
 
 class PageContent extends React.Component {
@@ -14,4 +15,9 @@ class PageContent extends React.Component {
     }
 }
 
-export default PageContent
+function pageContent(pageContent) {
+    // console.log("oops here we are again", props.pageContent)
+    return <div>{pageContent}</div>
+}
+
+export default pageContent
