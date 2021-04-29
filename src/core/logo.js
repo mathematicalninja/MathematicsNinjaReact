@@ -9,8 +9,27 @@ class Logo extends React.Component {
     }
     render() {
         return <div id="LogoSquare" className="logo">
-            <div>Let </div>
-            <div>ε{">"}0</div>
+            <div
+                style={{
+                    position: "relative",
+                    bottom: "-.5vw"
+                }}
+            >Let </div>
+            <div
+                style={{
+                    position: "relative",
+                    top: "-.5vw"
+                }}>
+                <span
+                    style={{
+                        position: "relative",
+                        top: "-0.35vw",
+                        fontSize: "4.5vw"
+                    }}
+                >ε</span><span
+                    style={{ fontSize: "4vw" }}
+                >{">"}0</span>
+            </div>
         </div>
     }
 }
