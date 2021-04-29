@@ -51,12 +51,10 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div>
-                <CSSVariableApplicator theme={this.state.theme}>
-                    {this.choosePage("PageLayout")}
-                    {this.choosePage(this.state.page)}
-                </CSSVariableApplicator>
-            </div>
+            <CSSVariableApplicator theme={this.state.theme}>
+                <PageLayout pageContent={this.choosePage("TicTac")} />
+                {this.choosePage(this.state.page)}
+            </CSSVariableApplicator>
         );
     }
 }

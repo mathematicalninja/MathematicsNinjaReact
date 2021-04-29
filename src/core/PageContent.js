@@ -5,9 +5,12 @@ class PageContent extends React.Component {
     constructor(props) {
         super(props)
         console.log("PageContent load")
+        this.state = {
+            pageContent: props.pageContent,
+        }
     }
     render() {
-        return <div>Here's where everything goes.</div>
+        return <div>{this.state.pageContent}</div>
     }
 }
 

@@ -9,23 +9,23 @@ class PageLayout extends React.Component {
     constructor(props) {
         super(props)
         console.log("Page Layout Load")
+        this.state = {
+            pageContent: props.pageContent,
+        }
     }
     render() {
-        return <div>
-            Hello
-            <div className="pageLayout">
-                <div className="siteNavigation">
-                    <SiteNavigation />
-                </div>
-                <div className="siteLogo">
-                    <Logo />
-                </div>
-                <div className="siteBanner">
-                    <Banner />
-                </div>
-                <div className="pageContent">
-                    <PageContent />
-                </div>
+        return <div className="pageLayout">
+            <div className="siteNavigation">
+                <SiteNavigation />
+            </div>
+            <div className="siteLogo">
+                <Logo />
+            </div>
+            <div className="siteBanner">
+                <Banner />
+            </div>
+            <div className="pageContent">
+                <PageContent pageContent={this.state.pageContent} />
             </div>
         </div>
     }
