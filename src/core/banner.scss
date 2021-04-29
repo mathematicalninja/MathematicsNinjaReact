@@ -1,20 +1,13 @@
 @import "../styles/global.scss";
 
-$theme-colors: (
-  "success": #28a745,
-  "info": #17a2b8,
-  "warning": #ffc107,
-);
-
 #BannerBox {
   width: 80vw;
   height: 9vw;
   background-color: var(--Secondary-2);
-  color:var(--Grey-0)
 }
 
 .banner {
   text-align: center;
   font-size: 8vw;
-  color:#111
+  color:var(--Grey-0)
 }
