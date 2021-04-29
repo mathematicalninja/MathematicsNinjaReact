@@ -1,8 +1,17 @@
 import React from "react"
+
+// meta items, used across site
 import CSSVariableApplicator from "./CSSVariableApplicator";
 import PageLayout from "./PageLayout"
-// import "../styles/ThemeTemplate.json"
+
+// particular pages used as instences
+import TicTac from "../components/TicTac.js"
+import ConnectFour from "../components/ConnectFour.js"
+
+
+// testing pages
 import ColourSwatch from "../Testing/ColourSwatch.js"
+import GridGame from "../Testing/GridGame.js"
 
 class App extends React.Component {
     constructor(props) {
@@ -17,15 +26,31 @@ class App extends React.Component {
         this.setState(props)
         this.render()
     }
+    choosePage(reactClassTag) {
+        switch (reactClassTag) {
+            case "ColourSwatch":
+                return <ColourSwatch
+                    theme={this.state.theme}
+                    themes={this.state.themes} setState={this.udateColourScheme}
+
+                />
+
+            case "PageLayout":
+                return <PageLayout />
+            case "ConnectFour":
+                return <ConnectFour gridSize={[7, 6]} />
+            case "TicTac":
+                return <TicTac gridSize={[3, 3]} />
+
+            default:
+                return <PageLayout />
+        }
+    }
     render() {
         return (
             <div>
                 <CSSVariableApplicator theme={this.state.theme}>
-                    <ColourSwatch
-                        theme={this.state.theme}
-                        themes={this.state.themes} setState={this.udateColourScheme}
-
-                    />
+                    {this.choosePage("PageLayout")}
                 </CSSVariableApplicator>
             </div>
         );

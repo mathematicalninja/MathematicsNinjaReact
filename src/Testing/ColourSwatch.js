@@ -9,6 +9,7 @@ class ColourSwatch extends React.Component {
             theme: props.theme
         }
         this.parentSetState = props.setState
+        console.log(this.state)
     }
 
     themeStrips(themeObject) {
