@@ -12,21 +12,41 @@ class PageLayout extends React.Component {
         this.state = {
             pageContent: props.pageContent,
         }
+        this.updatePageContent = props.updatePageContent
     }
+
+    static getDerivedStateFromProps(props, state) {
+        // Any time the current user changes,
+        // Reset any parts of state that are tied to that user.
+        // In this simple example, that's just the email.
+        if (props.userID !== state.prevPropsUserID) {
+            return {
+                prevPropsUserID: props.userID,
+                email: props.defaultEmail
+            };
+        }
+        return null;
+    }
+
     render() {
         return <div className="pageLayout">
-            <div className="siteNavigation">
+            <div className="siteNavigation"
+                key="siteNavigation">
                 <SiteNavigation
-                    menueItems={["Home", "Swatch", "TicTac"]}
+                    menueItems={["ColourSwatch", "TicTac", "GridGame"]}
+                    choosePage={(ref) => this.updatePageContent(ref)}
                 />
             </div>
-            <div className="siteLogo">
+            <div className="siteLogo"
+                key="siteLogo">
                 <Logo />
             </div>
-            <div className="siteBanner">
+            <div className="siteBanner"
+                key="siteBanner">
                 <Banner />
             </div>
-            <div className="pageContent">
+            <div className="pageContent"
+                key="pageContent">
                 <PageContent pageContent={this.state.pageContent} />
             </div>
         </div>

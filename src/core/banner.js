@@ -8,9 +8,9 @@ class Banner extends React.Component {
         console.log("banner load")
     }
     textRender() {
-        const mathsText = <span>Maths</span>
-        const isText = <span> is an </span>
-        const artText = <span
+        const mathsText = <span key="maths">Maths</span>
+        const isText = <span key="is"> is an </span>
+        const artText = <span key="art"
             style={{
                 "fontFamily": "DancingScript",
                 "color": "var(--Accent-1)"

@@ -1,22 +1,13 @@
 import React from "react";
 import "./ColourSwatch.scss"
 
-class ColourSwatch extends React.Component {
-    /*
-    NEED to make colour swatch centered.
-    buttons need to be a seperate entity, that can flex to the bottom if need be, or be right hand side if available.
-    or a dropdown menue? I Like this idea less
-    */
+class ColourSwatchGrid extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            themes: props.themes,
             theme: props.theme
         }
-        this.parentSetState = props.setState
-        console.log(this.state)
     }
-
     themeStrips(themeObject) {
 
         const colourClasses = Object.keys(themeObject);
@@ -31,11 +22,9 @@ class ColourSwatch extends React.Component {
 
         return <div className="swatchContainer">
             <div className="swatches" key="swatches">{swatchesArray}</div>
-            <div className="switchTheme" key="swatchTheme">{this.renderThemeSwitchButtons()}</div>
         </div>
 
     }
-
 
     generateSwatch(colourSet, colourSetName) {
         let swatch = [];
@@ -64,7 +53,20 @@ class ColourSwatch extends React.Component {
                 // console.log(cssVariable, colourCode)
             }
         );
-        return <div>{swatch}</div>
+        return <div key={colourSetName}>{swatch}</div>
+    }
+    render() {
+        return <div>
+            {this.themeStrips(this.state.theme)}
+        </div>
+    }
+}
+
+class ThemeSwapControls extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { themes: props.themes }
+        this.switchTheme = props.switchTheme
     }
 
     renderThemeSwitchButtons() {
@@ -74,7 +76,7 @@ class ColourSwatch extends React.Component {
         for (let themeName of themeNames) {
             themeButtons.push(
                 <button
-                    onClick={() => this.parentSetState({ theme: this.state.themes[themeName] })}
+                    onClick={() => this.switchTheme(themeName)}
                     key={themeName}
                     className="themButton"
                 >
@@ -85,13 +87,47 @@ class ColourSwatch extends React.Component {
         return <div>{themeButtons}</div>
     }
 
-    switchTheme(themeName) {
-        console.log(themeName)
-        this.setState = { theme: this.state.themes[themeName] }
+    // switchTheme(themeName) {
+    //     // console.log(themeName)
+    //     return
+    //     // this.setState = { theme: this.state.themes[themeName] }
+    // }
+    render() {
+        return <div className="switchTheme" key="swatchTheme">{this.renderThemeSwitchButtons()}</div>
+    }
+}
+
+class ColourSwatch extends React.Component {
+    /*
+    NEED to make colour swatch centered.
+    buttons need to be a seperate entity, that can flex to the bottom if need be, or be right hand side if available.
+    or a dropdown menue? I Like this idea less
+    */
+    constructor(props) {
+        super(props)
+        this.state = {
+            themes: props.themes,
+            theme: props.theme ? props.theme : props.themes.Default
+        }
+        this.parentSetState = props.setState
+    }
+
+    handleThemeChange(themeName) {
+        this.setState({ theme: this.state.themes[themeName] })
+    }
+
+    handleColourClick() {
+
     }
 
     render() {
-        return this.themeStrips(this.state.theme)
+        return <>
+            <ColourSwatchGrid theme={this.state.theme} />
+            <ThemeSwapControls
+                themes={this.state.themes}
+                switchTheme={this.handleThemeChange}
+            />
+        </>
     }
 }
 

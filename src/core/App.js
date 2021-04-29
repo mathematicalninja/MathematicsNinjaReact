@@ -23,7 +23,7 @@ class App extends React.Component {
             page: props.page,
         };
     }
-    udateColourScheme(props) {
+    updateColourScheme(props) {
         this.setState(props)
         this.render()
     }
@@ -32,7 +32,7 @@ class App extends React.Component {
             case "ColourSwatch":
                 return <ColourSwatch
                     theme={this.state.theme}
-                    themes={this.state.themes} setState={this.udateColourScheme}
+                    themes={this.state.themes} setState={this.updateColourScheme}
 
                 />
 
@@ -49,10 +49,18 @@ class App extends React.Component {
                 return <PageLayout />
         }
     }
+    updatePageContent(internalReferenceName) {
+        this.setState({ page: internalReferenceName })
+
+        // this.render()
+        // console.log(internalReferenceName)
+    }
     render() {
         return (
             <CSSVariableApplicator theme={this.state.theme}>
-                <PageLayout pageContent={this.choosePage("ColourSwatch")} />
+                <PageLayout
+                    pageContent={this.choosePage(this.state.page)}
+                    updatePageContent={(ref) => this.updatePageContent(ref)} />
             </CSSVariableApplicator>
         );
     }

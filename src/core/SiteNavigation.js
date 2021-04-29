@@ -4,7 +4,6 @@ import React from "react";
 class SiteNavigation extends React.Component {
     constructor(props) {
         super(props)
-        console.log("SiteNavigation load")
         this.choosePage = props.choosePage
         this.state = {
             menueItems: props.menueItems,
@@ -17,6 +16,20 @@ class SiteNavigation extends React.Component {
             3) Have cascading children
         */
         let navigationBarItems = []
+        for (let internalRefrence of DataStructure) {
+            navigationBarItems.push(
+                <button
+                    onClick={() =>
+                        // console.log(internalRefrence)
+
+                        this.choosePage(internalRefrence)
+                    }
+                    key={internalRefrence}
+                >
+                    {internalRefrence}
+                </button >
+            )
+        }
         return <div>{navigationBarItems}</div>
     }
     renderSubMenue(SubDataStructure) {
@@ -24,7 +37,9 @@ class SiteNavigation extends React.Component {
         return <div>{subMenueItems}</div>
     }
     render() {
-        return <div>Here's where the Nav Bar goes.</div>
+        return <div>Here's where the Nav Bar goes.
+
+        {this.renderNavigationBar(this.state.menueItems)}</div>
     }
 }
 
