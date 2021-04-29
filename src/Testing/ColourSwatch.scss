@@ -2,17 +2,19 @@
     	/* display: flex;
 	flex-direction: row; */
 	display: grid;
-	grid-template-columns: auto 100px;
+	grid-template-columns: 100px auto 100px;
 	grid-template-areas:
-	"swatches switchTheme"
+	". swatches switchTheme"
 }
 .swatches{
     grid-area:swatches;
+	margin:0 auto;
 }
-.switchTheme{
-    grid-area:switchTheme;
-}
+// .switchTheme{
+//     grid-area:switchTheme;
+// }
 .themButton{
+    grid-area:switchTheme;
 	width: 100px;
   margin: 0 auto;
 }
