@@ -1,11 +1,14 @@
 @import "../styles/global.scss";
 
 #LogoSquare {
-  width: 100px;
-  height: 100px;
+  width: 9vw;
+  height: 9vw;
   background: var(--Primary-5);
 }
 
 .logo{
-    color:#000
+  text-align: center;
+  font-size: 4vw;
+  color:#000;
+
 }

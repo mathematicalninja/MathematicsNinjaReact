@@ -3,6 +3,7 @@ import Banner from "./banner.js"
 import Logo from "./logo.js"
 import SiteNavigation from "./SiteNavigation.js"
 import PageContent from "./PageContent.js"
+import "./PageLayout.scss"
 
 class PageLayout extends React.Component {
     constructor(props) {
@@ -12,11 +13,19 @@ class PageLayout extends React.Component {
     render() {
         return <div>
             Hello
-            <div>
-                <SiteNavigation />
-                <Logo />
-                <Banner />
-                <PageContent />
+            <div className="pageLayout">
+                <div className="siteNavigation">
+                    <SiteNavigation />
+                </div>
+                <div className="siteLogo">
+                    <Logo />
+                </div>
+                <div className="siteBanner">
+                    <Banner />
+                </div>
+                <div className="pageContent">
+                    <PageContent />
+                </div>
             </div>
         </div>
     }

@@ -7,8 +7,22 @@ class Banner extends React.Component {
         super(props)
         console.log("banner load")
     }
+    textRender() {
+        const mathsText = <span>Maths</span>
+        const isText = <span> is an </span>
+        const artText = <span
+            style={{
+                "font-family": "DancingScript"
+            }}> Artform.</span>
+        return [mathsText, isText, artText]
+    }
     render() {
-        return <div id="BannerBox" className="banner">Maths is Art.</div>
+        return <div id="BannerBox" className="banner"
+        // style={{ "fontSize": "8vw" }}
+        >
+            {/* Maths is Art. */}
+            {this.textRender()}
+        </div>
     }
 }
 

@@ -7,12 +7,14 @@ $theme-colors: (
 );
 
 #BannerBox {
-  width: 100px;
-  height: 100px;
-//   background: $player-one-colour;
-  background-color: var(--primary-2);
+  width: 80vw;
+  height: 9vw;
+  background-color: var(--Secondary-2);
+  color:var(--Grey-0)
 }
 
 .banner {
-    color:#111
+  text-align: center;
+  font-size: 8vw;
+  color:#111
 }
