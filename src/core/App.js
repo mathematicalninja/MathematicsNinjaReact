@@ -16,10 +16,10 @@ import GridGame from "../Testing/GridGame.js"
 class App extends React.Component {
     constructor(props) {
         super(props);
-        const theme = require("../styles/ThemeTemplate.json");
+        const themes = require("../styles/ThemeTemplate.json");
         this.state = {
-            theme: theme.Default,
-            themes: theme,
+            theme: themes.Default,
+            themes: themes,
             page: props.page,
         };
     }
