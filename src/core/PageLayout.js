@@ -16,7 +16,9 @@ class PageLayout extends React.Component {
     render() {
         return <div className="pageLayout">
             <div className="siteNavigation">
-                <SiteNavigation />
+                <SiteNavigation
+                    menueItems={["Home", "Swatch", "TicTac"]}
+                />
             </div>
             <div className="siteLogo">
                 <Logo />
