@@ -37,9 +37,9 @@ class SiteNavigation extends React.Component {
         return <div>{subMenueItems}</div>
     }
     render() {
-        return <div>Here's where the Nav Bar goes.
-
-        {this.renderNavigationBar(this.state.menueItems)}</div>
+        return <div>
+            {this.renderNavigationBar(this.state.menueItems)}
+        </div>
     }
 }
 
