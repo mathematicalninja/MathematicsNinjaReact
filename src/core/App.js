@@ -21,7 +21,11 @@ class App extends React.Component {
         return (
             <div>
                 <CSSVariableApplicator theme={this.state.theme}>
-                    <ColourSwatch theme={this.state.theme} themes={this.state.themes} setState={this.udateColourScheme} />
+                    <ColourSwatch
+                        theme={this.state.theme}
+                        themes={this.state.themes} setState={this.udateColourScheme}
+
+                    />
                 </CSSVariableApplicator>
             </div>
         );
