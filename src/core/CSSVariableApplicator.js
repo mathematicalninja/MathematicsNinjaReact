@@ -3,12 +3,12 @@ import React from "react"
 
 class CSSVariableApplicator extends React.Component {
     componentDidMount() {
-        this.updateCSSVariables(this.props.variables);
+        this.updateCSSVariables(this.props.theme);
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.variables !== prevProps.variables) {
-            this.updateCSSVariables(this.props.variables);
+        if (this.props.theme !== prevProps.theme) {
+            this.updateCSSVariables(this.props.theme);
         }
     }
     updateCSSVariables(themeObject) {

@@ -1,12 +1,14 @@
 import React from "react";
+import "./ColourSwatch.scss"
 
 class ColourSwatch extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            themes: props.theme,
-            theme: props.theme.Default
+            themes: props.themes,
+            theme: props.theme
         }
+        this.parentSetState = props.setState
     }
 
     themeStrips(themeObject) {
@@ -22,8 +24,8 @@ class ColourSwatch extends React.Component {
         );
 
         return <div className="swatchContainer">
-            <div className="swatches">{swatchesArray}</div>
-            <div className="switchTheme">{this.renderThemeSwitchButtons()}</div>
+            <div className="swatches" key="swatches">{swatchesArray}</div>
+            <div className="switchTheme" key="swatchTheme">{this.renderThemeSwitchButtons()}</div>
         </div>
 
     }
@@ -66,8 +68,9 @@ class ColourSwatch extends React.Component {
         for (let themeName of themeNames) {
             themeButtons.push(
                 <button
-                    onClick={() => this.switchTheme(themeName)}
+                    onClick={() => this.parentSetState({ theme: this.state.themes[themeName] })}
                     key={themeName}
+                    className="themButton"
                 >
                     {themeName}
                 </button>
@@ -77,6 +80,7 @@ class ColourSwatch extends React.Component {
     }
 
     switchTheme(themeName) {
+        console.log(themeName)
         this.setState = { theme: this.state.themes[themeName] }
     }
 

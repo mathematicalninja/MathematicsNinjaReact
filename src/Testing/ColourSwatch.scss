@@ -2,7 +2,7 @@
     	/* display: flex;
 	flex-direction: row; */
 	display: grid;
-	grid-template-columns: auto auto;
+	grid-template-columns: auto 100px;
 	grid-template-areas:
 	"swatches switchTheme"
 }
@@ -11,4 +11,8 @@
 }
 .switchTheme{
     grid-area:switchTheme;
+}
+.themButton{
+	width: 100px;
+  margin: 0 auto;
 }

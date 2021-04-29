@@ -8,27 +8,21 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         const theme = require("../styles/ThemeTemplate.json");
-        // {
-        //     "theme-primary": {
-        //         color: "#8DC63F",
-        //     }
-        // theme.set('--theme-primary-color', '#8DC63F')
-
-        // '--theme-primary-color': '#8DC63F',
-        // '--widget-color': '#333333',
-        // '--dashboard-footer-text-color': '#FFFFFF',
-
         this.state = {
-            theme: theme,
+            theme: theme.Default,
             themes: theme
         };
-        // console.log(this.state)
+    }
+    udateColourScheme(props) {
+        this.setState(props)
+        this.render()
     }
     render() {
         return (
             <div>
-                <CSSVariableApplicator variables={this.state.theme.Default} />
-                <ColourSwatch theme={this.state.themes} />
+                <CSSVariableApplicator theme={this.state.theme}>
+                    <ColourSwatch theme={this.state.theme} themes={this.state.themes} setState={this.udateColourScheme} />
+                </CSSVariableApplicator>
             </div>
         );
     }
