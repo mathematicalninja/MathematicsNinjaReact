@@ -19,7 +19,8 @@ class App extends React.Component {
         const theme = require("../styles/ThemeTemplate.json");
         this.state = {
             theme: theme.Default,
-            themes: theme
+            themes: theme,
+            page: props.page,
         };
     }
     udateColourScheme(props) {
@@ -53,7 +54,7 @@ class App extends React.Component {
             <div>
                 <CSSVariableApplicator theme={this.state.theme}>
                     {this.choosePage("PageLayout")}
-                    {this.choosePage("ColourSwatch")}
+                    {this.choosePage(this.state.page)}
                 </CSSVariableApplicator>
             </div>
         );
