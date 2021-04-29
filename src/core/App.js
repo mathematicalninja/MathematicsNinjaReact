@@ -42,6 +42,8 @@ class App extends React.Component {
             case "TicTac":
                 return <TicTac gridSize={[3, 3]} />
 
+            case "GridGame":
+                return <GridGame gridSize={[7, 6]} />
             default:
                 return <PageLayout />
         }
@@ -51,6 +53,7 @@ class App extends React.Component {
             <div>
                 <CSSVariableApplicator theme={this.state.theme}>
                     {this.choosePage("PageLayout")}
+                    {this.choosePage("ColourSwatch")}
                 </CSSVariableApplicator>
             </div>
         );
