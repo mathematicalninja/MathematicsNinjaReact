@@ -2,6 +2,11 @@ import React from "react";
 import "./ColourSwatch.scss"
 
 class ColourSwatch extends React.Component {
+    /*
+    NEED to make colour swatch centered.
+    buttons need to be a seperate entity, that can flex to the bottom if need be, or be right hand side if available.
+    or a dropdown menue? I Like this idea less
+    */
     constructor(props) {
         super(props)
         this.state = {
