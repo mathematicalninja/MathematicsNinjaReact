@@ -41,6 +41,10 @@ class SiteNavigation extends React.Component {
                     className={internalRefrence}
                     style={{
                         "gridArea": internalRefrence,
+                        "color": "var(--Primary-9)",
+                        "backgroundColor": "var(--Secondary-1)",
+                        "border": "0px none",
+                        "margin": "1px",
                     }}
                 >
                     {publicName}
