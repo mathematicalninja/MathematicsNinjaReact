@@ -40,7 +40,7 @@ class SiteNavigation extends React.Component {
                     key={internalRefrence}
                     className={internalRefrence}
                     style={{
-                        "grid-area": internalRefrence
+                        "gridArea": internalRefrence,
                     }}
                 >
                     {publicName}
@@ -53,9 +53,9 @@ class SiteNavigation extends React.Component {
             className="navigationBar"
             style={{
                 display: "grid",
-                "grid-template-areas": css_grid_template_areas,
-                "grid-template-columns": css_grid_template_columns,
-                "margin-bottom": "0.2vw"
+                "gridTemplateAreas": css_grid_template_areas,
+                "gridTemplateColumns": css_grid_template_columns,
+                "marginBottom": "0.2vw"
             }}
         >
             {navigationBarItems}

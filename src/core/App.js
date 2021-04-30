@@ -41,7 +41,7 @@ class App extends React.Component {
                 />
             case "HomePage":
                 return <div>
-                    "Hi, I'm Alex.
+                    Hi, I'm Alex.
 
                     I'm a Cambridge educated Mathematician and a self taught programmer currently looking for work.
 <br />
@@ -61,7 +61,7 @@ class App extends React.Component {
 
                     They are mostly mathematical visualisations and ways to be more interactive with the "Black-Box" many I have spoken to are mystified by.
                     Some are my attempts to answer a question that I had (number crunching probabilistic expectations for example).
-                    And a few more are ways for me to use my skills with mathematics and programming to create tools for my hobbies."
+                    And a few more are ways for me to use my skills with mathematics and programming to create tools for my hobbies.
 </div>
             case "PageLayout":
                 return <PageLayout />

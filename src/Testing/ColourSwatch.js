@@ -134,7 +134,7 @@ class ColourSwatch extends React.Component {
     render() {
         return <div className="TheWholeColourThing"
             style={{
-                "background-color": this.state.backgroundColour,
+                "backgroundColor": this.state.backgroundColour,
             }}
 
         >
