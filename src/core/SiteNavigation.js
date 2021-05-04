@@ -14,7 +14,7 @@ class SiteNavigation extends React.Component {
         console.log("nav choose page", this.choosePage)
     }
     renderNavigationBar(DataStructure) {
-        const css_margin = "1fr"
+        const css_margin = "0"
         /* need a good data structure for this so menue items can
             1) have children
             2) have internal AND external names
@@ -46,6 +46,12 @@ class SiteNavigation extends React.Component {
                         "backgroundColor": "var(--Secondary-4)",
                         "border": "0px none",
                         "margin": "1px",
+                        "fontSize": "large",
+
+                        // the stuff below looks naff
+                        // "WebkitTextFillColor": "var(--Secondary-0)",
+                        // "WebkitTextStrokeWidth": "0.5px",
+                        // "WebkitTextStrokeColor": "var(--Primary-0)",
                     }}
                 >
                     {publicName}
@@ -60,7 +66,11 @@ class SiteNavigation extends React.Component {
                 display: "grid",
                 "gridTemplateAreas": css_grid_template_areas,
                 "gridTemplateColumns": css_grid_template_columns,
-                "marginBottom": "0.2vw"
+                // "marginBottom": "0.2vw",
+                "borderBottom": "5px solid var(--Secondary-0)",
+                // "boxShadow":
+                //     " var(--Secondary-6) 0 0 0 5px",
+                "backgroundColor": "var(--Grey-0)",
             }}
         >
             {navigationBarItems}
@@ -71,8 +81,15 @@ class SiteNavigation extends React.Component {
         return <div>{subMenueItems}</div>
     }
     render() {
-        return <div>
+        return <div
+            style={{
+                "display": "grid",
+                "grid-template-columns": "1fr auto 1fr",
+                "grid-template-areas":
+                    ". navigationBar ."
+            }}><div />
             {this.renderNavigationBar(this.state.menueItems)}
+            <div />
         </div>
     }
 }
