@@ -127,7 +127,6 @@ class BlogClass extends React.Component {
 
         for (let index = 0; index < FullText.length; index++) {
             let section = FullText[index];
-            console.log(index, section, FullText.length, index !== FullText.length - 1, this.state.endOfLastSection)
             if (index !== FullText.length - 1) {
 
                 sectionArray.push(<div style={this.state.mainTextStyle}>{this.paragraphSplit(section)}{this.state.endOfSection}</div>)
