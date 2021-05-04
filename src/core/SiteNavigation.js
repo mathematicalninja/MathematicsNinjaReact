@@ -39,16 +39,17 @@ class SiteNavigation extends React.Component {
                     }
                     key={internalRefrence}
                     className={internalRefrence}
+                    // theme:{branding}  Here
                     style={{
                         "gridArea": internalRefrence,
-                        "color": "var(--Primary-9)",
-                        "backgroundColor": "var(--Secondary-1)",
+                        "color": "var(--Grey-0)",
+                        "backgroundColor": "var(--Secondary-4)",
                         "border": "0px none",
                         "margin": "1px",
                     }}
                 >
                     {publicName}
-                </button >
+                </button>
             )
         }
         css_grid_template_areas += " .\""
