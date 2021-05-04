@@ -13,6 +13,7 @@ import ConnectFour from "../components/ConnectFour.js"
 // testing pages
 import ColourSwatch from "../Testing/ColourSwatch.js"
 import GridGame from "../Testing/GridGame.js"
+import BlogClass from "../Testing/BlogClass";
 
 class App extends React.Component {
     constructor(props) {
@@ -72,6 +73,8 @@ class App extends React.Component {
 
             case "GridGame":
                 return <GridGame gridSize={[7, 6]} />
+            case "AboutPage":
+                return <BlogClass />
             default:
                 return <div>Oh no! You found a blank page!</div>
         }
@@ -81,7 +84,7 @@ class App extends React.Component {
     // ========================================================================
 
     updatePageContent(internalReferenceName) {
-        this.setState({page: internalReferenceName}, () => {console.log(internalReferenceName, "najjajajajja", this.state.page)})
+        this.setState({page: internalReferenceName})
 
 
     }
@@ -91,7 +94,6 @@ class App extends React.Component {
 
 
     render() {
-        console.log("asyasyasy", this.state)
         return (
             <CSSVariableApplicator theme={this.state.theme}
                 key="this.state.theme">
