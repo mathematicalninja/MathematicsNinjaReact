@@ -103,7 +103,7 @@ class App extends React.Component {
                         pageContent={this.choosePage(this.state.page)}
                         updatePageContent={(ref) => this.updatePageContent(ref)} />
                 </PageItemContainer>
-            </CSSVariableApplicator >
+            </CSSVariableApplicator>
         );
     }
 }
