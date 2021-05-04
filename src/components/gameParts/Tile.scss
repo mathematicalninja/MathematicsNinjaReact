@@ -1,7 +1,7 @@
 @import "../../styles/global.scss";
 .Tile {
-	background: $bg-colour;
-	border: 1px solid $border-colour;
+	background: var(--Secondary-9);
+	border: 1px solid var(--Secondary-0);
 	float: left;
 	font-size: 60px;
 	font-weight: bold;
@@ -16,7 +16,7 @@
 
 .Tile-current  {
 	@extend .Tile;
-	background: $current-player-colour;
+	background: var(--Accent-5);
 }
 
 .Tile:focus {
@@ -26,6 +26,6 @@
 
 .Tile-winner {
 	@extend .Tile;
-	background: $win-colour;
+	background: var(--Accent-8);
     border-radius:100%;
 }

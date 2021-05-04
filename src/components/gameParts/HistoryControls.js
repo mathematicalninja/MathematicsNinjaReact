@@ -1,6 +1,7 @@
 import "./HistoryControls.scss"
 
 function HistoryControls(props) {
+    // need to add in styling to these controls
 
     const historyButtons = props.history.map((irreleventIndex, moveIndex) => {
         const description = moveIndex ?
