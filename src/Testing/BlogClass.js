@@ -18,6 +18,9 @@ class BlogClass extends React.Component {
                 "color": "var(--Grey-0)",
                 "fontSize": "xx-Large",
                 // "border": "5px solid var(--Secondary-0)",
+
+                // Light Outside, Dark inside
+                // better for full page
                 "boxShadow":
                     " var(--Secondary-0) 0 0 0 5px," +
                     " var(--Secondary-1) 0 0 0 6px," +
@@ -27,12 +30,27 @@ class BlogClass extends React.Component {
                     " var(--Secondary-5) 0 0 0 17px," +
                     " var(--Secondary-6) 0 0 0 22px," +
                     " var(--Secondary-7) 0 0 0 23px",
+
+
+                // Dark Outside, Light inside
+                // better for an element inside a page
+                // "boxShadow":
+                //     " var(--Secondary-7) 0 0 0 5px," +
+                //     " var(--Secondary-6) 0 0 0 6px," +
+                //     " var(--Secondary-5) 0 0 0 10px," +
+                //     " var(--Secondary-4) 0 0 0 11px," +
+                //     " var(--Secondary-3) 0 0 0 16px," +
+                //     " var(--Secondary-2) 0 0 0 17px," +
+                //     " var(--Secondary-1) 0 0 0 22px," +
+                //     " var(--Secondary-0) 0 0 0 23px",
+
+
             },
             "internal-Style": {
                 // vars for width of outside border, and the gap between that and the text e.g. 25px = border (23px) +gap(2px)
                 marginLeft: 23,
                 marginRight: 23,
-                "margin-top": 23,
+                "marginTop": 23,
                 "marginBottom": 23,
             },
 
@@ -143,8 +161,8 @@ class BlogClass extends React.Component {
             <div style={this.state["internal-Style"]}>{this.sectionSplit(blogData.Content)}</div>
         </div>
     }
-    getBlog(localLocation) {
-        let blogData = require("./Structured.json")
+    getBlog() {
+        let blogData = require(`${this.props.fileLocation}`)
 
         let styling = this.state.style
         return (<div style={styling}>
@@ -153,7 +171,11 @@ class BlogClass extends React.Component {
     }
 
     render() {
-        return <div>{this.getBlog()}</div>
+        // return <div>{this.getBlog(this.props.fileLocation)}</div>
+        return <div>
+            {/* {this.getBlog("./Sample.json")} */}
+            {this.getBlog()}
+        </div>
     }
 
 }
