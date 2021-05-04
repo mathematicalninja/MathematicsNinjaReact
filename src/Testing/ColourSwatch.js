@@ -12,11 +12,6 @@ class ColourSwatchGrid extends React.Component {
         this.switchColour = props.switchColour
     }
 
-    tickingSwitch(rowName) {
-
-    }
-
-
     themeStrips(themeObject) {
 
         const colourClasses = Object.keys(themeObject);
