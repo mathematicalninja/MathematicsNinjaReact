@@ -41,7 +41,7 @@ class PageLayout extends React.Component {
                         ["Home", "HomePage"],
                         ["Themes", "ColourSwatch"],
                         ["Tic-Tac-Toe", "TicTac"],
-                        ["Grid Test", "GridGame"],
+                        // ["Grid Test", "GridGame"],
                         ["About me", "AboutPage"]
                     ]}
                     choosePage={(ref) => this.updatePageContent(ref)}
