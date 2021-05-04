@@ -7,6 +7,6 @@ import App from "./core/App.js"
 // ========================================
 
 ReactDOM.render(
-	<App page="ColourSwatch" />,
+	<App page="HomePage" />,
 	document.getElementById('root')
 );
