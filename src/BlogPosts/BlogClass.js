@@ -8,7 +8,7 @@ class BlogClass extends React.Component {
     }
 
     render() {
-        return <div>Let ε 0.</div>
+        return <div>{require("./Sample.txt")}</div>
     }
 }
 
