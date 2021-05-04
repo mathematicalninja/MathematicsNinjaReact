@@ -1,3 +1,55 @@
 {
-    "data": "My Chronic Pain\n\nMany people who meet me don't notice I have a chronic pain condition unless I say something that tips them off.\nI look like a normal healthy young person (when I'm not in my wheelchair) so they assume I am.\nAnd often people react poorly when I do tell them about it.\nI've even had people accuse me of lying, being attention seeking or over-reacting.\nPeople who know nothing about my life.\n\nAnd I've spent a lot of time thinking about how to explain this to someone who is so used to being \"normal\" that they don't even have a frame of reference for what I go through.\n\nHow my pain works (and you cannot assume it's the same for anyone else) is small steady changes that snowball to overwhelming consequences. In my many years of experience, there is no limit to how bad things can get if I don't take proactive precautions.\n\nThe confusion:\nWhen I am healthy, when everything has been going well for a while, I can do almost anything.\nAnd when someone sees me do something which\n- they assume I shouldn't be able to do\n- they have seen me unable to do before\n- I have refused to do before\n- I have complained about\n- I have asked for help with\n\nthey jump to conclusions about my health condition.\nBecause most people think about diability like a light switch:\n- You either are, or you are not.\n- You either can, or you can not.\n\nThe Reality:\nWhenever I do anything, no matter how big/small, no matter how good/bad my pain is, I will, eventually have to pay a cost.\nSo I need to think abut everything I do. Let's take a very simple action, one very few people even think about, but do everyday.\nA trip to the bathroom.\n- Am I sitting down?\n-- Then I need to stand up first\n-- If there's anything on my lap, I need to move it\n- Where's my phone?\n-- I cannot go to the bathroom without it\n-- if somethiing happerns I can be rendered immobile and need to phone for help.\n- Is there anything in this room that I need to move around?\n-- will I need to raise my feet to step over something?\n-- will I need to move something in my path?\n- Is someone in the downstairs bathroom?\n-- how long is the person likely to be in there?\n-- We have an upstairs one, which could very well be empty\n-- Is it urgent enough that I need to go to the upstairs one?\n- How far is it to the bathroom?\n-- the 20 steps may not seem like much, but it's 20 both ways.\n-- is there other things I should do while I'm standing?\n-- is there something on the way to/from the bathroom I should do?\n-- can I save 10 steps later?\n\nAnd this is what most people never see.\nBecause they see me when I am out and about, able to do things. Not when I am huddled away recovering.\n\n\nThe Metaphore:\nPut yourself in the following situation.\nEverytime you need to perform a task, you need to rub your hand, once, across a sheet of sand paper.\nThe harder the task, the courser the sandpaper.\n\nNow if you only need to do it once, then there's no problem. Sandpaper isn't sharp, it's just rough.\nBut if you have to do it every few minutes, every day, week after week, month after month, it quickly adds up.\nIt becomes torture.\nAnd eventually, it becomes dangerous.\n\nBut if you tell someone they have to rub their hand across a sheet of sandpaper before they're allowed to go to the supermarket. Most people would be willing to. \"What's the harm\"\nAnd that's how they treat me \"Why don't you just do it?\" when I've spent all day rubbing my hand across sandpaper, when my skin's cracking, there's no blood for them to see, but I can feel that it's coming.\n\nAnd they have the audacity to say \"it's no big deal\"."
+    "Meta": {
+        "Title": "Hello ^-^"
+    },
+    "Content": [
+        {
+            "Title": "Me",
+            "Content": [
+                [
+                    "I'm Alex."
+                ],
+                [
+                    "I'm a Cambridge educated Mathematician and a self taught programmer currently looking for work."
+                ],
+                [
+                    "Mathematics.ninja is a website that was built, styled and deployed by me."
+                ],
+                [
+                    "When starting this project I decided to focus on the stylistic elements, as I have quite an eye for style (certainly much more so than many of the mathematicians I have spent much of my time with)."
+                ]
+            ]
+        },
+        {
+            "Title": "Intention",
+            "Content": [
+                [
+                    "I decided to do this simply as an exercise to learn React.js as I had never used it before."
+                ],
+                [
+                    "Then two weeks later I had a functioning website, which I'm still adding to."
+                ],
+                [
+                    "Or: to which I am still adding, depending on your grammatical preferences."
+                ],
+                [
+                    "I also intend to migrate a few of my previous more ambitious (often Python) endeavours into a web-friendly format and add them onto here."
+                ]
+            ]
+        },
+        {
+            "Title": "Future",
+            "Content": [
+                [
+                    "They are mostly mathematical visualisations and ways to be more interactive with the \"Black-Box\" many I have spoken to are mystified by."
+                ],
+                [
+                    "Some are my attempts to answer a question that I had (number crunching probabilistic expectations for example)."
+                ],
+                [
+                    "And a few more are ways for me to use my skills with mathematics and programming to create tools for my hobbies."
+                ]
+            ]
+        }
+    ]
 }
