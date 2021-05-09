@@ -11,13 +11,13 @@ class PageContent extends React.Component {
         }
     }
     render() {
-        return <div>{this.state.pageContent}</div>
+        return (this.state.pageContent)
     }
 }
 
 function pageContent(pageContent) {
     // console.log("oops here we are again", props.pageContent)
-    return <div>{pageContent}</div>
+    return (pageContent)
 }
 
 export default pageContent

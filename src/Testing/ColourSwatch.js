@@ -26,9 +26,47 @@ class ColourSwatchGrid extends React.Component {
             }
         );
 
-        return <div className="swatchContainer">
+        return (
             <div className="swatches" key="swatches">{swatchesArray}</div>
-        </div>
+        )
+
+    }
+
+    createButton(colourSetName, colourKey, colourCode) {
+        const cssVariable = `--${colourSetName}-${colourKey}`
+
+        const styleText = {
+            // find a way to push this upstream
+
+            // color being `var(${cssVariable})` out blanks the text
+
+            "width": "100px",
+            "height": "100px",
+            "background": `var(${cssVariable})`,
+            // "color": `var(${cssVariable})`,
+            // "color": this.state.colour,
+            "color": "var(--Grey-0)",
+            border: "0px none",
+            "margin": "3px",
+            // "margin": "3px solid transparent",
+
+        }
+
+        // `width: 100px;height: 100px;background - color: var(${cssVariable});`
+        return (
+            <button style={styleText}
+                key={`${cssVariable} ${this.state.colour}`}
+                onClick={() => this.switchColour(`var(${cssVariable})`)}
+            >
+                {colourSetName}
+                <br />
+                {colourKey}
+                <br />
+                {colourCode}
+
+            </button>
+        )
+
 
     }
 
@@ -37,53 +75,14 @@ class ColourSwatchGrid extends React.Component {
         const colourKeys = Object.keys(colourSet);
         colourKeys.forEach(
             (colourKey) => {
-                const cssVariable = `--${colourSetName}-${colourKey}`
-
-                const styleText = {
-                    // find a way to push this upstream
-
-                    // color being `var(${cssVariable})` out blanks the text
-
-                    "width": "100px",
-                    "height": "100px",
-                    "background": `var(${cssVariable})`,
-                    // "color": `var(${cssVariable})`,
-                    // "color": this.state.colour,
-                    "color": "var(--Grey-0)",
-                    border: "0px none",
-                    "margin": "3px",
-                    // "margin": "3px solid transparent",
-
-                }
-
-                // `width: 100px;height: 100px;background - color: var(${cssVariable});`
-                swatch.push(
-                    <button style={styleText}
-                        key={`${cssVariable} ${this.state.colour}`}
-                        onClick={() => this.switchColour(`var(${cssVariable})`)}
-                    >
-                        {colourSetName}
-                        <br />
-                        {colourKey}
-                        <br />
-                        {colourSet[colourKeys[colourKey]]}
-
-                    </button>
-                )
+                swatch.push(this.createButton(colourSetName, colourKey, colourSet[colourKeys[colourKey]]))
             }
         );
         return <div key={colourSetName} className={colourSetName}>{swatch}</div>
     }
 
     render() {
-        return <div
-            style={{
-                "margin": "0 auto"
-            }}
-            className="JustTheSwatchGrid"
-        >
-            {this.themeStrips(this.state.theme)}
-        </div>
+        return this.themeStrips(this.state.theme)
     }
 }
 
