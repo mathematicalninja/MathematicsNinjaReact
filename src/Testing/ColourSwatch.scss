@@ -1,10 +1,10 @@
-.swatchContainer{
+.TheWholeColourThing{
     	/* display: flex;
 	flex-direction: row; */
 	display: grid;
-	grid-template-columns: 100px auto 100px;
+	grid-template-columns: 1fr auto 100px 1fr;
 	grid-template-areas:
-	". swatches switchTheme"
+	". swatches switchTheme ."
 }
 .swatches{
     grid-area:swatches;
