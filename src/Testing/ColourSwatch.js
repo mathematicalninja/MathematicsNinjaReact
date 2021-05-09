@@ -1,5 +1,6 @@
 import React from "react";
 import "./ColourSwatch.scss"
+import BlogClass from "./BlogClass"
 
 class ColourSwatchGrid extends React.Component {
     // refactor as a function?
@@ -141,7 +142,7 @@ class ColourSwatch extends React.Component {
 
     render() {
         // This is where the grid centering should be happens.
-        return <div className="TheWholeColourThing"
+        return <> <div className="TheWholeColourThing"
             style={{
                 "backgroundColor": this.state.backgroundColour,
             }}
@@ -158,6 +159,8 @@ class ColourSwatch extends React.Component {
                 switchTheme={(themeName) => this.handleThemeChange(themeName)}
             />
         </div>
+
+            <BlogClass fileLocation={"./SwatchBlogExplain.json"} /></>
     }
 }
 
