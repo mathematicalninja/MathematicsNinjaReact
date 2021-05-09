@@ -14,7 +14,7 @@ class BlogClass extends React.Component {
             style: {
                 "marginLeft": "2vw",
                 "marginRight": "2vw",
-                "backgroundColor": "var(--Primary-2)",
+                "backgroundColor": "var(--Primary-5)",
                 "color": "var(--Grey-0)",
                 "fontSize": "xx-Large",
                 // "border": "5px solid var(--Secondary-0)",
