@@ -2,6 +2,8 @@ import React from "react";
 import "./ColourSwatch.scss"
 
 class ColourSwatchGrid extends React.Component {
+    // refactor as a function?
+    // need switchColour to be appropriately called back.
     constructor(props) {
         super(props)
         this.state = {
@@ -38,6 +40,8 @@ class ColourSwatchGrid extends React.Component {
                 const cssVariable = `--${colourSetName}-${colourKey}`
 
                 const styleText = {
+                    // find a way to push this upstream
+
                     // color being `var(${cssVariable})` out blanks the text
 
                     "width": "100px",
@@ -58,15 +62,17 @@ class ColourSwatchGrid extends React.Component {
                         key={`${cssVariable} ${this.state.colour}`}
                         onClick={() => this.switchColour(`var(${cssVariable})`)}
                     >
-                        {cssVariable}
-                        <br></br>
+                        {colourSetName}
+                        <br />
+                        {colourKey}
+                        <br />
                         {colourSet[colourKeys[colourKey]]}
 
                     </button>
                 )
             }
         );
-        return <div key={colourSetName}>{swatch}</div>
+        return <div key={colourSetName} className={colourSetName}>{swatch}</div>
     }
 
     render() {
@@ -107,11 +113,12 @@ class ThemeSwapControls extends React.Component {
     }
 
     render() {
-        return <div className="switchTheme" key="swatchTheme">{this.renderThemeSwitchButtons()}</div>
+        return <div className="switchTheme" key="switchTheme">{this.renderThemeSwitchButtons()}</div>
     }
 }
 
 class ColourSwatch extends React.Component {
+
     /*
     NEED to make colour swatch centered.
     buttons need to be a seperate entity, that can flex to the bottom if need be, or be right hand side if available.
@@ -134,6 +141,7 @@ class ColourSwatch extends React.Component {
     }
 
     render() {
+        // This is where the grid centering should be happens.
         return <div className="TheWholeColourThing"
             style={{
                 "backgroundColor": this.state.backgroundColour,
