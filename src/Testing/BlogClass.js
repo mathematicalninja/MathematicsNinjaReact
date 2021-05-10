@@ -172,10 +172,9 @@ class BlogClass extends React.Component {
 
     render() {
         // return <div>{this.getBlog(this.props.fileLocation)}</div>
-        return <div>
-            {/* {this.getBlog("./Sample.json")} */}
-            {this.getBlog()}
-        </div>
+        return (
+            this.getBlog()
+        )
     }
 
 }
