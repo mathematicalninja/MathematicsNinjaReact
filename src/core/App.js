@@ -47,7 +47,7 @@ class App extends React.Component {
             case "ConnectFour":
                 return <ConnectFour gridSize={[7, 6]} />
             case "TicTac":
-                return (<div><TicTac gridSize={[3, 3]} />
+                return (<div><TicTac gridSize={[5, 5]} />
                     {/* massive error with file structure. Can't get this to work */}
                     <BlogClass fileLocation={"./TicTacBlogExplain.json"} />
                 </div>)
