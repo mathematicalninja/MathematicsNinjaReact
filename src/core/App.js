@@ -24,6 +24,15 @@ class App extends React.Component {
             theme: themes.Default,
             themes: themes,
             page: props.page,
+            menueItems:
+                [
+                    ["Home", "HomePage"],
+                    ["Themes", "ColourSwatch"],
+                    ["Tic-Tac-Toe", "TicTac"],
+                    ["Grid Test", "GridGame"],
+                    ["SVG", "SVG"],
+                    ["About me", "AboutPage"],
+                ]
         };
     }
     updateColourScheme(theme) {
@@ -44,7 +53,7 @@ class App extends React.Component {
             case "HomePage":
                 return <BlogClass fileLocation={"./Sample.json"} />
             case "PageLayout":
-                return <PageLayout />
+                return <PageLayout menueItems={this.state.menueItems} />
             case "ConnectFour":
                 return <ConnectFour gridSize={[7, 6]} />
             case "TicTac":
@@ -55,8 +64,8 @@ class App extends React.Component {
 
             case "GridGame":
                 return <GridGame gridSize={[7, 6]} />
-            // case "AboutPage":
-            //     return <BlogClass fileLocation={"./Structured.json"} />
+            case "AboutPage":
+                return <BlogClass fileLocation={"./Structured.json"} />
             case "SVG":
                 return <SVGPostion />
             default:
@@ -85,7 +94,8 @@ class App extends React.Component {
                     key={this.state.page}>
                     <PageLayout
                         pageContent={this.choosePage(this.state.page)}
-                        updatePageContent={(ref) => this.updatePageContent(ref)} />
+                        updatePageContent={(ref) => this.updatePageContent(ref)
+                        } menueItems={this.state.menueItems} />
                 </PageItemContainer>
             </CSSVariableApplicator>
         );

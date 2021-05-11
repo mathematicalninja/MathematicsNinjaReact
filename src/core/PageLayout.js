@@ -14,6 +14,7 @@ class PageLayout extends React.Component {
         console.log("Page Layout Load")
         this.state = {
             pageContent: props.pageContent,
+            menueItems: props.menueItems,
         }
         console.log("knjgrpbetahpibaegr", props)
         this.updatePageContent = (content) => props.updatePageContent(content)
@@ -33,18 +34,14 @@ class PageLayout extends React.Component {
     }
 
     render() {
+        console.log(this.state)
+
         return <div className="pageLayout">
             <div className="siteNavigation"
                 key="siteNavigation">
+
                 <SiteNavigation
-                    menueItems={[
-                        ["Home", "HomePage"],
-                        ["Themes", "ColourSwatch"],
-                        ["Tic-Tac-Toe", "TicTac"],
-                        // ["Grid Test", "GridGame"],
-                        ["About me", "AboutPage"],
-                        ["SVG", "SVG"],
-                    ]}
+                    menueItems={this.state.menueItems}
                     choosePage={(ref) => this.updatePageContent(ref)}
                 />
             </div>
