@@ -27,7 +27,46 @@ class GridGame extends squareGame {
         this.lineVisuals()
     }
 
-    lineMaker(gridSize, minLength, maxLength) {
+    lineMaker(gridSize, diags, xLens, yLens) {
+        const min = (A, B) => {return A < B ? A : B}
+        const max = (A, B) => {return A > B ? A : B}
+
+        // added in logic that accounts for yMin > yMax as inputs
+        diags = diags ? [min(diags[0], diags[1]), max(diags[0], diags[1])] : [3, 5]
+        xLens = xLens ? [min(xLens[0], xLens[1]), max(xLens[0], xLens[1])] : [3, 5]
+        yLens = yLens ? [min(yLens[0], yLens[1]), max(yLens[0], yLens[1])] : [3, 5]
+
+        // gridSize = [xWidth, yWidth]
+        // diags = [minLength, maxLength]
+        // xlens = [minLength, maxLength]
+        // yLens = [minLength, maxLength]
+
+        // if any of the mins are greater than the length they fit into, no lines of that type will be made.
+        // e.g. this can stop diags being made
+
+
+        const [xWidth, yWidth] = gridSize
+        const [diagMin, diagMax] = diags[0] > min(xWidth, yWidth) ? [null, null] : [diags[0], diags[1]]
+
+        const [xMin, xMax] = xLens[0] > xWidth ? [null, null] : [xLens[0], min(xLens[1], xWidth)]
+        const [yMin, yMax] = yLens[0] > yWidth ? [null, null] : [yLens[0], min(yLens[1], yWidth)]
+
+
+        // unnessecery, but useing for tracking which things are properly defined.
+        // const sizes = {
+        //     xWidth: yWidth,
+        //     yWidth: xWidth,
+        //     diagMin: diagMin,
+        //     diagMax: diagMax,
+        //     xMin: xMin,
+        //     xMax: xMax,
+        //     yMin: yMin,
+        //     yMax: yMax,
+        // }
+        return [[[0, 0]]]
+    }
+
+    oldLineMaker(gridSize, minLength, maxLength) {
         // needs to split diagLengths and Vert/Horiz Lengths
         // gridSize ,diagLimits =[diagMin,diagMax], horizontalLimits = [hrzMin, hrzMax], verticalLimits = [vrtMin,vrtMax]
 
