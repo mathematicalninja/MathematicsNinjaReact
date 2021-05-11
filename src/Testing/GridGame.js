@@ -221,7 +221,7 @@ class GridGame extends squareGame {
 
             let X_array = Array(this.state.squareSize[0]).fill(Array(this.state.squareSize[1]).fill({
                 // content: this.state.playerLogos[T % 2],
-                content: "%",
+                content: "",
                 tileClass: "Tile",
             }))
             for (let i = 0; i < line.length; i++) {
@@ -235,7 +235,7 @@ class GridGame extends squareGame {
 
                 let Y_array = Array(this.state.squareSize[1]).fill({
                     // content: this.state.playerLogos[T % 2],
-                    content: "%",
+                    content: "",
                     tileClass: "Tile",
                 })
 
