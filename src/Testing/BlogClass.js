@@ -48,17 +48,18 @@ class BlogClass extends React.Component {
             },
             "internal-Style": {
                 // vars for width of outside border, and the gap between that and the text e.g. 25px = border (23px) +gap(2px)
-                marginLeft: 23,
-                marginRight: 23,
+                "marginLeft": 23,
+                "marginRight": 23,
                 "marginTop": 23,
                 "marginBottom": 23,
+                "paddingBottom": 23,
             },
 
             pageTitleStyle: {
                 "textAlign": "center",
                 // "marginTop": 23,
-                // marginLeft: 23,
-                // marginRight: 23,
+                // "marginLeft": 23,
+                // "marginRight": 23,
 
                 "WebkitTextFillColor": "var(--Secondary-6)",
                 "WebkitTextStrokeWidth": "1.5px",
