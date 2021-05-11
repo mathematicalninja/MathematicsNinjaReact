@@ -9,7 +9,8 @@ class Logo extends React.Component {
     }
     render() {
         return <div id="LogoSquare" className="logo">
-            <div
+            {/* old logo, for prosperity */}
+            {/* <div
                 style={{
                     position: "relative",
                     bottom: "-.5vw"
@@ -27,9 +28,10 @@ class Logo extends React.Component {
                         fontSize: "4.5vw"
                     }}
                 >ε</span><span
-                    style={{ fontSize: "4vw" }}
+                    style={{fontSize: "4vw"}}
                 >{">"}0</span>
-            </div>
+            </div> */}
+            <img src="./icon.svg" style={{"width": "9vw"}} />
         </div>
     }
 }
