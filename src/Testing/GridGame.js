@@ -31,11 +31,6 @@ class GridGame extends squareGame {
         const min = (A, B) => {return A < B ? A : B}
         const max = (A, B) => {return A > B ? A : B}
 
-        // added in logic that accounts for yMin > yMax as inputs
-        diags = diags ? [min(diags[0], diags[1]), max(diags[0], diags[1])] : [3, 5]
-        xLens = xLens ? [min(xLens[0], xLens[1]), max(xLens[0], xLens[1])] : [3, 5]
-        yLens = yLens ? [min(yLens[0], yLens[1]), max(yLens[0], yLens[1])] : [3, 5]
-
         // gridSize = [xWidth, yWidth]
         // diags = [minLength, maxLength]
         // xlens = [minLength, maxLength]
@@ -44,6 +39,10 @@ class GridGame extends squareGame {
         // if any of the mins are greater than the length they fit into, no lines of that type will be made.
         // e.g. this can stop diags being made
 
+        // added in logic that accounts for yMin > yMax as inputs
+        diags = diags ? [min(diags[0], diags[1]), max(diags[0], diags[1])] : [3, 5]
+        xLens = xLens ? [min(xLens[0], xLens[1]), max(xLens[0], xLens[1])] : [3, 5]
+        yLens = yLens ? [min(yLens[0], yLens[1]), max(yLens[0], yLens[1])] : [3, 5]
 
         const [xWidth, yWidth] = gridSize
         const [diagMin, diagMax] = diags[0] > min(xWidth, yWidth) ? [null, null] : [diags[0], diags[1]]
@@ -51,170 +50,45 @@ class GridGame extends squareGame {
         const [xMin, xMax] = xLens[0] > xWidth ? [null, null] : [xLens[0], min(xLens[1], xWidth)]
         const [yMin, yMax] = yLens[0] > yWidth ? [null, null] : [yLens[0], min(yLens[1], yWidth)]
 
+        // ==========================================
+        // Pseudo-code
+        // Loop over (x,y)
+        // calculate x_left, x_right distances to the edges, (including this tile?)
+        // Likewise y_bottom
 
-        // unnessecery, but useing for tracking which things are properly defined.
-        // const sizes = {
-        //     xWidth: yWidth,
-        //     yWidth: xWidth,
-        //     diagMin: diagMin,
-        //     diagMax: diagMax,
-        //     xMin: xMin,
-        //     xMax: xMax,
-        //     yMin: yMin,
-        //     yMax: yMax,
-        // }
+        // if x_right and y_bottom > x_min and y_min (respectivly): draw those lines
+
+        // if y_bottom > diag_min
+        //      AND
+        // x_left or x_right >diag_min
+        //      THEN
+        // draw that downwards diagonal.
+        // ==========================================
+
+        // Sub-function
+        // takes (x,y) and [xWidth, yWidth]
+        // returns x_left, x_right, y_bottom
+
+
+        // ====================
+        // for the below functions:
+        // add in optional "only use shortest line"
+        // ====================
+
+        // Sub-function
+        // takes x_values, [x,y]
+        // returns all the Required x_lines starting at [x,y]
+
+        // Sub-function
+        // as above, but for y
+
+        // Sub-function
+        // as above, but for down Right diagonals
+
+        // Sub-function
+        // as above, but for down Left diagonals
+
         return [[[0, 0]]]
-    }
-
-    oldLineMaker(gridSize, minLength, maxLength) {
-        // needs to split diagLengths and Vert/Horiz Lengths
-        // gridSize ,diagLimits =[diagMin,diagMax], horizontalLimits = [hrzMin, hrzMax], verticalLimits = [vrtMin,vrtMax]
-
-
-        // old implimentation still in tack---> needs to be refactored to gridSize =[x,y] widths
-
-        // placeholder variable, to allow code to be tested
-        let squareSize = gridSize[0]
-
-
-        // from here stems the flow of changes.
-
-        const xWidth = gridSize[0]
-        const yWidth = gridSize[1]
-        // min(A, B)
-        // is A < B ? Yes A: No B
-        // (A<B)?A:B
-        const minWidth = minLength ? minLength : (xWidth < yWidth) ? xWidth : yWidth
-
-        // maxWidth mat be unnessessery
-
-        // max(A,B)
-        // is A>B? Yes A: No B
-        // (A>B)?A:B
-        const maxWidth = maxLength ? maxLength : (xWidth > yWidth) ? xWidth : yWidth
-
-        // if the min digonal isn't set, it's assumed to be 3 (or 1,2 if the grid is stupid small)
-        // if max diagonal length isn't set, it's assumed to be the shorter of width/height (as that's the longest a diagonal can be)
-        minLength = (typeof minLength !== 'undefined') ? minLength : (minWidth < 3) ? minWidth : 3
-        maxLength = (typeof maxLength !== 'undefined') ? maxLength : minWidth
-
-
-
-        let winLines = []
-
-
-        /*
-        need to implement min/max length for winlines
-        along rows/columns only need to care about min as a 5line has a 3line in it
-        */
-        // add rows
-        for (let y = 0; y < yWidth; y++) {
-            let winRow = [];
-            for (let x = 0; x < xWidth; x++) {
-                winRow.push([x, y]);
-            };
-            winLines.push(winRow);
-        };
-        // add columns
-        for (let x = 0; x < xWidth; x++) {
-            let winColumn = [];
-            for (let y = 0; y < yWidth; y++) {
-                winColumn.push([x, y]);
-            }
-            winLines.push(winColumn);
-        }
-
-
-
-        /* new implemetation:
-        can do diags and horizontals and verticals in one loop, loop
-        triple loop, looping over Y
-                1) check if there's enough space to the right
-                    1a) draw the Horizontal
-                2) check if there's enough space below
-                    2a) draw the vertical
-                    2b) if (1) draw the down right diagonal
-                3) check if there's enough space to the left
-                    3a) draw the down left diag
-
-            Variable shortcuts.
-            when looping over Y, there is a side that Y is moving away from and a side Y is moving towards.
-            so one of these start as false and changes true (if condition) so only needs to changed until it's true
-            one starts as true and changes to false (unless condition) so only needs to check for change while true
-            both only need to go into the x loop if they're true
-
-            similar for when looping over x, just short cuts loop,
-
-
-        layer 1):
-            Exit if (minLength > maxWidth) as there can be no diagonals longer than the longer side.
-
-            looping over:
-                difference between maxLength and minLength
-            i.e. a diag of length 3,4,5 are all allowed in a 5X5 connect four
-            so d in [-2,-1,0,1,2]
-
-        layer 2):
-            loopin over Y
-        */
-
-
-        // add minor \diagonals length>=3
-        if (minWidth >= 3) {
-            // d ranges between the minLength of a diagonal, and the minWidth of the grid
-            // minWidth -d = length of this minor diagonal
-            for (let d = minWidth - 3; d >= 3 - minWidth; d--) {
-                let minorDiag = []
-
-                for (let y = 0; y < yWidth; y++) {
-                    let tileIndex = y * (1 + squareSize) + d
-                    if (
-                        // doesn't go off of the left
-                        tileIndex >= y * squareSize
-                        &&
-                        //doesn't go off of the right
-                        tileIndex < (y + 1) * squareSize
-                    ) {
-                        minorDiag.push([tileIndex - y * squareSize, y])
-                    }
-                }
-                winLines.push(minorDiag)
-            }
-        }
-
-
-
-
-        // add /diagonal
-        // let diagTwo = []
-        // for (let k = 0; k < squareSize; k++) {
-        //     diagTwo.push([(squareSize - k - 1), k])
-        //     // diagTwo.push((squareSize - k - 1) + k * squareSize)
-        // }
-        // winLines.push(diagTwo)
-        // add minor /diagonals length>=3
-        if (squareSize >= 3) {
-            // d is the range of differences in size (between 3 and squareSize), so squareSize-d is the length of the minor diagonal
-            for (let d = squareSize - 3; d >= 3 - squareSize; d--) {
-                let minorDiag = []
-
-                for (let y = 0; y < yWidth; y++) {
-                    let tileIndex = (squareSize - y - 1) + y * squareSize + d
-                    if (
-                        // doesn't go off of the left
-                        tileIndex >= y * squareSize
-                        &&
-                        //doesn't go off of the right
-                        tileIndex < (y + 1) * squareSize
-                    ) {
-                        minorDiag.push([tileIndex - y * squareSize, y])
-                        // minorDiag.push(tileIndex)
-                    }
-                }
-                winLines.push(minorDiag)
-            }
-        }
-        return winLines
     }
 
 
