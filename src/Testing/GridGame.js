@@ -27,7 +27,7 @@ class GridGame extends squareGame {
         this.lineVisuals()
     }
 
-    lineMaker(gridSize, diags, xLens, yLens, shortest = true) {
+    lineMaker(gridSize, diags, xLens, yLens, shortest = false) {
         const min = (A, B) => {return A < B ? A : B}
         const max = (A, B) => {return A > B ? A : B}
 
@@ -72,17 +72,17 @@ class GridGame extends squareGame {
                     ))
                 }
 
-                // if (spaceLeft >= diagMin && spaceBottom >= diagMin) {
-                //     winLines = winLines.concat(this.returnLeftDiagonal(
-                //         x, y, diagMin, min(min(diagMax, spaceBottom), spaceLeft), shortest
-                //     ))
-                // }
+                if (spaceLeft >= diagMin && spaceBottom >= diagMin) {
+                    winLines = winLines.concat(this.returnLeftDiagonal(
+                        x, y, diagMin, min(min(diagMax, spaceBottom), spaceLeft), shortest
+                    ))
+                }
 
-                // if (spaceRight >= diagMin && spaceBottom >= diagMin) {
-                //     winLines = winLines.concat(this.returnRightDiagonal(
-                //         x, y, diagMin, min(min(diagMax, spaceBottom), spaceRight), shortest
-                //     ))
-                // }
+                if (spaceRight >= diagMin && spaceBottom >= diagMin) {
+                    winLines = winLines.concat(this.returnRightDiagonal(
+                        x, y, diagMin, min(min(diagMax, spaceBottom), spaceRight), shortest
+                    ))
+                }
 
             }
         }
@@ -120,7 +120,7 @@ class GridGame extends squareGame {
     // Likewise y_bottom
     calculateSpaces({x, y, xWidth, yWidth}) {
         // returns Left space, Right space, Down space
-        return [x, xWidth - x, yWidth - y]
+        return [x + 1, xWidth - x, yWidth - y]
     }
 
 
@@ -171,12 +171,55 @@ class GridGame extends squareGame {
         return returnLines
     }
 
-    returnLeftDiagonal() { }
+    returnLeftDiagonal(x, y, diagMin, maxLength, shortest) {
+        console.log({x, y, diagMin, maxLength, shortest})
+        // only need to return one line (the shortest)
+        if (shortest) {maxLength = diagMin}
 
-    returnRightDiagonal() { }
+
+        // init
+        let returnLines = []
+
+        // start at the min length of a line, go till the max
+        for (let length = diagMin; length <= maxLength; length++) {
+            let thisLine = []
+            // move the yIndex down the line
+            for (let index = 0; index < length; index++) {
+                // add the point to the line
+                thisLine.push([x - index, y + index])
+            }
+            // add the line to the return vale, then move onto the next line (if there is one)
+            console.log(thisLine)
+            returnLines.push(thisLine)
+        }
+        return returnLines
+    }
+
+    returnRightDiagonal(x, y, diagMin, maxLength, shortest) {
+        // only need to return one line (the shortest)
+        if (shortest) {maxLength = diagMin}
+
+
+        // init
+        let returnLines = []
+
+        // start at the min length of a line, go till the max
+        for (let length = diagMin; length <= maxLength; length++) {
+            let thisLine = []
+            // move the yIndex down the line
+            for (let index = 0; index < length; index++) {
+                // add the point to the line
+                thisLine.push([x + index, y + index])
+            }
+            // add the line to the return vale, then move onto the next line (if there is one)
+            returnLines.push(thisLine)
+        }
+        return returnLines
+    }
     // |=====================================================|
 
     // used for showing the winning lines
+    // TODO: there's a visual glitch in showing Vertical Lines
     lineVisuals() {
         let newHistory = this.state.history
         let T = 0
