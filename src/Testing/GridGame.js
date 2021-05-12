@@ -50,12 +50,12 @@ class GridGame extends squareGame {
         const [xMin, xMax] = xLens[0] > xWidth ? [null, null] : [xLens[0], min(xLens[1], xWidth)]
         const [yMin, yMax] = yLens[0] > yWidth ? [null, null] : [yLens[0], min(yLens[1], yWidth)]
 
-        // ==========================================
-        // Pseudo-code
-        // Loop over (x,y)
 
 
+        // this is the return's initialisation
         let winLines = [];
+
+        // Loop over (x,y)
         for (let x = 0; x < xWidth; x++) {
             for (let y = 0; y < yWidth; y++) {
                 let [spaceLeft, spaceRight, spaceBottom] = this.calculateSpaces({x, y, xWidth, yWidth})
@@ -86,37 +86,10 @@ class GridGame extends squareGame {
 
             }
         }
-
-        // if x_right and y_bottom > x_min and y_min (respectivly): draw those lines
-
-        // if y_bottom > diag_min
-        //      AND
-        // x_left or x_right >diag_min
-        //      THEN
-        // draw that downwards diagonal.
-        // ==========================================
-
-        // ====================
-        // for the below functions:
-        // add in optional "only use shortest line"
-        // ====================
-
-        // Sub-function
-        // takes x_values, [x,y]
-        // returns all the Required x_lines starting at [x,y]
-
-        // Sub-function
-        // as above, but for y
-
-        // Sub-function
-        // as above, but for down Right diagonals
-
-        // Sub-function
-        // as above, but for down Left diagonals
         return winLines
     }
 
-    // calculate x_left, x_right distances to the edges, (including this tile?)
+    // calculate x_left, x_right distances to the edges, (including this tile)
     // Likewise y_bottom
     calculateSpaces({x, y, xWidth, yWidth}) {
         // returns Left space, Right space, Down space
@@ -128,6 +101,7 @@ class GridGame extends squareGame {
     // these return functions return |arrays| of |lines| of point |pairs|
     // if shortest is true, will only return the shortest line of each type from that point.
     // if shortest is false, will return every line from that point.
+
     // |=====================================================|
     returnHorizontal(x, y, xMin, maxLength, shortest) {
         // only need to return one line (the shortest)
@@ -172,7 +146,6 @@ class GridGame extends squareGame {
     }
 
     returnLeftDiagonal(x, y, diagMin, maxLength, shortest) {
-        console.log({x, y, diagMin, maxLength, shortest})
         // only need to return one line (the shortest)
         if (shortest) {maxLength = diagMin}
 
@@ -189,7 +162,6 @@ class GridGame extends squareGame {
                 thisLine.push([x - index, y + index])
             }
             // add the line to the return vale, then move onto the next line (if there is one)
-            console.log(thisLine)
             returnLines.push(thisLine)
         }
         return returnLines
@@ -217,6 +189,8 @@ class GridGame extends squareGame {
         return returnLines
     }
     // |=====================================================|
+
+
 
     // used for showing the winning lines
     // TODO: there's a visual glitch in showing Vertical Lines
