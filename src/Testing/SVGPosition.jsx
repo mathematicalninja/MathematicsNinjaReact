@@ -74,6 +74,7 @@ class SVGPostion extends React.Component {
                     />
                 </div>
                 <img src="./icon.svg" width={128} />
+                <img src="./drop_circle.svg" width={128} />
                 <img src="../../public/icon.svg" width={128} />
             </div>
         );
