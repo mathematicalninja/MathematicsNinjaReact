@@ -27,7 +27,7 @@ class GridGame extends squareGame {
         this.lineVisuals()
     }
 
-    lineMaker(gridSize, diags, xLens, yLens) {
+    lineMaker(gridSize, diags, xLens, yLens, shortest = true) {
         const min = (A, B) => {return A < B ? A : B}
         const max = (A, B) => {return A > B ? A : B}
 
@@ -53,8 +53,39 @@ class GridGame extends squareGame {
         // ==========================================
         // Pseudo-code
         // Loop over (x,y)
-        // calculate x_left, x_right distances to the edges, (including this tile?)
-        // Likewise y_bottom
+
+
+        let winLines = [];
+        for (let x = 0; x < xWidth; x++) {
+            for (let y = 0; y < yWidth; y++) {
+                let [spaceLeft, spaceRight, spaceBottom] = this.calculateSpaces({x, y, xWidth, yWidth})
+
+                if (spaceRight >= xMin) {
+                    winLines = winLines.concat(this.returnHorizontal(
+                        x, y, xMin, min(xMax, spaceRight), shortest
+                    ))
+                }
+
+                if (spaceBottom >= yMin) {
+                    winLines = winLines.concat(this.returnVertical(
+                        x, y, yMin, min(yMax, spaceBottom), shortest
+                    ))
+                }
+
+                // if (spaceLeft >= diagMin && spaceBottom >= diagMin) {
+                //     winLines = winLines.concat(this.returnLeftDiagonal(
+                //         x, y, diagMin, min(min(diagMax, spaceBottom), spaceLeft), shortest
+                //     ))
+                // }
+
+                // if (spaceRight >= diagMin && spaceBottom >= diagMin) {
+                //     winLines = winLines.concat(this.returnRightDiagonal(
+                //         x, y, diagMin, min(min(diagMax, spaceBottom), spaceRight), shortest
+                //     ))
+                // }
+
+            }
+        }
 
         // if x_right and y_bottom > x_min and y_min (respectivly): draw those lines
 
@@ -64,11 +95,6 @@ class GridGame extends squareGame {
         //      THEN
         // draw that downwards diagonal.
         // ==========================================
-
-        // Sub-function
-        // takes (x,y) and [xWidth, yWidth]
-        // returns x_left, x_right, y_bottom
-
 
         // ====================
         // for the below functions:
@@ -87,15 +113,68 @@ class GridGame extends squareGame {
 
         // Sub-function
         // as above, but for down Left diagonals
+        return winLines
+    }
 
-        return [[[0, 0]]]
+    // calculate x_left, x_right distances to the edges, (including this tile?)
+    // Likewise y_bottom
+    calculateSpaces({x, y, xWidth, yWidth}) {
+        // returns Left space, Right space, Down space
+        return [x, xWidth - x, yWidth - y]
     }
 
 
 
-    // changeStyling(currentBoardState) {
-    //     return currentBoardState
-    // }
+    // these return functions return |arrays| of |lines| of point |pairs|
+    // if shortest is true, will only return the shortest line of each type from that point.
+    // if shortest is false, will return every line from that point.
+    // |=====================================================|
+    returnHorizontal(x, y, xMin, maxLength, shortest) {
+        // only need to return one line (the shortest)
+        if (shortest) {maxLength = xMin}
+
+        // init
+        let returnLines = []
+
+        // start at the min length of a line, go till the max
+        for (let length = xMin; length <= maxLength; length++) {
+            let thisLine = []
+            // move the xIndex along the line
+            for (let xIndex = x; xIndex < x + length; xIndex++) {
+                // add the point to the line
+                thisLine.push([xIndex, y])
+            }
+            // add the line to the return vale, then move onto the next line (if there is one)
+            returnLines.push(thisLine)
+        }
+        return returnLines
+    }
+
+    returnVertical(x, y, yMin, maxLength, shortest) {
+        // only need to return one line (the shortest)
+        if (shortest) {maxLength = yMin}
+
+        // init
+        let returnLines = []
+
+        // start at the min length of a line, go till the max
+        for (let length = yMin; length <= maxLength; length++) {
+            let thisLine = []
+            // move the yIndex down the line
+            for (let yIndex = y; yIndex < y + length; yIndex++) {
+                // add the point to the line
+                thisLine.push([x, yIndex])
+            }
+            // add the line to the return vale, then move onto the next line (if there is one)
+            returnLines.push(thisLine)
+        }
+        return returnLines
+    }
+
+    returnLeftDiagonal() { }
+
+    returnRightDiagonal() { }
+    // |=====================================================|
 
     // used for showing the winning lines
     lineVisuals() {
@@ -103,8 +182,8 @@ class GridGame extends squareGame {
         let T = 0
         for (let line of this.state.winningLines) {
             T += 1
-            console.log(T)
-            console.log(line)
+            // console.log(T)
+            // console.log(line)
 
 
 
@@ -120,7 +199,7 @@ class GridGame extends squareGame {
 
 
             A.squares = Array(this.state.squareSize[0]).fill(Array(this.state.squareSize[1]).fill(null))
-            console.log("set to null at 0,0", A.squares[0][0])
+            // console.log("set to null at 0,0", A.squares[0][0])
 
             // A.statemoveList = []
             // console.log("A", A)
@@ -138,7 +217,7 @@ class GridGame extends squareGame {
                 tileClass: "Tile",
             }))
             for (let i = 0; i < line.length; i++) {
-                console.log("should still be null at 0,0", A.squares[0][0])
+                // console.log("should still be null at 0,0", A.squares[0][0])
 
                 let x = line[i][0]
                 let y = line[i][1]
@@ -158,24 +237,24 @@ class GridGame extends squareGame {
                     tileClass: "Tile-winner",
                 }
                 X_array[x] = Y_array
-                console.log("X_array", X_array)
+                // console.log("X_array", X_array)
 
-                console.log(A.squares)
+                // console.log(A.squares)
                 A.squares = X_array
-                console.log(A.squares)
-                console.log("suddenly it's not null at 0,0", A.squares[0][0])
+                // console.log(A.squares)
+                // console.log("suddenly it's not null at 0,0", A.squares[0][0])
 
-                console.log("x,y", A.squares[x][y])
-                console.log("0,0", A.squares[0][0])
+                // console.log("x,y", A.squares[x][y])
+                // console.log("0,0", A.squares[0][0])
 
             }
 
-            console.log(A)
+            // console.log(A)
 
             newHistory.push(A)
         }
 
-        console.log(newHistory)
+        // console.log(newHistory)
         return newHistory
     }
 
