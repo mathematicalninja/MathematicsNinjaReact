@@ -5,7 +5,7 @@ import "./banner.scss"
 class Banner extends React.Component {
     constructor(props) {
         super(props)
-        console.log("banner load")
+        // console.log("banner load")
     }
     textRender() {
         const mathsText = <span key="maths">Maths</span>

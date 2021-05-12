@@ -33,16 +33,16 @@ class SVGPostion extends React.Component {
         let gL = 81 - x
         let gW = 87 - 2 * x
 
-        console.log("(x, y, gH, gL, gW) = ", x, y, gH, gL, gW)
-        console.log("x", x)
-        console.log("y", y)
-        console.log("gH", gH)
-        console.log("gL", gL)
-        console.log("gW", gW)
+        // console.log("(x, y, gH, gL, gW) = ", x, y, gH, gL, gW)
+        // console.log("x", x)
+        // console.log("y", y)
+        // console.log("gH", gH)
+        // console.log("gL", gL)
+        // console.log("gW", gW)
 
-        console.log("P_L", x + gL, y)
-        console.log("P_E", x, y + gH + 180)
-        console.log("P_Z", x + gW + 315, y + gH + 180)
+        // console.log("P_L", x + gL, y)
+        // console.log("P_E", x, y + gH + 180)
+        // console.log("P_Z", x + gW + 315, y + gH + 180)
 
 
         return (

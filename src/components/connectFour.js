@@ -185,8 +185,8 @@ class ConnectFour extends squareGame {
         let T = 0
         for (let line of this.state.winningLines) {
             T += 1
-            console.log(T)
-            console.log(line)
+            // console.log(T)
+            // console.log(line)
 
 
 
@@ -202,7 +202,7 @@ class ConnectFour extends squareGame {
 
 
             A.squares = Array(this.state.squareSize[0]).fill(Array(this.state.squareSize[1]).fill(null))
-            console.log("set to null at 0,0", A.squares[0][0])
+            // console.log("set to null at 0,0", A.squares[0][0])
 
             // A.statemoveList = []
             // console.log("A", A)
@@ -220,7 +220,7 @@ class ConnectFour extends squareGame {
                 tileClass: "Tile",
             }))
             for (let i = 0; i < line.length; i++) {
-                console.log("should still be null at 0,0", A.squares[0][0])
+                // console.log("should still be null at 0,0", A.squares[0][0])
 
                 let x = line[i][0]
                 let y = line[i][1]
@@ -240,24 +240,24 @@ class ConnectFour extends squareGame {
                     tileClass: "Tile-winner",
                 }
                 X_array[x] = Y_array
-                console.log("X_array", X_array)
+                // console.log("X_array", X_array)
 
-                console.log(A.squares)
+                // console.log(A.squares)
                 A.squares = X_array
-                console.log(A.squares)
-                console.log("suddenly it's not null at 0,0", A.squares[0][0])
+                // console.log(A.squares)
+                // console.log("suddenly it's not null at 0,0", A.squares[0][0])
 
-                console.log("x,y", A.squares[x][y])
-                console.log("0,0", A.squares[0][0])
+                // console.log("x,y", A.squares[x][y])
+                // console.log("0,0", A.squares[0][0])
 
             }
 
-            console.log(A)
+            // console.log(A)
 
             newHistory.push(A)
         }
 
-        console.log(newHistory)
+        // console.log(newHistory)
         return newHistory
     }
 

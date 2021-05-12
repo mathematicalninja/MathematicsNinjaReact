@@ -5,7 +5,7 @@ import "./logo.scss"
 class Logo extends React.Component {
     constructor(props) {
         super(props)
-        console.log("Logo load")
+        // console.log("Logo load")
     }
     render() {
         return <div id="LogoSquare" className="logo">

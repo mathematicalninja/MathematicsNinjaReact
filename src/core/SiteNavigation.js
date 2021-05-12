@@ -84,8 +84,8 @@ class SiteNavigation extends React.Component {
         return <div
             style={{
                 "display": "grid",
-                "grid-template-columns": "1fr auto 1fr",
-                "grid-template-areas":
+                "gridTemplateColumns": "1fr auto 1fr",
+                "gridTemplateAreas":
                     ". navigationBar ."
             }}><div />
             {this.renderNavigationBar(this.state.menueItems)}
