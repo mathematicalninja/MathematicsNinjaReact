@@ -37,9 +37,9 @@ class Logo extends React.Component {
                 backgroundColour="var(--Primary-2)"
                 letColour="var(--Grey-1)"
                 heartLine="var(--Grey-1)"
-                heartFill="var(--Accent-4)"
+                heartFill="var(--Accent-9)"
                 zeroLine="var(--Grey-1)"
-                zeroFill="var(--Accent-4)"
+                zeroFill="var(--Accent-9)"
                 zeroDot="var(--Grey-8)"
                 size="9vw"
             />
