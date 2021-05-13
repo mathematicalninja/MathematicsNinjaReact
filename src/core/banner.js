@@ -1,5 +1,4 @@
 import React from "react";
-import "./banner.scss"
 
 
 class Banner extends React.Component {
@@ -18,12 +17,26 @@ class Banner extends React.Component {
         return [mathsText, isText, artText]
     }
     render() {
-        return <div id="BannerBox" className="banner"
+
+
+
+        return <div style={{
+            "width": "80vw",
+            "height": "9vw",
+            "background-color": "var(--Secondary-2)",
+            "text-align": "center",
+            "font-size": "8vw",
+            "color": "var(--Grey-0)",
+            "margin-bottom": "0.75vw",
+        }
+        }
+
         // style={{ "fontSize": "8vw" }}
         >
             {/* Maths is Art. */}
             {this.textRender()}
-        </div>
+            <img src="me.png" style={{height: "9vw"}} />
+        </div >
     }
 }
 
