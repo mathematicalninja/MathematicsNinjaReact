@@ -1,4 +1,5 @@
 import React from "react";
+import GridGame from "../Testing/GridGame";
 
 
 class Banner extends React.Component {
@@ -21,22 +22,36 @@ class Banner extends React.Component {
 
 
         return <div style={{
-            "width": "80vw",
+            "width": "70vw",
             "height": "9vw",
             "background-color": "var(--Secondary-2)",
             "text-align": "center",
             "font-size": "8vw",
             "color": "var(--Grey-0)",
             "margin-bottom": "0.75vw",
+            "marginRight": "4.5vw",
+            "paddingLeft": "1.5vw",
         }
         }
 
-        // style={{ "fontSize": "8vw" }}
         >
-            {/* Maths is Art. */}
-            {this.textRender()}
-            <img src="me.png" style={{height: "9vw"}} />
-        </div >
+            <div style={{
+
+                "display": "grid",
+                "grid-template-columns": "auto 4.5vw",
+
+            }}>
+                <div>
+                    {this.textRender()}
+                </div>
+                <div>
+                    <img src="me.png" style={{
+                        height: "9vw",
+                        "borderRadius": "50%"
+                    }} />
+                </div>
+            </div>
+        </div>
     }
 }
 
