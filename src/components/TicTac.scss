@@ -2,11 +2,11 @@
 	/* display: flex;
 	flex-direction: row; */
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 15ch auto 15ch 1fr;
 	grid-template-rows: auto auto;
 	grid-template-areas:
-	"gameStatus ."
-	"gameBoard gameControls";
+	". . gameStatus . ."
+	". . gameBoard gameControls .";
 }
 
 .gameStatus{
@@ -18,4 +18,5 @@
 }
 .gameControls{
     grid-area:gameControls;
+	width : 15ch;
 }
