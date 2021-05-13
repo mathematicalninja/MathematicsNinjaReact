@@ -14,67 +14,63 @@ class BlogClass extends React.Component {
             style: {
                 "marginLeft": "2vw",
                 "marginRight": "2vw",
+                "marginTop": "2vh",
+                "marginBottom": "2vh",
                 "backgroundColor": "var(--Primary-5)",
                 "color": "var(--Grey-0)",
                 "fontSize": "xx-Large",
-                // "border": "5px solid var(--Secondary-0)",
+                "padding": 23,
 
                 // Light Outside, Dark inside
                 // better for full page
                 "boxShadow":
-                    " var(--Secondary-0) 0 0 0 5px," +
-                    " var(--Secondary-1) 0 0 0 6px," +
-                    " var(--Secondary-2) 0 0 0 10px," +
-                    " var(--Secondary-3) 0 0 0 11px," +
-                    " var(--Secondary-4) 0 0 0 16px," +
-                    " var(--Secondary-5) 0 0 0 17px," +
-                    " var(--Secondary-6) 0 0 0 22px," +
-                    " var(--Secondary-7) 0 0 0 23px",
+                    "inset var(--Secondary-0) 0 0 0 5px," +
+                    "inset var(--Secondary-1) 0 0 0 6px," +
+                    "inset var(--Secondary-2) 0 0 0 10px," +
+                    "inset var(--Secondary-3) 0 0 0 11px," +
+                    "inset var(--Secondary-4) 0 0 0 16px," +
+                    "inset var(--Secondary-5) 0 0 0 17px," +
+                    "inset var(--Secondary-6) 0 0 0 22px," +
+                    "inset var(--Secondary-7) 0 0 0 23px",
 
 
                 // Dark Outside, Light inside
                 // better for an element inside a page
                 // "boxShadow":
-                //     " var(--Secondary-7) 0 0 0 5px," +
-                //     " var(--Secondary-6) 0 0 0 6px," +
-                //     " var(--Secondary-5) 0 0 0 10px," +
-                //     " var(--Secondary-4) 0 0 0 11px," +
-                //     " var(--Secondary-3) 0 0 0 16px," +
-                //     " var(--Secondary-2) 0 0 0 17px," +
-                //     " var(--Secondary-1) 0 0 0 22px," +
-                //     " var(--Secondary-0) 0 0 0 23px",
+                //     "inset var(--Secondary-7) 0 0 0 5px," +
+                //     "inset var(--Secondary-6) 0 0 0 6px," +
+                //     "inset var(--Secondary-5) 0 0 0 10px," +
+                //     "inset var(--Secondary-4) 0 0 0 11px," +
+                //     "inset var(--Secondary-3) 0 0 0 16px," +
+                //     "inset var(--Secondary-2) 0 0 0 17px," +
+                //     "inset var(--Secondary-1) 0 0 0 22px," +
+                //     "inset var(--Secondary-0) 0 0 0 23px",
 
 
             },
             "internal-Style": {
-                // vars for width of outside border, and the gap between that and the text e.g. 25px = border (23px) +gap(2px)
+                // need vars for width of outside border, and the gap between that and the text e.g. 25px = border (23px) +gap(2px)
                 "marginLeft": 23,
                 "marginRight": 23,
                 "marginTop": 23,
                 "marginBottom": 23,
-                "paddingBottom": 23,
             },
 
             pageTitleStyle: {
                 "textAlign": "center",
-                // "marginTop": 23,
-                // "marginLeft": 23,
-                // "marginRight": 23,
-
                 "WebkitTextFillColor": "var(--Secondary-6)",
                 "WebkitTextStrokeWidth": "1.5px",
                 "WebkitTextStrokeColor": "var(--Grey-0)",
-                // "textShadow": "" +
-                //     "1.5px -1.5px 0px var(--Grey-5)," +
-                //     "-1.5px -1.5px 0px var(--Grey-5)",
-                "borderBottom": "3px double var(--Accent-0)"
+                "borderBottom": "3px double var(--Accent-2)",
+                "marginBottom": "0px",
+                "marginTop": "0px",
             },
             smallTitleStyle: {
                 "WebkitTextFillColor": "var(--Secondary-0)",
                 "WebkitTextStrokeWidth": ".5px",
                 "WebkitTextStrokeColor": "var(--Secondary-2)",
-                "marginBottom": "4px",
-                "marginTop": "23px",
+                "marginBottom": "5px",
+                "marginTop": "8px",
             },
             mainTextStyle: {
                 "WebkitTextFillColor": "var(--Grey-0)",
