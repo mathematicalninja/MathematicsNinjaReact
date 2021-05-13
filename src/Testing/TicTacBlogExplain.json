@@ -12,7 +12,11 @@
                     "If you fill in either of the diagonals, you also win",
                     "No changes so far.",
                     "But if you fill in a minor diagonal (at least 3 tiles long), you win. "
-                ],
+                ]
+            ]
+        },
+        {
+            "Content": [
                 [
                     "This is simply to prevent a player causing NxN tic-tac-toe to be a draw in the first N+2 moves.",
                     "Which is easy I might add."
