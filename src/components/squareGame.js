@@ -269,13 +269,19 @@ class squareGame extends React.Component {
         })
     }
 
+    tileFull(colIndex, rowIndex) {
+        let currentBoard = this.state.history[this.state.moveNumber]
+        return currentBoard.squares[colIndex][rowIndex]
+    }
+
     handleClick(colIndex, rowIndex) {
         // history is an array of states the game was in.
         let currentBoard = this.state.history[this.state.moveNumber]
         // history[i].squares is the state the squares were in then
-        if (currentBoard.squares[colIndex][rowIndex]) {
+
+        if (this.tileFull(colIndex, rowIndex)) {
             return
-        } else if (currentBoard.winner) { return }
+        } else if (currentBoard.winner) {return }
         else {
             let tempSquare = {
                 content: this.state.playerLogos[this.state.moveNumber % this.state.maxPlayers],
@@ -316,7 +322,7 @@ class squareGame extends React.Component {
     render() {
         return <div className="gameContainer">
             <div className="gameStatus">
-                Hello, this is Tic-Tac-Toe.
+                {this.state.title}
             </div>
             <div className="gameBoard">
                 {this.boardRender()}
