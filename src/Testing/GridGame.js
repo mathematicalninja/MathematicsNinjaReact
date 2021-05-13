@@ -6,6 +6,8 @@ import "../components/connectFour.scss"
 
 import squareGame from "../components/squareGame.js"
 
+import Disc from "./Disc.jsx"
+import ColourSwatch from "./ColourSwatch.js";
 
 
 
@@ -14,6 +16,11 @@ class GridGame extends squareGame {
         super(props);
         //takes input squareSize or defaults to 3 by 3
         let gridSize = props.gridSize ? props.gridSize : [3, 3]
+        let diags = props.diags
+        let xLens = props.xLens
+        let yLens = props.yLens
+        let shortest = props.shortest
+        let winningLines = this.lineMaker(gridSize, diags, xLens, yLens, shortest)
         this.state = {
             playerLogos: [
                 <Disc
@@ -46,13 +53,68 @@ class GridGame extends squareGame {
             moveNumber: 0,
             squareSize: gridSize,
             history: [this.blankBoard(gridSize)],
-            winningLines: this.lineMaker(gridSize)
+            winningLines: winningLines,
+            title: "Connect 4",
         }
         // changes game history to winning lines
-        this.lineVisuals()
+        // this.lineVisuals()
     }
 
-    lineMaker(gridSize, diags, xLens, yLens, shortest = false) {
+
+    tileFull(colIndex, rowIndex) {
+
+
+        let currentBoard = this.state.history[this.state.moveNumber]
+
+
+        // Is this tile empty?
+        // yes: return saying as much
+        // else: check the column
+
+        if (currentBoard.squares[colIndex][rowIndex]) {
+
+            // if this tile is full: first check if the column is full.
+            if (!(rowIndex == 0)) {
+                this.handleClick(colIndex, 0)
+            }
+            // THEN return saying THIS tile is full.
+            return true
+        }
+
+        // if this is the bottom row, we return saying that this tile is empty
+
+        if (this.state.squareSize[1] == rowIndex + 1) {
+            console.log("Bottom")
+            return false
+        }
+
+        // if the tile below is empty, we "click" there.
+        // i.e. the tile moves down to that square.
+        // otherwise, we say this tile is empty.
+        console.log(currentBoard.squares[colIndex], currentBoard.squares[colIndex][rowIndex + 1])
+        if (currentBoard.squares[colIndex][rowIndex + 1]) {
+            return false
+        } else {
+            this.handleClick(colIndex, rowIndex + 1)
+            return true
+        }
+
+
+
+        // if (!currentBoard.squares[colIndex][rowIndex]) {
+        //     console.log("testing here", this.state.squareSize[1], rowIndex)
+
+        //     if () {
+        //         return currentBoard.squares[colIndex][rowIndex]
+        //     } else {
+        //         return currentBoard.squares[colIndex][rowIndex + 1]
+
+        //     }
+        // }
+    }
+
+    lineMaker(gridSize, diags, xLens, yLens, shortest = true) {
+        console.log("hre", {gridSize, diags, xLens, yLens, shortest})
         const min = (A, B) => {return A < B ? A : B}
         const max = (A, B) => {return A > B ? A : B}
 
@@ -299,6 +361,8 @@ class GridGame extends squareGame {
         // console.log(newHistory)
         return newHistory
     }
+
+
 
 }
 export default GridGame
