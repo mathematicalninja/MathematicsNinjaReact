@@ -29,9 +29,9 @@ class App extends React.Component {
                     ["Home", "HomePage"],
                     ["Themes", "ColourSwatch"],
                     ["Tic-Tac-Toe", "TicTac"],
-                    ["Grid Test", "GridGame"],
-                    ["SVG", "SVG"],
-                    ["About me", "AboutPage"],
+                    ["Connect 4", "GridGame"],
+                    // ["SVG", "SVG"],
+                    // ["About me", "AboutPage"],
                 ]
         };
     }
@@ -55,17 +55,38 @@ class App extends React.Component {
             case "PageLayout":
                 return <PageLayout menueItems={this.state.menueItems} />
             case "ConnectFour":
-                return <ConnectFour gridSize={[7, 6]} />
+                return (<div>
+                    <ConnectFour gridSize={[7, 6]} />
+                    <BlogClass fileLocation={"./Connect4BlogExplain.json"} />
+                </div>)
             case "TicTac":
-                return (<div><TicTac gridSize={[5, 5]} />
+                return (<div>
+                    <TicTac gridSize={[5, 5]} />
                     {/* massive error with file structure. Can't get this to work */}
                     <BlogClass fileLocation={"./TicTacBlogExplain.json"} />
                 </div>)
 
             case "GridGame":
-                return <GridGame gridSize={[7, 6]} />
+                return (<div>
+                    <GridGame
+                        gridSize={[7, 6]}
+                        diags={[4, 4]}
+                        xLens={[4, 4]}
+                        yLens={[4, 4]}
+                        shortest={[4, 4]}
+                        shortest={false}
+                    />
+                    <BlogClass fileLocation={"./Connect4BlogExplain.json"} />
+                </div>)
             case "AboutPage":
-                return <BlogClass fileLocation={"./Structured.json"} />
+                return <div style={{display: "flex", flexDirection: "row"}}>
+                    <div style={{width: "700"}}>
+                        <BlogClass fileLocation={"./Structured.json"} />
+                    </div>
+                    {/* <div style={{width: "1px"}}> */}
+                    <BlogClass fileLocation={"./Sample.json"} />
+                    {/* </div> */}
+                </div>
             case "SVG":
                 return <SVGPostion />
             default:
