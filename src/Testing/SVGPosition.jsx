@@ -5,6 +5,8 @@ import "./Zero.svg"
 
 import "../../public/icon.svg"
 
+// import Disc from "./Disc.svg"
+import Disc from "./Disc.jsx"
 
 class SVGPostion extends React.Component {
     constructor(props) {
@@ -45,37 +47,43 @@ class SVGPostion extends React.Component {
         // console.log("P_Z", x + gW + 315, y + gH + 180)
 
 
+        let testDiv =
+            <div
+                style={{
+                    "backgroundColor": "var(--Primary-2)",
+                    "width": 512,
+                    "height": 512,
+                }}
+            >
+                <img src="./Let.svg"
+                    style={{
+                        "paddingLeft": x + gL,
+                        "paddingTop": y,
+                    }}
+                />
+                <img src="./Heart.svg"
+                    style={{
+                        "paddingLeft": x,
+                        "paddingTop": gH,
+                    }}
+                />
+                <img src="./Zero.svg"
+                    style={{
+                        "paddingLeft": gW,
+                        "paddingTop": gH,
+                    }}
+                />
+            </div>
+
         return (
             <div>
-                <div
-                    style={{
-                        "backgroundColor": "var(--Primary-2)",
-                        "width": 512,
-                        "height": 512,
-                    }}
-                >
-                    <img src="./Let.svg"
-                        style={{
-                            "paddingLeft": x + gL,
-                            "paddingTop": y,
-                        }}
-                    />
-                    <img src="./Heart.svg"
-                        style={{
-                            "paddingLeft": x,
-                            "paddingTop": gH,
-                        }}
-                    />
-                    <img src="./Zero.svg"
-                        style={{
-                            "paddingLeft": gW,
-                            "paddingTop": gH,
-                        }}
-                    />
-                </div>
-                <img src="./icon.svg" width={128} />
-                <img src="./drop_circle.svg" width={128} />
-                <img src="../../public/icon.svg" width={128} />
+                <Disc
+                    outerEdge="var(--Grey-0)"
+                    outerColour="var(--Vivids-5)"
+                    innerEdge="var(--Grey-0)"
+                    innerColour="var(--Vivids-6)"
+                    size={100}
+                />
             </div>
         );
     }
