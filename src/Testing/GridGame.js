@@ -15,7 +15,32 @@ class GridGame extends squareGame {
         //takes input squareSize or defaults to 3 by 3
         let gridSize = props.gridSize ? props.gridSize : [3, 3]
         this.state = {
-            playerLogos: ["💜", "🦇", "☕",],
+            playerLogos: [
+                <Disc
+                    outerEdge="var(--Grey-0)"
+                    outerColour="var(--Vivids-0)"
+                    innerEdge="var(--Grey-0)"
+                    innerColour="var(--Vivids-1)"
+                    size={119}
+                />, <Disc
+                    outerEdge="var(--Grey-0)"
+                    outerColour="var(--Vivids-2)"
+                    innerEdge="var(--Grey-0)"
+                    innerColour="var(--Vivids-3)"
+                    size={119} />,
+                <Disc
+                    outerEdge="var(--Grey-0)"
+                    outerColour="var(--Vivids-4)"
+                    innerEdge="var(--Grey-0)"
+                    innerColour="var(--Vivids-5)"
+                    size={119} />,
+                <Disc
+                    outerEdge="var(--Grey-0)"
+                    outerColour="var(--Vivids-6)"
+                    innerEdge="var(--Grey-0)"
+                    innerColour="var(--Vivids-7)"
+                    size={119} />,
+            ],
             currentPlayer: 0,
             maxPlayers: 2,
             moveNumber: 0,

@@ -2,6 +2,7 @@
 .Tile {
 	background: var(--Secondary-9);
 	border: 1px solid var(--Secondary-0);
+	margin: 1px;
 	float: left;
 	font-size: 60px;
 	font-weight: bold;
@@ -19,13 +20,8 @@
 	background: var(--Accent-5);
 }
 
-.Tile:focus {
-	outline: none;
-}
-
 
 .Tile-winner {
 	@extend .Tile;
-	background: var(--Accent-8);
-    border-radius:100%;
+	background: var(--Secondary-3);
 }
