@@ -45,8 +45,8 @@ class ColourSwatchGrid extends React.Component {
             "height": "100px",
             "background": `var(${cssVariable})`,
             // "color": `var(${cssVariable})`,
-            // "color": this.state.colour,
-            "color": "var(--Grey-0)",
+            "color": this.props.colour,
+            // "color": `var(${cssVariable})`,
             border: "0px none",
             "margin": "3px",
             // "margin": "3px solid transparent",
@@ -145,6 +145,7 @@ class ColourSwatch extends React.Component {
         return <> <div className="TheWholeColourThing"
             style={{
                 "backgroundColor": this.state.backgroundColour,
+                "color": this.state.backgroundColour,
             }}
 
         >
@@ -154,10 +155,10 @@ class ColourSwatch extends React.Component {
                 bgColour={this.state.backgroundColour}
                 colour={this.state.backgroundColour}
             />
-            <ThemeSwapControls
+            {/* <ThemeSwapControls
                 themes={this.state.themes}
                 switchTheme={(themeName) => this.handleThemeChange(themeName)}
-            />
+            /> */}
         </div>
 
             <BlogClass fileLocation={"./SwatchBlogExplain.json"} /></>
