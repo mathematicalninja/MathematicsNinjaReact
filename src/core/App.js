@@ -15,6 +15,7 @@ import ColourSwatch from "../Testing/ColourSwatch.js"
 import GridGame from "../Testing/GridGame.js"
 import BlogClass from "../Testing/BlogClass";
 import SVGPostion from "../Testing/SVGPosition";
+import Clocks from "../Testing/Clocks";
 
 class App extends React.Component {
     constructor(props) {
@@ -30,6 +31,7 @@ class App extends React.Component {
                     ["Themes", "ColourSwatch"],
                     ["Tic-Tac-Toe", "TicTac"],
                     ["Connect 4", "GridGame"],
+                    ["Clocks", "Clocks"],
                     // ["SVG", "SVG"],
                     // ["About me", "AboutPage"],
                 ]
@@ -89,6 +91,8 @@ class App extends React.Component {
                 </div>
             case "SVG":
                 return <SVGPostion />
+            case "Clocks":
+                return <Clocks />
             default:
                 return <div>Oh no! You found a blank page!</div>
         }
