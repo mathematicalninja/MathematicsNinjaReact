@@ -119,20 +119,14 @@ class Clocks extends React.Component {
 
     render() {
         let T = this.state.curTime
-        let TimeStyle = {
-            "color": "var(--Grey-0)",
-            "paddingLeft": "10px",
-            "paddingRight": "10px",
-            "border": "solid",
-            "textAlign": "center",
-        }
+
         return (
             <div
                 style={{
                     paddingTop: "10px",
                     display: "grid",
                     // gridTemplate: ". . . . .",
-                    gridTemplateColumns: "1fr auto auto auto auto 1fr",
+                    gridTemplateColumns: "1fr  auto auto auto 1fr",
                     // gridTemplateAreas: " ukTime usaTime utcTime ",
                     width: "auto",
                     height: "auto",
@@ -143,9 +137,10 @@ class Clocks extends React.Component {
                 }}
             >
                 <div />
-                <MiniClock name="UK" timeOrder={[2, 1, 0]} timeObject={this.state.curTime} />
-                <MiniClock name="USA" timeOrder={[1, 2, 0]} timeObject={this.state.curTime} />
-                <MiniClock name="UTC" timeOrder={[0, 1, 2]} timeObject={this.state.curTime} />
+                <MiniClock name="UK" timeOrder={[2, 1, 0]} timeObject={T} />
+                <MiniClock name="USA" timeOrder={[1, 2, 0]} timeObject={T} />
+                <MiniClock name="UTC" timeOrder={[0, 1, 2]} timeObject={T} />
+                <div />
             </div>
         );
     }

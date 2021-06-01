@@ -1,5 +1,4 @@
 import React from "react";
-import ColourSwatch from "./ColourSwatch";
 
 
 
@@ -96,10 +95,6 @@ class BlogClass extends React.Component {
                 "marginTop": "23px",
 
             }} />,
-            endOfLastSection: <div style={{
-                // "border-bottom": "2px dotted var(--Accent-0)",
-                "marginBottom": "0px",
-            }} />,
         }
     }
     sentenceSplit(paragraph) {
@@ -107,7 +102,7 @@ class BlogClass extends React.Component {
         let sentenceArray = [];
         for (let index = 0; index < paragraph.length; index++) {
             let sentence = paragraph[index]
-            if (index == paragraph.length - 1) {
+            if (index === paragraph.length - 1) {
                 sentenceArray.push(<span>{sentence}</span>)
             } else {
                 sentenceArray.push(<span>{sentence}{this.state.endOfSentence}</span>)

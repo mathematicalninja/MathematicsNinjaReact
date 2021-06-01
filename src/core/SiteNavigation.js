@@ -11,7 +11,6 @@ class SiteNavigation extends React.Component {
             menueItems: props.menueItems,
         }
 
-        console.log("nav choose page", this.choosePage)
     }
     renderNavigationBar(DataStructure) {
         const css_margin = "0"

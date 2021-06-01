@@ -74,7 +74,7 @@ class GridGame extends squareGame {
         if (currentBoard.squares[colIndex][rowIndex]) {
 
             // if this tile is full: first check if the column is full.
-            if (!(rowIndex == 0)) {
+            if (!(rowIndex === 0)) {
                 this.handleClick(colIndex, 0)
             }
             // THEN return saying THIS tile is full.
@@ -83,7 +83,7 @@ class GridGame extends squareGame {
 
         // if this is the bottom row, we return saying that this tile is empty
 
-        if (this.state.squareSize[1] == rowIndex + 1) {
+        if (this.state.squareSize[1] === rowIndex + 1) {
             console.log("Bottom")
             return false
         }
