@@ -1,5 +1,6 @@
 import React from "react";
 
+
 class MiniClock extends React.Component {
     constructor(props) {
         super(props);
@@ -7,7 +8,6 @@ class MiniClock extends React.Component {
             curTime: new Date(),
         };
     }
-
 
     componentDidMount() {
         setInterval(() => {
@@ -32,19 +32,41 @@ class MiniClock extends React.Component {
         return timeString
     }
 
-    timePiece(integer, timeObject) {
-        // 0 is largest time (hours), getting smaller by integer.
+
+    getTimePart(integer, timeObject) {
         switch (integer) {
             case 0:
-                return timeObject.getHours().toString().padStart(2, 0)
+                return timeObject.getFullYear()
             case 1:
-                return timeObject.getMinutes().toString().padStart(2, 0)
+                return timeObject.getMonth()
             case 2:
-                return timeObject.getSeconds().toString().padStart(2, 0)
+                return timeObject.getUTCDay()
+            case 3:
+                return timeObject.getHours()
+            case 4:
+                return timeObject.getMinutes()
+            case 5:
+                return timeObject.getSeconds()
             default:
                 break;
+
         }
     }
+
+    getString(integer, timeObject) {
+        return this.getTimePart(integer, timeObject).toString()
+    }
+
+    timePiece(integer, timeObject) {
+        // 0 is largest time (hours), getting smaller by integer.
+        return this.getString(integer + 3, timeObject).padStart(2, 0)
+    }
+
+    datePiece(integer, dateObject) {
+        // 0 is largest time (years), getting smaller by integer.
+        return this.getString(integer, dateObject).padStart(2, 0).slice(-2)
+    }
+
     dateChunck(timeOrder, timeObject) {
         let dateString = []
         for (const integer of timeOrder) {
@@ -55,21 +77,6 @@ class MiniClock extends React.Component {
         dateString.push(<br />)
         return dateString
     }
-
-    datePiece(integer, dateObject) {
-        // 0 is largest time (years), getting smaller by integer.
-        switch (integer) {
-            case 0:
-                return dateObject.getFullYear().toString().slice(-2)
-            case 1:
-                return dateObject.getMonth().toString().padStart(2, 0)
-            case 2:
-                return dateObject.getUTCDay().toString().padStart(2, 0)
-            default:
-                break;
-        }
-    }
-
 
     render() {
         let p = this.props
@@ -93,6 +100,16 @@ class MiniClock extends React.Component {
             {time}
             {date}
         </div>
+    }
+}
+
+
+class RoundClock extends MiniClock {
+    constructor(props) {
+        super()
+    }
+    render() {
+        return <div></div>
     }
 }
 
@@ -141,6 +158,10 @@ class Clocks extends React.Component {
                 <MiniClock name="USA" timeOrder={[1, 2, 0]} timeObject={T} />
                 <MiniClock name="UTC" timeOrder={[0, 1, 2]} timeObject={T} />
                 <div />
+                <br />
+                <dir>
+                    <RoundClock timeObject={T} />
+                </dir>
             </div>
         );
     }
