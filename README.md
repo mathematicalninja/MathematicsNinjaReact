@@ -1,3 +1,30 @@
+# File Structure
+
+### `BlogPosts`
+* This is where "text" files go.
+
+### `components`
+* This is where self-contained units go: i.e. things that (might) need `props` to create an item that can be placed inside a `<div/>` inside **any** page
+
+### `core`
+* This is where components etc. that are required globally go. NavBar/Logo/etc.
+
+### `data`
+* this is where `data` goes, no joke, right?
+
+### `fonts`
+* this is where fonts that are used on the site are stored (so users don't neef to have the specific fonts installed)
+
+### `PageTypes`
+* This is where whole page wrappers go: i.e. things that need no `props` to render a functioning webpage.
+
+### `styles`
+* This is where `themes` go (and if any further style data is created, here would house that)
+
+### `Testing`
+* This is the home for unfinished/in-development items. Ideally, if something is not in here, then it is *"ready to deply"*
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,30 +95,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
-# File Structure
-
-### `BlogPosts`
-* This is where "text" files go.
-
-### `components`
-* This is where self-contained units go: i.e. things that (might) need `props` to create an item that can be placed inside a `<div/>` inside **any** page
-
-### `core`
-* This is where components etc. that are required globally go. NavBar/Logo/etc.
-
-### `data`
-* this is where `data` goes, no joke, right?
-
-### `fonts`
-* this is where fonts that are used on the site are stored (so users don't neef to have the specific fonts installed)
-
-### `PageTypes`
-* This is where whole page wrappers go: i.e. things that need no `props` to render a functioning webpage.
-
-### `styles`
-* This is where `themes` go (and if any further style data is created, here would house that)
-
-### `Testing`
-* This is the home for unfinished/in-development items. Ideally, if something is not in here, then it is *"ready to deply"*
