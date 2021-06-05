@@ -21,17 +21,6 @@ class MiniClock extends React.Component {
         clearInterval(this.interval);
     }
 
-    timeChunck(timeOrder, timeObject) {
-        let timeString = []
-        for (const integer of timeOrder) {
-            timeString.push(this.timePiece(integer, timeObject))
-            timeString.push(":")
-        }
-        timeString.pop()
-        timeString.push(<br />)
-        return timeString
-    }
-
     getTimePart(integer, timeObject) {
         switch (integer) {
             case 0:
@@ -63,6 +52,17 @@ class MiniClock extends React.Component {
     datePiece(integer, dateObject) {
         // 0 is largest time (years), getting smaller by integer.
         return this.getString(integer, dateObject).padStart(2, 0).slice(-2)
+    }
+
+    timeChunck(timeOrder, timeObject) {
+        let timeString = []
+        for (const integer of timeOrder) {
+            timeString.push(this.timePiece(integer, timeObject))
+            timeString.push(":")
+        }
+        timeString.pop()
+        timeString.push(<br />)
+        return timeString
     }
 
     dateChunck(timeOrder, timeObject) {
@@ -179,7 +179,7 @@ class RoundClock extends MiniClock {
     }
     render() {
         console.log("This", this.state)
-        return <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 6 6" version="1.1">
+        return <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 6 6" version="1.1">
             <ArcSixty arcGap={2} arcWidth={1} time={this.getTimePart(4, this.state.curTime)} />
             <ArcTwelve arcGap={1} arcWidth={1} time={this.getTimePart(3, this.state.curTime)} />
             <ArcSixty arcGap={0.5} arcWidth={0.5} time={this.getTimePart(5, this.state.curTime)} />
