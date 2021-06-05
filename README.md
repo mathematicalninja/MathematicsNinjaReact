@@ -8,7 +8,7 @@ And anything I create here (with the exception of my likeness) can be repurposed
 
 This isn't here to make me money, it's here for me to polish my skills, create art, expolre maths exposition, and generally do what I find interesting.
 
-- Alex. (@mathematicalninja)
+\- Alex. (@mathematicalninja)
 
 # File Structure
 
