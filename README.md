@@ -1,3 +1,15 @@
+# What is this?
+
+This is the codebase for my personal webpage [mathematics.ninja]. It is a few different things. Mostly just ideas I thought would be cool.
+
+It's also a living portfolio.
+
+And anything I create here (with the exception of my likeness) can be repurposed for your own personal (not for profit) uses.
+
+This isn't here to make me money, it's here for me to polish my skills, create art, expolre maths exposition, and generally do what I find interesting.
+
+- Alex. (@mathematicalninja)
+
 # File Structure
 
 ### `BlogPosts`
