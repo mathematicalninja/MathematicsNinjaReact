@@ -105,7 +105,7 @@ function ArcChunck(props) {
     let {internalAngle, externalAngle, arcGap, arcWidth} = props
     let radianInternalAngle = Math.PI * internalAngle / 180
     let radianExternalAngle = Math.PI * externalAngle / 180
-    // console.log({internalAngle, externalAngle, arcGap, arcWidth})
+
     const A = [
         arcGap * Math.sin(radianExternalAngle),
         -arcGap * Math.cos(radianExternalAngle)
@@ -133,57 +133,43 @@ function ArcChunck(props) {
     Z
     `
 
-    // https://svg-path-visualizer.netlify.app/#M%200%20-2%20%20%20%20L%200%20-3%20%20%20%20A%203%203%200%200%201%203%200%20%20%20%20L%202%200%20%20%20A%202%202%200%200%200%200%20-2%20z
-    // https://css-tricks.com/svg-path-syntax-illustrated-guide/
+    return <path id="circleClock" d={arcString} fill={props.fill} stroke="var(--Grey-1)" strokeWidth="0.02px" />
 
-    {/* A */}
-    {/* rX,rY rotation, arc, sweep, eX,eY */}
-    {/* Draw an arc that is based on the curve an oval makes. First define the width and height of the oval. Then the rotation of the oval. Along with the end point, this makes two possible ovals. So the arc and sweep are either 0 or 1 and determine which oval and which path it will take. */}
-
-    return <g
-    // transform="translate(150 150)"
-    >
-        <path id="circleClock" d={arcString} />
-    </g>
-
-    {/* <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg" version="1.1">
-            <path id="ArcPath1" d="M 0 300    L 0 300    A 300 300 0 0 0 300 0   L 200 0   A 200 200 0 0 1 0 200 z"
-                fill="#white"
-            /></svg> */}
-    {/* <svg width="200" height="150" xmlns="http://www.w3.org/2000/svg" version="1.1">
-            <path d="M 10 75 Q 50 10 100 75 T 190 75" stroke="black"
-                stroke-linecap="round" stroke-dasharray="5,10,5" fill="none" />
-            <path d="M 10 75 L 190 75" stroke="red"
-                stroke-linecap="round" stroke-width="1" stroke-dasharray="5,5" fill="none" />
-        </svg> */}
 
 }
 
 function ArcSixty(props) {
-    return <ArcChunck internalAngle={6} externalAngle={6 * props.time} arcGap={props.arcGap} arcWidth={props.arcWidth} />
+    return <ArcChunck
+        internalAngle={6}
+        externalAngle={6 * props.time}
+        arcGap={props.arcGap} arcWidth={props.arcWidth} fill={props.fill}
+    />
 }
 
 function ArcTwelve(props) {
-    return <ArcChunck internalAngle={30} externalAngle={30 * props.time} arcGap={props.arcGap} arcWidth={props.arcWidth} />
+    return <ArcChunck
+        internalAngle={30}
+        externalAngle={30 * props.time}
+        arcGap={props.arcGap} arcWidth={props.arcWidth} fill={props.fill}
+    />
 }
 
 function ArcTwentyFour(props) {
-    let {arcGap,
-        arcWidth} = props
-
-    return <ArcChunck internalAngle={15} externalAngle={0} arcGap={arcGap} arcWidth={arcWidth} />
+    return <ArcChunck
+        internalAngle={15}
+        externalAngle={15 * props.time}
+        arcGap={props.arcGap} arcWidth={props.arcWidth} fill={props.fill}
+    />
 }
 class RoundClock extends MiniClock {
     constructor(props) {
         super(props)
     }
     render() {
-        console.log("This", this.state)
-        return <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 6 6" version="1.1">
-            <ArcSixty arcGap={2} arcWidth={1} time={this.getTimePart(4, this.state.curTime)} />
-            <ArcTwelve arcGap={1} arcWidth={1} time={this.getTimePart(3, this.state.curTime)} />
-            <ArcSixty arcGap={0.5} arcWidth={0.5} time={this.getTimePart(5, this.state.curTime)} />
-
+        return <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 6 6" version="1.1">
+            <ArcTwelve arcGap={0.5} arcWidth={2.5} time={this.getTimePart(3, this.state.curTime)} fill={this.props.fillHours} /> {/* hours*/}
+            <ArcSixty arcGap={1} arcWidth={2} time={this.getTimePart(4, this.state.curTime)} fill={this.props.fillMinutes} /> {/*minutes*/}
+            <ArcSixty arcGap={2} arcWidth={1} time={this.getTimePart(5, this.state.curTime)} fill={this.props.fillSeconds} /> {/*seconds*/}
         </svg>
     }
 }
@@ -214,6 +200,18 @@ class Clocks extends React.Component {
 
         return (
             <div>
+                <dir style={{
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+
+                }}>
+                    <RoundClock timeObject={T}
+                        fillHours="var(--Secondary-0)"
+                        fillMinutes="var(--Secondary-1)"
+                        fillSeconds="var(--Secondary-2)"
+                    />
+                </dir>
                 <div
                     style={{
                         paddingTop: "10px",
@@ -236,14 +234,6 @@ class Clocks extends React.Component {
                     <div />
                     <br />
                 </div>
-                <dir style={{
-                    "display": "flex",
-                    "flexDirection": "row",
-                    "justifyContent": "center",
-
-                }}>
-                    <RoundClock timeObject={T} />
-                </dir>
             </div>
         );
     }
