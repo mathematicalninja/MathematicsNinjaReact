@@ -35,6 +35,8 @@ class MiniClock extends React.Component {
                 return timeObject.getMinutes()
             case 5:
                 return timeObject.getSeconds()
+            case 6:
+                return timeObject.getMilliseconds()
             default:
                 break;
         }
@@ -138,38 +140,56 @@ function ArcChunck(props) {
 
 }
 
-function ArcSixty(props) {
+function TimeArc(props) {
     return <ArcChunck
-        internalAngle={6}
-        externalAngle={6 * props.time}
-        arcGap={props.arcGap} arcWidth={props.arcWidth} fill={props.fill}
+        internalAngle={360 / props.time[1]}
+        externalAngle={360 / props.time[1] * (props.time[0] - 0.5 * props.offset)}
+        arcGap={props.arcGap}
+        arcWidth={props.arcWidth}
+        fill={props.fill}
     />
 }
 
-function ArcTwelve(props) {
-    return <ArcChunck
-        internalAngle={30}
-        externalAngle={30 * props.time}
-        arcGap={props.arcGap} arcWidth={props.arcWidth} fill={props.fill}
-    />
-}
 
-function ArcTwentyFour(props) {
-    return <ArcChunck
-        internalAngle={15}
-        externalAngle={15 * props.time}
-        arcGap={props.arcGap} arcWidth={props.arcWidth} fill={props.fill}
-    />
-}
 class RoundClock extends MiniClock {
     constructor(props) {
         super(props)
     }
     render() {
+        let offset = this.props.offset ? this.props.offset : 0
+        let smooth = this.props.smooth ? this.props.smooth : 0
         return <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 6 6" version="1.1">
-            <ArcTwelve arcGap={0.5} arcWidth={2.5} time={this.getTimePart(3, this.state.curTime)} fill={this.props.fillHours} /> {/* hours*/}
-            <ArcSixty arcGap={1} arcWidth={2} time={this.getTimePart(4, this.state.curTime)} fill={this.props.fillMinutes} /> {/*minutes*/}
-            <ArcSixty arcGap={2} arcWidth={1} time={this.getTimePart(5, this.state.curTime)} fill={this.props.fillSeconds} /> {/*seconds*/}
+            <TimeArc
+                arcGap={0.5}
+                arcWidth={2.5}
+                smallTime={[this.getTimePart(4, this.state.curTime), 60]}
+                time={[this.getTimePart(3, this.state.curTime), 12]}
+                // largeTime={this.getTimePart(2, this.state.curTime)}
+                fill={this.props.fillHours}
+                offset={offset}
+                smooth={smooth}
+            /> {/* hours*/}
+
+            <TimeArc
+                arcGap={1}
+                arcWidth={2}
+                smallTime={[this.getTimePart(5, this.state.curTime), 60]}
+                time={[this.getTimePart(4, this.state.curTime), 60]}
+                largeTime={this.getTimePart(3, this.state.curTime)}
+                fill={this.props.fillMinutes}
+                offset={offset}
+                smooth={this.props.smooth}
+            /> {/*minutes*/}
+            <TimeArc
+                arcGap={2}
+                arcWidth={1}
+                smallTime={[this.getTimePart(6, this.state.curTime), 1000]}
+                time={[this.getTimePart(5, this.state.curTime), 60]}
+                largeTime={this.getTimePart(4, this.state.curTime)}
+                fill={this.props.fillSeconds}
+                offset={offset}
+                smooth={this.props.smooth}
+            /> {/*seconds*/}
         </svg>
     }
 }
@@ -210,6 +230,8 @@ class Clocks extends React.Component {
                         fillHours="var(--Secondary-0)"
                         fillMinutes="var(--Secondary-1)"
                         fillSeconds="var(--Secondary-2)"
+                        offset={1}
+                        smooth={1}
                     />
                 </dir>
                 <div
