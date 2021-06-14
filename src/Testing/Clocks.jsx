@@ -14,7 +14,7 @@ class MiniClock extends React.Component {
             this.setState({
                 curTime: new Date()
             })
-        }, 1000)
+        }, 10)
     }
 
     componentWillUnmount() {
@@ -141,9 +141,18 @@ function ArcChunck(props) {
 }
 
 function TimeArc(props) {
+    let timeShift = 0
+    timeShift -= 0.5 * props.offset // center of arc is at the timepoint if offset == 1
+    timeShift += props.smooth * props.smallTime[0] / props.smallTime[1] // nudges the time along as the smaller time ticks
+    // let outerShift = props.snapToPrev && props.largeTime ? props.snapToPrev * props.largeTime[0] / props.largeTime : 0
+    // console.log({outerShift, props.snapToPrev, props.largeTime[0]})
+    let outerShift = 0
+    if (props.snapToPrev && props.largeTime) {
+        outerShift = 360 * props.snapToPrev * props.largeTime[0] / props.largeTime[1] // rotates the clock to star the time's zero at the larger time's current value
+    } else { }
     return <ArcChunck
         internalAngle={360 / props.time[1]}
-        externalAngle={360 / props.time[1] * (props.time[0] - 0.5 * props.offset)}
+        externalAngle={360 / props.time[1] * (props.time[0] + timeShift) + outerShift}
         arcGap={props.arcGap}
         arcWidth={props.arcWidth}
         fill={props.fill}
@@ -158,7 +167,8 @@ class RoundClock extends MiniClock {
     render() {
         let offset = this.props.offset ? this.props.offset : 0
         let smooth = this.props.smooth ? this.props.smooth : 0
-        return <svg width="500" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 6 6" version="1.1">
+        let snapToPrev = this.props.snapToPrev ? this.props.snapToPrev : 0
+        return <svg width="600" height="600" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 6 6" version="1.1">
             <TimeArc
                 arcGap={0.5}
                 arcWidth={2.5}
@@ -168,6 +178,7 @@ class RoundClock extends MiniClock {
                 fill={this.props.fillHours}
                 offset={offset}
                 smooth={smooth}
+            // snapToPrev={snapToPrev}
             /> {/* hours*/}
 
             <TimeArc
@@ -175,20 +186,22 @@ class RoundClock extends MiniClock {
                 arcWidth={2}
                 smallTime={[this.getTimePart(5, this.state.curTime), 60]}
                 time={[this.getTimePart(4, this.state.curTime), 60]}
-                largeTime={this.getTimePart(3, this.state.curTime)}
+                largeTime={[this.getTimePart(3, this.state.curTime), 12]}
                 fill={this.props.fillMinutes}
                 offset={offset}
                 smooth={this.props.smooth}
+                snapToPrev={snapToPrev}
             /> {/*minutes*/}
             <TimeArc
                 arcGap={2}
                 arcWidth={1}
                 smallTime={[this.getTimePart(6, this.state.curTime), 1000]}
                 time={[this.getTimePart(5, this.state.curTime), 60]}
-                largeTime={this.getTimePart(4, this.state.curTime)}
+                largeTime={[this.getTimePart(4, this.state.curTime), 60]}
                 fill={this.props.fillSeconds}
                 offset={offset}
                 smooth={this.props.smooth}
+                snapToPrev={snapToPrev}
             /> {/*seconds*/}
         </svg>
     }
@@ -226,12 +239,14 @@ class Clocks extends React.Component {
                     "justifyContent": "center",
 
                 }}>
-                    <RoundClock timeObject={T}
+                    <RoundClock
+                        timeObject={T}
                         fillHours="var(--Secondary-0)"
                         fillMinutes="var(--Secondary-1)"
                         fillSeconds="var(--Secondary-2)"
                         offset={1}
                         smooth={1}
+                    // snapToPrev={1}
                     />
                 </dir>
                 <div
