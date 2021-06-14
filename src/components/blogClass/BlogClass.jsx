@@ -153,7 +153,6 @@ class BlogClass extends React.Component {
         </div>
     }
     getBlog() {
-        console.log(this.props)
         let blogData = require(`../../BlogPosts/${this.props.blogName}`)
 
         let styling = this.state.style
