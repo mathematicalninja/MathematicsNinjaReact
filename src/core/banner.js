@@ -1,11 +1,8 @@
 import React from "react";
-import GridGame from "../Testing/GridGame";
-
 
 class Banner extends React.Component {
     constructor(props) {
         super(props)
-        // console.log("banner load")
     }
     textRender() {
         const mathsText = <span key="maths">Maths</span>
