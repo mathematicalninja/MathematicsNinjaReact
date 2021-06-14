@@ -56,7 +56,7 @@ class MiniClock extends React.Component {
         return this.getString(integer, dateObject).padStart(2, 0).slice(-2)
     }
 
-    timeChunck(timeOrder, timeObject) {
+    timeChunk(timeOrder, timeObject) {
         let timeString = []
         for (const integer of timeOrder) {
             timeString.push(this.timePiece(integer, timeObject))
@@ -67,7 +67,7 @@ class MiniClock extends React.Component {
         return timeString
     }
 
-    dateChunck(timeOrder, timeObject) {
+    dateChunk(timeOrder, timeObject) {
         let dateString = []
         for (const integer of timeOrder) {
             dateString.push(this.datePiece(integer, timeObject))
@@ -92,8 +92,8 @@ class MiniClock extends React.Component {
             "textAlign": "center",
         }
         let name = p.name ? [p.name, <br />] : ""
-        let time = this.timeChunck(p.timeOrder, p.timeObject)
-        let date = this.dateChunck(p.timeOrder, p.timeObject)
+        let time = this.timeChunk(p.timeOrder, p.timeObject)
+        let date = this.dateChunk(p.timeOrder, p.timeObject)
 
         return <div style={style}>
             {name}
@@ -103,7 +103,7 @@ class MiniClock extends React.Component {
     }
 }
 
-function ArcChunck(props) {
+function ArcChunk(props) {
     let {internalAngle, externalAngle, arcGap, arcWidth} = props
     let radianInternalAngle = Math.PI * internalAngle / 180
     let radianExternalAngle = Math.PI * externalAngle / 180
@@ -142,7 +142,7 @@ function ArcChunck(props) {
 
 function TimeArc(props) {
     let timeShift = 0
-    timeShift -= 0.5 * props.offset // center of arc is at the timepoint if offset == 1
+    timeShift -= 0.5 * props.offset // center of arc is at the time point if offset == 1
     timeShift += props.smooth * props.smallTime[0] / props.smallTime[1] // nudges the time along as the smaller time ticks
     // let outerShift = props.snapToPrev && props.largeTime ? props.snapToPrev * props.largeTime[0] / props.largeTime : 0
     // console.log({outerShift, props.snapToPrev, props.largeTime[0]})
@@ -150,7 +150,7 @@ function TimeArc(props) {
     if (props.snapToPrev && props.largeTime) {
         outerShift = 360 * props.snapToPrev * props.largeTime[0] / props.largeTime[1] // rotates the clock to star the time's zero at the larger time's current value
     } else { }
-    return <ArcChunck
+    return <ArcChunk
         internalAngle={360 / props.time[1]}
         externalAngle={360 / props.time[1] * (props.time[0] + timeShift) + outerShift}
         arcGap={props.arcGap}
@@ -165,7 +165,7 @@ class RoundClock extends MiniClock {
         let offset = this.props.offset ? this.props.offset : 0
         let smooth = this.props.smooth ? this.props.smooth : 0
         let snapToPrev = this.props.snapToPrev ? this.props.snapToPrev : 0
-        return <svg width="600" height="600" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 6 6" version="1.1">
+        return <svg width="430" height="430" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 6 6" version="1.1">
             <TimeArc
                 arcGap={0.5}
                 arcWidth={2.5}
