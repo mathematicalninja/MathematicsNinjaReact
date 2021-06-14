@@ -61,19 +61,19 @@ class App extends React.Component {
 
                 />
             case "HomePage":
-                return <BlogClass blogName={"Sample.json"} />
+                return <BlogClass blogName={"personal/Sample.json"} />
             case "PageLayout":
                 return <PageLayout menueItems={this.state.menueItems} />
             case "ConnectFour":
                 return (<div>
                     <ConnectFour gridSize={[7, 6]} />
-                    <BlogClass blogName={"Connect4BlogExplain.json"} />
+                    <BlogClass blogName={"samplePageExplinations/Connect4BlogExplain.json"} />
                 </div>)
             case "TicTac":
                 return (<div>
                     <TicTac gridSize={[5, 5]} />
                     {/* massive error with file structure. Can't get this to work */}
-                    <BlogClass blogName={"TicTacBlogExplain.json"} />
+                    <BlogClass blogName={"samplePageExplinations/TicTacBlogExplain.json"} />
                 </div>)
 
             case "GridGame":
@@ -85,15 +85,15 @@ class App extends React.Component {
                         yLens={[4, 4]}
                         shortest={[4, 4]}
                     />
-                    <BlogClass blogName={"Connect4BlogExplain.json"} />
+                    <BlogClass blogName={"samplePageExplinations/Connect4BlogExplain.json"} />
                 </div>)
             case "AboutPage":
                 return <div style={{display: "flex", flexDirection: "row"}}>
                     <div style={{width: "700"}}>
-                        <BlogClass blogName={"Structured.json"} />
+                        <BlogClass blogName={"personal/Structured.json"} />
                     </div>
                     {/* <div style={{width: "1px"}}> */}
-                    <BlogClass blogName={"Sample.json"} />
+                    <BlogClass blogName={"personal/Sample.json"} />
                     {/* </div> */}
                 </div>
             case "Clocks":

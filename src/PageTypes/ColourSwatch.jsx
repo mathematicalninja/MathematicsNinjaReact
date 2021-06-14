@@ -49,7 +49,7 @@ class ColourSwatch extends React.Component {
             /> */}
         </div>
 
-            <BlogClass blogName={"SwatchBlogExplain.json"} /></>
+            <BlogClass blogName={"samplePageExplinations/SwatchBlogExplain.json"} /></>
     }
 }
 
