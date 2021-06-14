@@ -15,7 +15,7 @@ import ColourSwatch from "../Testing/ColourSwatch.js"
 import GridGame from "../Testing/GridGame.js"
 import BlogClass from "../Testing/BlogClass";
 import SVGPostion from "../Testing/SVGPosition";
-import Clocks from "../Testing/Clocks";
+import Clocks from "../PageTypes/Clocks";
 
 class App extends React.Component {
     constructor(props) {
