@@ -20,7 +20,6 @@ import BlogClass from "../components/blogClass/BlogClass.jsx";
 
 // testing pages
 import GridGame from "../components/games/GridGame.js"
-import SVGPostion from "../Testing/SVGPosition";
 import Graphs from "../Testing/Graphs";
 
 
@@ -42,7 +41,6 @@ class App extends React.Component {
                     ["Connect 4", "GridGame"],
                     ["Clocks", "Clocks"],
                     ["Graphs", "Graphs"],
-                    // ["SVG", "SVG"],
                     // ["About me", "AboutPage"],
                 ]
         };
@@ -98,8 +96,6 @@ class App extends React.Component {
                     <BlogClass blogName={"Sample.json"} />
                     {/* </div> */}
                 </div>
-            case "SVG":
-                return <SVGPostion />
             case "Clocks":
                 return <Clocks />
             case "Graphs":
