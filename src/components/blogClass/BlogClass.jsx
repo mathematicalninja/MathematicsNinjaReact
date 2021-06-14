@@ -1,7 +1,6 @@
 import React from "react";
 
 
-
 class BlogClass extends React.Component {
     /*
     each array push needs to have a unique key associated with it.
@@ -154,7 +153,8 @@ class BlogClass extends React.Component {
         </div>
     }
     getBlog() {
-        let blogData = require(`${this.props.fileLocation}`)
+        console.log(this.props)
+        let blogData = require(`../../BlogPosts/${this.props.blogName}`)
 
         let styling = this.state.style
         return (<div style={styling}>
@@ -163,7 +163,7 @@ class BlogClass extends React.Component {
     }
 
     render() {
-        // return <div>{this.getBlog(this.props.fileLocation)}</div>
+        // return <div>{this.getBlog(this.props.blogName)}</div>
         return (
             this.getBlog()
         )

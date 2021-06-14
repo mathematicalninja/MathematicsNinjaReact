@@ -1,7 +1,7 @@
 import React from "react"
 import ColourSwatchGrid from "../components/colourThemes/ColourSwatchGrid"
 import ThemeSwapControls from "../components/colourThemes/ThemeSwapControls"
-import BlogClass from "../Testing/BlogClass"
+import BlogClass from "../components/blogClass/BlogClass"
 
 import "../components/colourThemes/ColourSwatch.scss"
 
@@ -49,7 +49,7 @@ class ColourSwatch extends React.Component {
             /> */}
         </div>
 
-            <BlogClass fileLocation={"./SwatchBlogExplain.json"} /></>
+            <BlogClass blogName={"SwatchBlogExplain.json"} /></>
     }
 }
 

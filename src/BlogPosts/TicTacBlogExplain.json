@@ -1,0 +1,27 @@
+{
+    "Meta": {
+        "Title": "Tic-Tac-Toe"
+    },
+    "Content": [
+        {
+            "Content": [
+                [
+                    "This was my very first foray into React (as I'm sure it is for many).",
+                    "But as I know that 3x3 connect four is a solved game, I aways play a 5x5 varient myself, so I took it upon myself to code this.",
+                    "The rules are simple: Any Row or Column filled in by a player gives them a win.",
+                    "If you fill in either of the diagonals, you also win",
+                    "No changes so far.",
+                    "But if you fill in a minor diagonal (at least 3 tiles long), you win. "
+                ]
+            ]
+        },
+        {
+            "Content": [
+                [
+                    "This is simply to prevent a player causing NxN tic-tac-toe to be a draw in the first N+2 moves.",
+                    "Which is easy I might add."
+                ]
+            ]
+        }
+    ]
+}

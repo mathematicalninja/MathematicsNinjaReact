@@ -1,0 +1,22 @@
+{
+    "Meta": {
+        "Title": "Connect 4"
+    },
+    "Content": [
+        {
+            "Content": [
+                [
+                    "Rules are simple: drop your piece into a column, then if you managed to connect 4, you win.",
+                    "Diagonals count."
+                ]
+            ]
+        },
+        {
+            "Content": [
+                [
+                    "Currently I'm working on the logic to make pieces move automatically...so until then, you'll have to be satisfied with instant snapping."
+                ]
+            ]
+        }
+    ]
+}
