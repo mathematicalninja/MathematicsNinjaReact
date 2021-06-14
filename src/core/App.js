@@ -11,7 +11,7 @@ import ConnectFour from "../components/ConnectFour.js"
 
 
 // testing pages
-import ColourSwatch from "../Testing/ColourSwatch.js"
+import ColourSwatch from "../PageTypes/ColourSwatch.jsx"
 import GridGame from "../Testing/GridGame.js"
 import BlogClass from "../Testing/BlogClass";
 import SVGPostion from "../Testing/SVGPosition";
