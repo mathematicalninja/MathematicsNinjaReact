@@ -178,20 +178,11 @@ class RoundClock extends MiniClock {
             // snapToPrev={snapToPrev}
             /> {/* hours*/}
 
+
+
             <TimeArc
                 arcGap={1}
                 arcWidth={2}
-                smallTime={[this.getTimePart(5, this.state.curTime), 60]}
-                time={[this.getTimePart(4, this.state.curTime), 60]}
-                largeTime={[this.getTimePart(3, this.state.curTime), 12]}
-                fill={this.props.fillMinutes}
-                offset={offset}
-                smooth={this.props.smooth}
-                snapToPrev={snapToPrev}
-            /> {/*minutes*/}
-            <TimeArc
-                arcGap={2}
-                arcWidth={1}
                 smallTime={[this.getTimePart(6, this.state.curTime), 1000]}
                 time={[this.getTimePart(5, this.state.curTime), 60]}
                 largeTime={[this.getTimePart(4, this.state.curTime), 60]}
@@ -200,6 +191,19 @@ class RoundClock extends MiniClock {
                 smooth={this.props.smooth}
                 snapToPrev={snapToPrev}
             /> {/*seconds*/}
+
+            <TimeArc
+                arcGap={2.75}
+                arcWidth={0.25}
+                smallTime={[this.getTimePart(5, this.state.curTime), 60]}
+                time={[this.getTimePart(4, this.state.curTime), 60]}
+                largeTime={[this.getTimePart(3, this.state.curTime), 12]}
+                fill={this.props.fillMinutes}
+                offset={offset}
+                smooth={this.props.smooth}
+                snapToPrev={snapToPrev}
+            /> {/*minutes*/}
+
         </svg>
     }
 }
