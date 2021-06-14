@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/global.scss"
+import "../../styles/global.scss"
 import "./logo.scss"
-import Icon from "./testIcon.jsx"
+import Icon from "../testIcon.jsx"
 
 class Logo extends React.Component {
     render() {

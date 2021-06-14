@@ -1,8 +1,8 @@
 import React from "react";
-import Banner from "./banner.js"
-import Logo from "./logo.js"
-import SiteNavigation from "./SiteNavigation.js"
-import pageContent from "./PageContent.js"
+import Banner from "../header/banner.js"
+import Logo from "../header/logo.js"
+import SiteNavigation from "../header/SiteNavigation"
+import pageContent from "../wrappers/PageContent.js"
 import "./PageLayout.scss"
 
 

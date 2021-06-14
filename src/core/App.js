@@ -1,21 +1,30 @@
 import React from "react"
 
 // meta items, used across site
-import CSSVariableApplicator from "./CSSVariableApplicator";
-import PageItemContainer from "./PageItemContainer"
-import PageLayout from "./PageLayout"
+import CSSVariableApplicator from "./wrappers/CSSVariableApplicator";
+import PageItemContainer from "./wrappers/PageItemContainer"
+import PageLayout from "./body/PageLayout"
 
 // particular pages used as instences
 import TicTac from "../components/TicTac.js"
 import ConnectFour from "../components/ConnectFour.js"
 
+// full pages, demonstrating individual features
+import ColourSwatch from "../PageTypes/ColourSwatch.jsx"
+import Clocks from "../PageTypes/Clocks";
+
+// components used across the App
+import BlogClass from "../components/blogClass/BlogClass.jsx";
+
+
 
 // testing pages
-import ColourSwatch from "../PageTypes/ColourSwatch.jsx"
 import GridGame from "../Testing/GridGame.js"
-import BlogClass from "../Testing/BlogClass";
 import SVGPostion from "../Testing/SVGPosition";
-import Clocks from "../PageTypes/Clocks";
+import Graphs from "../Testing/Graphs";
+
+
+
 
 class App extends React.Component {
     constructor(props) {
@@ -54,19 +63,19 @@ class App extends React.Component {
 
                 />
             case "HomePage":
-                return <BlogClass fileLocation={"./Sample.json"} />
+                return <BlogClass blogName={"Sample.json"} />
             case "PageLayout":
                 return <PageLayout menueItems={this.state.menueItems} />
             case "ConnectFour":
                 return (<div>
                     <ConnectFour gridSize={[7, 6]} />
-                    <BlogClass fileLocation={"./Connect4BlogExplain.json"} />
+                    <BlogClass blogName={"Connect4BlogExplain.json"} />
                 </div>)
             case "TicTac":
                 return (<div>
                     <TicTac gridSize={[5, 5]} />
                     {/* massive error with file structure. Can't get this to work */}
-                    <BlogClass fileLocation={"./TicTacBlogExplain.json"} />
+                    <BlogClass blogName={"TicTacBlogExplain.json"} />
                 </div>)
 
             case "GridGame":
@@ -78,15 +87,15 @@ class App extends React.Component {
                         yLens={[4, 4]}
                         shortest={[4, 4]}
                     />
-                    <BlogClass fileLocation={"./Connect4BlogExplain.json"} />
+                    <BlogClass blogName={"Connect4BlogExplain.json"} />
                 </div>)
             case "AboutPage":
                 return <div style={{display: "flex", flexDirection: "row"}}>
                     <div style={{width: "700"}}>
-                        <BlogClass fileLocation={"./Structured.json"} />
+                        <BlogClass blogName={"Structured.json"} />
                     </div>
                     {/* <div style={{width: "1px"}}> */}
-                    <BlogClass fileLocation={"./Sample.json"} />
+                    <BlogClass blogName={"Sample.json"} />
                     {/* </div> */}
                 </div>
             case "SVG":
