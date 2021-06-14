@@ -6,7 +6,7 @@ import "./Zero.svg"
 import "../../public/icon.svg"
 
 // import Disc from "./Disc.svg"
-import Disc from "./Disc.jsx"
+import Disc from "../components/games/gameParts/Disc";
 import Icon from "./testIcon.jsx"
 
 class SVGPostion extends React.Component {

@@ -1,10 +1,11 @@
 import React from "react";
 
-import "../components/connectFour.scss"
+import "./connectFour.scss"
 
-import squareGame from "../components/squareGame.js"
 
-import Disc from "./Disc.jsx"
+import squareGame from "./squareGame.js"
+
+import Disc from "./gameParts/Disc.jsx"
 
 
 

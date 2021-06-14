@@ -6,8 +6,8 @@ import PageItemContainer from "./wrappers/PageItemContainer"
 import PageLayout from "./body/PageLayout"
 
 // particular pages used as instences
-import TicTac from "../components/TicTac.js"
-import ConnectFour from "../components/ConnectFour.js"
+import TicTac from "../components/games/TicTac.js";
+import ConnectFour from "../components/games/ConnectFour.js"
 
 // full pages, demonstrating individual features
 import ColourSwatch from "../PageTypes/ColourSwatch.jsx"
@@ -19,7 +19,7 @@ import BlogClass from "../components/blogClass/BlogClass.jsx";
 
 
 // testing pages
-import GridGame from "../Testing/GridGame.js"
+import GridGame from "../components/games/GridGame.js"
 import SVGPostion from "../Testing/SVGPosition";
 import Graphs from "../Testing/Graphs";
 
