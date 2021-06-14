@@ -32,6 +32,7 @@ class App extends React.Component {
                     ["Tic-Tac-Toe", "TicTac"],
                     ["Connect 4", "GridGame"],
                     ["Clocks", "Clocks"],
+                    ["Graphs", "Graphs"],
                     // ["SVG", "SVG"],
                     // ["About me", "AboutPage"],
                 ]
@@ -92,6 +93,8 @@ class App extends React.Component {
                 return <SVGPostion />
             case "Clocks":
                 return <Clocks />
+            case "Graphs":
+                return <Graphs />
             default:
                 return <div>Oh no! You found a blank page!</div>
         }
