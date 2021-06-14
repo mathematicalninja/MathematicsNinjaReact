@@ -1,13 +1,10 @@
 import React from "react";
-import Board from "../components/gameParts/Board.js";
-import HistoryControls from "../components/gameParts/HistoryControls.js"
 
 import "../components/connectFour.scss"
 
 import squareGame from "../components/squareGame.js"
 
 import Disc from "./Disc.jsx"
-import ColourSwatch from "./ColourSwatch.js";
 
 
 

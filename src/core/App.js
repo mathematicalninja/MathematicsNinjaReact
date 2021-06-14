@@ -76,7 +76,6 @@ class App extends React.Component {
                         xLens={[4, 4]}
                         yLens={[4, 4]}
                         shortest={[4, 4]}
-                        shortest={false}
                     />
                     <BlogClass fileLocation={"./Connect4BlogExplain.json"} />
                 </div>)

@@ -10,10 +10,6 @@ import Disc from "./Disc.jsx"
 import Icon from "./testIcon.jsx"
 
 class SVGPostion extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
 
     render() {
         // margins
@@ -23,13 +19,6 @@ class SVGPostion extends React.Component {
         const y = 56
 
 
-        // widths (Let, Heart, Zero)
-        const lW = 350
-        const hW = 350
-        const zW = 108
-
-        // Text height
-        const tH = 180
 
         // gaps
         let gH = 152 - 2 * y
@@ -47,34 +36,6 @@ class SVGPostion extends React.Component {
         console.log("P_E", x, y + gH + 180)
         console.log("P_Z", x + gW + 315, y + gH + 180)
 
-
-        let testDiv =
-            <div
-                style={{
-                    "backgroundColor": "var(--Primary-2)",
-                    "width": 512,
-                    "height": 512,
-                }}
-            >
-                <img src="./Let.svg"
-                    style={{
-                        "paddingLeft": x + gL,
-                        "paddingTop": y,
-                    }}
-                />
-                <img src="./Heart.svg"
-                    style={{
-                        "paddingLeft": x,
-                        "paddingTop": gH,
-                    }}
-                />
-                <img src="./Zero.svg"
-                    style={{
-                        "paddingLeft": gW,
-                        "paddingTop": gH,
-                    }}
-                />
-            </div>
 
         return (
             <div>

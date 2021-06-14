@@ -1,9 +1,6 @@
 import React from "react";
 
 class Banner extends React.Component {
-    constructor(props) {
-        super(props)
-    }
     textRender() {
         const mathsText = <span key="maths">Maths</span>
         const isText = <span key="is"> is an </span>
@@ -42,10 +39,15 @@ class Banner extends React.Component {
                     {this.textRender()}
                 </div>
                 <div>
-                    <img src="me.png" style={{
-                        height: "9vw",
-                        "borderRadius": "50%"
-                    }} />
+                    <img
+                        src="me.png"
+                        alt="self prtrait of me"
+                        style={{
+                            height: "9vw",
+                            "borderRadius": "50%",
+
+                        }}
+                    />
                 </div>
             </div>
         </div>

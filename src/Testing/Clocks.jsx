@@ -161,9 +161,6 @@ function TimeArc(props) {
 
 
 class RoundClock extends MiniClock {
-    constructor(props) {
-        super(props)
-    }
     render() {
         let offset = this.props.offset ? this.props.offset : 0
         let smooth = this.props.smooth ? this.props.smooth : 0

@@ -4,10 +4,6 @@ import "./logo.scss"
 import Icon from "./testIcon.jsx"
 
 class Logo extends React.Component {
-    constructor(props) {
-        super(props)
-        // console.log("Logo load")
-    }
     render() {
         return <div id="LogoSquare" className="logo">
             {/* old logo, for prosperity */}
