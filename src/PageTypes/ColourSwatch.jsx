@@ -1,6 +1,6 @@
 import React from "react"
 import ColourSwatchGrid from "../components/colourThemes/ColourSwatchGrid"
-import ThemeSwapControls from "../components/colourThemes/ThemeSwapControls"
+// import ThemeSwapControls from "../components/colourThemes/ThemeSwapControls"
 import BlogClass from "../components/blogClass/BlogClass"
 
 import "../components/colourThemes/ColourSwatch.scss"

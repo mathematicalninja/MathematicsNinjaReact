@@ -1,6 +1,6 @@
 import React from "react";
 
-import RoundClock from "../components/clocks/RoundClock"
+import RoundClock from "../components/clocks/RoundClock.tsx"
 import MiniClock from "../components/clocks/MiniClock"
 
 class Clocks extends React.Component {
@@ -42,6 +42,7 @@ class Clocks extends React.Component {
                         fillSeconds="var(--Secondary-2)"
                         offset={1}
                         smooth={1}
+                        timeOrder={[2, 1, 0]}
                     // snapToPrev={1}
                     />
                 </dir>
