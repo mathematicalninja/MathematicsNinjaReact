@@ -76,8 +76,6 @@ function TimeArc(props:{
 
 
 type RoundClockInterface = QuirkClockInputs &{
-    "timeOrder":Array<number>;
-    "timeObject":Date;
 
     "offset":number;
     "smooth":number;
