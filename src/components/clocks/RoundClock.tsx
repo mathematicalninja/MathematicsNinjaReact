@@ -1,6 +1,14 @@
-import MiniClock from "./MiniClock"
+import QuirkClock from "./QuirkClock"
+import type {QuirkClockInputs} from "./QuirkClock"
+import React from "react"
 
-function ArcChunk(props) {
+function ArcChunk(props:{
+    internalAngle:number,
+    externalAngle:number,
+    arcGap:number,
+    arcWidth:number,
+    fill:string
+}) {
     let {internalAngle, externalAngle, arcGap, arcWidth} = props
     let radianInternalAngle = Math.PI * internalAngle / 180
     let radianExternalAngle = Math.PI * externalAngle / 180
@@ -37,7 +45,17 @@ function ArcChunk(props) {
 
 }
 
-function TimeArc(props) {
+function TimeArc(props:{
+    arcGap:number,
+    arcWidth:number,
+    smallTime:Array<number>,
+    time:Array<number>,
+    largeTime?:Array<number>,
+    fill:string,
+    offset:number,
+    smooth:number,
+    snapToPrev?:number,
+}) {
     let timeShift = 0
     timeShift -= 0.5 * props.offset // center of arc is at the time point if offset == 1
     timeShift += props.smooth * props.smallTime[0] / props.smallTime[1] // nudges the time along as the smaller time ticks
@@ -57,7 +75,19 @@ function TimeArc(props) {
 }
 
 
-class RoundClock extends MiniClock {
+type RoundClockInterface = QuirkClockInputs &{
+    "timeOrder":Array<number>;
+    "timeObject":Date;
+
+    "offset":number;
+    "smooth":number;
+    "snapToPrev"?:number
+    "fillHours":string;
+    "fillSeconds":string;
+    "fillMinutes":string;
+}
+
+class RoundClock extends QuirkClock<RoundClockInterface> {
     render() {
         let offset = this.props.offset ? this.props.offset : 0
         let smooth = this.props.smooth ? this.props.smooth : 0
@@ -66,10 +96,10 @@ class RoundClock extends MiniClock {
             <TimeArc
                 arcGap={0.5}
                 arcWidth={2.5}
-                smallTime={[this.getTimePart(4, this.state.curTime), 60]}
-                time={[this.getTimePart(3, this.state.curTime), 12]}
+                smallTime={[this.getTimePart(4, this.props.timeObject), 60]}
+                time={[this.getTimePart(3, this.props.timeObject), 12]}
                 // largeTime={this.getTimePart(2, this.state.curTime)}
-                fill={this.props.fillHours}
+                fill={this.props.fillHours?this.props.fillHours:"var(--Grey-3)"}
                 offset={offset}
                 smooth={smooth}
             // snapToPrev={snapToPrev}
@@ -80,24 +110,24 @@ class RoundClock extends MiniClock {
             <TimeArc
                 arcGap={1}
                 arcWidth={2}
-                smallTime={[this.getTimePart(6, this.state.curTime), 1000]}
-                time={[this.getTimePart(5, this.state.curTime), 60]}
-                largeTime={[this.getTimePart(4, this.state.curTime), 60]}
-                fill={this.props.fillSeconds}
+                smallTime={[this.getTimePart(6, this.props.timeObject), 1000]}
+                time={[this.getTimePart(5, this.props.timeObject), 60]}
+                largeTime={[this.getTimePart(4, this.props.timeObject), 60]}
+                fill={this.props.fillSeconds?this.props.fillSeconds:"var(--Grey-5)"}
                 offset={offset}
-                smooth={this.props.smooth}
+                smooth={this.props.smooth?this.props.smooth:0}
                 snapToPrev={snapToPrev}
             /> {/*seconds*/}
 
             <TimeArc
                 arcGap={2.75}
                 arcWidth={0.25}
-                smallTime={[this.getTimePart(5, this.state.curTime), 60]}
-                time={[this.getTimePart(4, this.state.curTime), 60]}
-                largeTime={[this.getTimePart(3, this.state.curTime), 12]}
-                fill={this.props.fillMinutes}
+                smallTime={[this.getTimePart(5, this.props.timeObject), 60]}
+                time={[this.getTimePart(4, this.props.timeObject), 60]}
+                largeTime={[this.getTimePart(3, this.props.timeObject), 12]}
+                fill={this.props.fillMinutes?this.props.fillMinutes:"var(--Grey-5)"}
                 offset={offset}
-                smooth={this.props.smooth}
+                smooth={this.props.smooth?this.props.smooth:0}
                 snapToPrev={snapToPrev}
             /> {/*minutes*/}
 
