@@ -33,7 +33,7 @@ class App extends React.Component {
             theme: themes.Default,
             themes: themes,
             page: props.page,
-            menueItems:
+            menuItems:
                 [
                     ["Home", "HomePage"],
                     ["Themes", "ColourSwatch"],
@@ -63,7 +63,7 @@ class App extends React.Component {
             case "HomePage":
                 return <BlogClass blogName={"personal/Sample.json"} />
             case "PageLayout":
-                return <PageLayout menueItems={this.state.menueItems} />
+                return <PageLayout menuItems={this.state.menuItems} />
             case "ConnectFour":
                 return (<div>
                     <ConnectFour gridSize={[7, 6]} />
@@ -127,7 +127,7 @@ class App extends React.Component {
                     <PageLayout
                         pageContent={this.choosePage(this.state.page)}
                         updatePageContent={(ref) => this.updatePageContent(ref)
-                        } menueItems={this.state.menueItems} />
+                        } menuItems={this.state.menuItems} />
                 </PageItemContainer>
             </CSSVariableApplicator>
         );

@@ -8,7 +8,7 @@ class SiteNavigation extends React.Component {
 
 
         this.state = {
-            menueItems: props.menueItems,
+            menuItems: props.menuItems,
         }
 
     }
@@ -76,8 +76,8 @@ class SiteNavigation extends React.Component {
         </div>
     }
     renderSubMenue(SubDataStructure) {
-        let subMenueItems = [];
-        return <div>{subMenueItems}</div>
+        let submenuItems = [];
+        return <div>{submenuItems}</div>
     }
     render() {
         return <div
@@ -87,7 +87,7 @@ class SiteNavigation extends React.Component {
                 "gridTemplateAreas":
                     ". navigationBar ."
             }}><div />
-            {this.renderNavigationBar(this.state.menueItems)}
+            {this.renderNavigationBar(this.state.menuItems)}
             <div />
         </div>
     }
