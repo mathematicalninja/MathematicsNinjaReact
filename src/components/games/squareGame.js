@@ -73,7 +73,7 @@ class squareGame extends React.Component {
         // max(A,B)
         // is A>B? Yes A: No B
         // (A>B)?A:B
-        const maxWidth = maxLength ? maxLength : (xWidth > yWidth) ? xWidth : yWidth
+        // const maxWidth = maxLength ? maxLength : (xWidth > yWidth) ? xWidth : yWidth
 
         // if the min digonal isn't set, it's assumed to be 3 (or 1,2 if the grid is stupid small)
         // if max diagonal length isn't set, it's assumed to be the shorter of width/height (as that's the longest a diagonal can be)

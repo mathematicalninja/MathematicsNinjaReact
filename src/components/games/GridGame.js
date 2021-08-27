@@ -281,9 +281,9 @@ class GridGame extends squareGame {
     // TODO: there's a visual glitch in showing Vertical Lines
     lineVisuals() {
         let newHistory = this.state.history
-        let T = 0
+        // let T = 0
         for (let line of this.state.winningLines) {
-            T += 1
+            // T += 1
             // console.log(T)
             // console.log(line)
 
