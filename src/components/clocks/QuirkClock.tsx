@@ -48,7 +48,7 @@ abstract class QuirkClock<P extends QuirkClockInputs> extends React.Component<P>
             })
         }, 10)
         this.setState({intervalID: intervalID})
-        console.log(this)
+        // console.log(this)
     }
 
     componentWillUnmount() {

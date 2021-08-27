@@ -82,14 +82,14 @@ class GridGame extends squareGame {
         // if this is the bottom row, we return saying that this tile is empty
 
         if (this.state.squareSize[1] === rowIndex + 1) {
-            console.log("Bottom")
+            // console.log("Bottom")
             return false
         }
 
         // if the tile below is empty, we "click" there.
         // i.e. the tile moves down to that square.
         // otherwise, we say this tile is empty.
-        console.log(currentBoard.squares[colIndex], currentBoard.squares[colIndex][rowIndex + 1])
+        // console.log(currentBoard.squares[colIndex], currentBoard.squares[colIndex][rowIndex + 1])
         if (currentBoard.squares[colIndex][rowIndex + 1]) {
             return false
         } else {
@@ -112,7 +112,7 @@ class GridGame extends squareGame {
     }
 
     lineMaker(gridSize, diags, xLens, yLens, shortest = true) {
-        console.log("hre", {gridSize, diags, xLens, yLens, shortest})
+        // console.log("hre", {gridSize, diags, xLens, yLens, shortest})
         const min = (A, B) => {return A < B ? A : B}
         const max = (A, B) => {return A > B ? A : B}
 
