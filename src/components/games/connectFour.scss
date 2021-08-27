@@ -1,26 +1,26 @@
 .gameContainer {
-	/* display: flex;
+  /* display: flex;
 	flex-direction: row; */
-	display: grid;
-	grid-template-columns: 1fr auto auto 1fr;
-	grid-template-rows: auto auto;
-	grid-template-areas:
-	". gameStatus . ."
-	". gameBoard gameControls .";
+  display: grid;
+  gridtemplatecolumns: 1fr auto auto 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    ". gameStatus . ."
+    ". gameBoard gameControls .";
 }
 
-.gameStatus{
-	font-family: "DancingScript";
-    grid-area:gameStatus;
-	font-size: xx-large;
-	color:var(--Secondary-9);
+.gameStatus {
+  font-family: "DancingScript";
+  grid-area: gameStatus;
+  fontsize: xx-large;
+  color: var(--Secondary-9);
 }
-.gameBoard{
-    grid-area:gameBoard;
+.gameBoard {
+  grid-area: gameBoard;
 }
-.gameControls{
-    grid-area:gameControls;
+.gameControls {
+  grid-area: gameControls;
 
-	// font-size: xx-large;
-	color:var(--Secondary-9);
+  // fontSize: xx-large;
+  color: var(--Secondary-9);
 }

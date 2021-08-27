@@ -18,11 +18,11 @@ class Banner extends React.Component {
         return <div style={{
             "width": "70vw",
             "height": "9vw",
-            "background-color": "var(--Secondary-2)",
-            "text-align": "center",
-            "font-size": "8vw",
+            "backgroundColor": "var(--Secondary-2)",
+            "textAlign": "center",
+            "fontSize": "8vw",
             "color": "var(--Grey-0)",
-            "margin-bottom": "0.75vw",
+            "marginBottom": "0.75vw",
             "marginRight": "4.5vw",
             "paddingLeft": "1.5vw",
         }
@@ -32,7 +32,7 @@ class Banner extends React.Component {
             <div style={{
 
                 "display": "grid",
-                "grid-template-columns": "auto 4.5vw",
+                "gridTemplateColumns": "auto 4.5vw",
 
             }}>
                 <div>

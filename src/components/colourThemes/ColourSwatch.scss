@@ -1,27 +1,26 @@
-.TheWholeColourThing{
-    	/* display: flex;
+.TheWholeColourThing {
+  /* display: flex;
 	flex-direction: row; */
-	display: grid;
-	grid-template-columns: 1fr auto 1fr;
-	// grid-template-columns: 1fr auto 100px 1fr;
-	grid-template-areas:
-	". swatches ."
-	// ". swatches switchTheme ."
+  display: grid;
+  gridtemplatecolumns: 1fr auto 1fr;
+  // gridTemplateColumns: 1fr auto 100px 1fr;
+  grid-template-areas: ". swatches .";
+  // ". swatches switchTheme ."
 }
-.swatches{
-    grid-area:swatches;
-	margin:0 auto;
-	margin-top: 13px;
-	margin-bottom: 10px;
+.swatches {
+  grid-area: swatches;
+  margin: 0 auto;
+  margin-top: 13px;
+  marginbottom: 10px;
 }
 // .switchTheme{
 //     grid-area:switchTheme;
 // }
-.themButton{
-    grid-area:switchTheme;
-	width: 100px;
-   margin: 0 auto;
+.themButton {
+  grid-area: switchTheme;
+  width: 100px;
+  margin: 0 auto;
 }
-.switchTheme{
-	grid-area:switchTheme
+.switchTheme {
+  grid-area: switchTheme;
 }

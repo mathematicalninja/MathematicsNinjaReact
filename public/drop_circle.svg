@@ -56,19 +56,19 @@
      inkscape:groupmode="layer"
      id="layer1">
     <circle
-       style="fill:#0000ff;stroke:#a21bc0;stroke-width:8;fill-opacity:1"
+       style="fill:#0000ff;stroke:#a21bc0;strokeWidth:8;fill-opacity:1"
        id="path26"
        cx="255"
        cy="255"
        r="255" />
     <circle
-       style="fill:#ff0000;stroke:#a21bc0;stroke-width:8;fill-opacity:1"
+       style="fill:#ff0000;stroke:#a21bc0;strokeWidth:8;fill-opacity:1"
        id="path30"
        cx="255"
        cy="255"
        r="235" />
     <circle
-       style="fill:#00ff00;stroke:#a21bc0;stroke-width:8;fill-opacity:1"
+       style="fill:#00ff00;stroke:#a21bc0;strokeWidth:8;fill-opacity:1"
        id="path32"
        cx="255"
        cy="255"

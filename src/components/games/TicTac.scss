@@ -1,22 +1,22 @@
 .gameContainer {
-	/* display: flex;
+  /* display: flex;
 	flex-direction: row; */
-	display: grid;
-	grid-template-columns: 1fr 15ch auto 15ch 1fr;
-	grid-template-rows: auto auto;
-	grid-template-areas:
-	". . gameStatus . ."
-	". . gameBoard gameControls .";
+  display: grid;
+  gridtemplatecolumns: 1fr 15ch auto 15ch 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    ". . gameStatus . ."
+    ". . gameBoard gameControls .";
 }
 
-.gameStatus{
-	font-family: "DancingScript";
-    grid-area:gameStatus;
+.gameStatus {
+  font-family: "DancingScript";
+  grid-area: gameStatus;
 }
-.gameBoard{
-    grid-area:gameBoard;
+.gameBoard {
+  grid-area: gameBoard;
 }
-.gameControls{
-    grid-area:gameControls;
-	width : 15ch;
+.gameControls {
+  grid-area: gameControls;
+  width: 15ch;
 }
