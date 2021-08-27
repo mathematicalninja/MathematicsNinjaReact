@@ -48,9 +48,9 @@ function Canvas() {
 
     const handleCanvasClick = (event) => {
         // on each click get current mouse location
-        const currentCoord = {x: event.clientX, y: event.clientY};
+        const currentCord = {x: event.clientX, y: event.clientY};
         // add the newest mouse location to an array in state
-        setCoordinates([...coordinates, currentCoord]);
+        setCoordinates([...coordinates, currentCord]);
     };
 
     const handleClearCanvas = (event) => {
