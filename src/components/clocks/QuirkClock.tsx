@@ -1,4 +1,6 @@
 import React from "react";
+import { ReactElement } from "react";
+
 
 export interface QuirkClockInputs {
 
@@ -103,7 +105,7 @@ abstract class QuirkClock<P extends QuirkClockInputs> extends React.Component<P>
         return this.getString(integer + 3, timeObject).padStart(2, "0")
     }
     timeChunk(timeOrder: Array<number>, timeObject:Date):Array<string|JSX.Element> {
-        let timeString = []
+        let timeString : (string|ReactElement)[] = []
         for (const integer of timeOrder) {
             timeString.push(this.timePiece(integer, timeObject))
             timeString.push(":")
@@ -126,7 +128,7 @@ abstract class QuirkClock<P extends QuirkClockInputs> extends React.Component<P>
     }
 
     dateChunk(timeOrder: Array<number>, timeObject:Date):Array<string|JSX.Element> {
-        let dateString = []
+        let dateString : (string|ReactElement)[]  = []
         for (const integer of timeOrder) {
             dateString.push(this.datePiece(integer, timeObject))
             dateString.push("/")

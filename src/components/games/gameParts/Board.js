@@ -1,7 +1,7 @@
 // import react from "react";
 import Tile from "./Tile.js"
 
-import "./Board.scss"
+// import "./Board.scss"
 
 function Board(props) {
 
@@ -15,22 +15,22 @@ function Board(props) {
                 tileClass: "Tile",
             }
             colReturn.push(<Tile
-                tileClass={tileData.tileClass}
-                handleClick={() => props.handleClick(colIndex, rowIndex)}
-                content={tileData.content}
-                key={rowIndex}
+                tileClass={ tileData.tileClass }
+                handleClick={ () => props.handleClick(colIndex, rowIndex) }
+                content={ tileData.content }
+                key={ rowIndex }
             />)
         }
         boardReturn.push(
             <div className="gameBoardColumn"
-                key={colIndex}
+                key={ colIndex }
             >
-                {colReturn}
+                { colReturn }
             </div>
         )
     }
     return <div className="boardGrid">
-        {boardReturn}
+        { boardReturn }
     </div>
 }
 

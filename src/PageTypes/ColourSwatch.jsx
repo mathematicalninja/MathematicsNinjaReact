@@ -3,7 +3,7 @@ import ColourSwatchGrid from "../components/colourThemes/ColourSwatchGrid"
 // import ThemeSwapControls from "../components/colourThemes/ThemeSwapControls"
 import BlogClass from "../components/blogClass/BlogClass"
 
-import "../components/colourThemes/ColourSwatch.scss"
+// import "../components/colourThemes/ColourSwatch.scss"
 
 class ColourSwatch extends React.Component {
 
@@ -25,23 +25,23 @@ class ColourSwatch extends React.Component {
     }
 
     handleColourClick(colourNameIn_CSS_VarWrapperAsText) {
-        this.setState({backgroundColour: colourNameIn_CSS_VarWrapperAsText})
+        this.setState({ backgroundColour: colourNameIn_CSS_VarWrapperAsText })
     }
 
     render() {
         // This is where the grid centering should be happens.
         return <> <div className="TheWholeColourThing"
-            style={{
+            style={ {
                 "backgroundColor": this.state.backgroundColour,
                 "color": this.state.backgroundColour,
-            }}
+            } }
 
         >
             <ColourSwatchGrid
-                theme={this.state.theme}
-                switchColour={(CSSVar) => this.handleColourClick(CSSVar)}
-                bgColour={this.state.backgroundColour}
-                colour={this.state.backgroundColour}
+                theme={ this.state.theme }
+                switchColour={ (CSSVar) => this.handleColourClick(CSSVar) }
+                bgColour={ this.state.backgroundColour }
+                colour={ this.state.backgroundColour }
             />
             {/* <ThemeSwapControls
                 themes={this.state.themes}
@@ -49,7 +49,7 @@ class ColourSwatch extends React.Component {
             /> */}
         </div>
 
-            <BlogClass blogName={"samplePageExplinations/SwatchBlogExplain.json"} /></>
+            <BlogClass blogName={ "samplePageExplinations/SwatchBlogExplain.json" } /></>
     }
 }
 

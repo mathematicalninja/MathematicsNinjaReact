@@ -1,4 +1,4 @@
-import "./HistoryControls.scss"
+// import "./HistoryControls.scss"
 
 function HistoryControls(props) {
     // need to add in styling to these controls
@@ -8,12 +8,12 @@ function HistoryControls(props) {
             "Move number " + moveIndex + "." :
             "Back to the start.";
         return (
-            <div key={moveIndex} >
+            <div key={ moveIndex } >
                 <button
-                    onClick={() => props.timeTravel(moveIndex)}
+                    onClick={ () => props.timeTravel(moveIndex) }
                     className="timeTravelButton"
                 >
-                    {description}
+                    { description }
                 </button>
             </div>
         )
