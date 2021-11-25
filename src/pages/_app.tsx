@@ -6,6 +6,8 @@ import CSSVariableApplicator from "../core/wrappers/CSSVariableApplicator";
 
 import themes from "../styles/ThemeTemplate";
 
+import "./NGU.css";
+
 // function MyApp({ Component, pageProps }: AppProps) {
 //   return <App page="HomePage" />;
 // }

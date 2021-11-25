@@ -1,10 +1,13 @@
 import React from "react";
 // import "./logo.scss";
 import Icon from "../testIcon";
+import { textSizes } from "./utils/textSizes";
 
-interface logoProps {
+export interface logoProps {
   className?: string;
   refKey?: string;
+
+  sizes: textSizes;
 }
 
 const Logo: React.FC<logoProps> = (props) => {
@@ -21,7 +24,7 @@ const Logo: React.FC<logoProps> = (props) => {
         zeroLine="var(--Grey-1)"
         zeroFill="var(--Accent-9)"
         zeroDot="var(--Grey-8)"
-        size="100%"
+        size={props.sizes.bannerHeight}
       />
     </div>
   );

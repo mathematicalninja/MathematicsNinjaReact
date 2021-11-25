@@ -1,19 +1,49 @@
 import React from "react";
+import Banner, { BannerProps } from "./banner";
+import Logo, { logoProps } from "./logo";
+import SelfPortrait, { SelfPortraitProps } from "./SelfPortrait";
 
-interface desktopHeaderProps {}
+import { getDesktopProps } from "./utils/getDesktopProps";
 
-const desktopHeaderStyle: React.CSSProperties = {
-  margin: 0,
-  display: "grid",
-  gridTemplateColumns: "auto auto auto",
-  gridTemplateRows: "auto auto auto",
-  gridTemplateAreas: `
-  "siteLogo siteBanner"
-  "siteNavigation siteNavigation siteNavigation"
-`,
-};
+export interface desktopHeaderProps {
+  height?: number;
+  width?: number;
+  units?: string;
+}
 
 const DesktopHeader: React.FC<desktopHeaderProps> = (props) => {
+  const sizes = getDesktopProps(props);
+
+  const LogoInputs: logoProps = {
+    className: "Logo",
+    refKey: "Logo",
+
+    sizes: sizes,
+  };
+
+  const BannerInputs: BannerProps = {
+    className: "siteBanner",
+    refKey: "siteBanner",
+
+    sizes: sizes,
+  };
+
+  const PortraitInput: SelfPortraitProps = {
+    className: "selfPortrait",
+    refKey: "selfPortrait",
+
+    sizes: sizes,
+  };
+
+  // const GTC = `${sizes.outerMargin} ${sizes.bannerHeight} ${sizes.textBannerWidth} ${sizes.halfHeight} ${sizes.outerMargin}`;
+  // const GTC = `${sizes.outerMargin} ${sizes.bannerHeight} ${sizes.textBannerWidth} ${sizes.bannerHeight} ${sizes.outerMargin}`;
+  const GTC = `auto ${sizes.bannerHeight} ${sizes.textBannerWidth} ${sizes.bannerHeight} auto`;
+
+  const desktopHeaderStyle: React.CSSProperties = {
+    display: "grid",
+    gridTemplateColumns: GTC,
+  };
+
   return (
     <div
       className="desktopHeader"
@@ -21,7 +51,13 @@ const DesktopHeader: React.FC<desktopHeaderProps> = (props) => {
       style={desktopHeaderStyle}
       //
     >
-      {props.children}
+      <div />
+      <Logo {...LogoInputs} />
+      <Banner {...BannerInputs} />
+      <SelfPortrait {...PortraitInput} />
+      <div />
+
+      {/* <SiteNavigation menuItems choosePage={choosePage} /> */}
       {
         // <Logo className="Logo" key="Logo" />
         // <Banner className="siteBanner" key="siteBanner" />
