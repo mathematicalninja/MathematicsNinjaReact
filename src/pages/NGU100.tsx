@@ -1,114 +1,77 @@
 import Slider from "rc-slider";
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
+import {
+  AugMax,
+  AugMaxToString,
+  DisplayItem,
+  NGU100TableData,
+} from "../utils/NGU/NGU100Functions";
+import {
+  AugmentNames,
+  get100,
+  getPowers,
+  laserString,
+} from "../utils/NGU/NGU100Init";
+import StringTableDisplay, {
+  tableCols,
+  TableData,
+} from "../components/global/StringTableDisplay";
+// import // numberTableDataUnit,
+// // stringTableData,
+// "../components/global/StringTableDisplay";
 
 interface NGU100Props {}
 
-interface AugProps {
-  scaler: number;
+// const testData: stringTableData = [
+//   {
+//     col1: "Hello",
+//     col2: "World",
+//   },
+//   {
+//     col1: "react-table",
+//     col2: "rocks",
+//   },
+//   {
+//     col1: "whatever",
+//     col2: "you want",
+//   },
+// ];
 
-  power: number;
-
-  upgrade: number;
-  level: number;
-}
-
-interface PowerProps {
-  x: number;
-  p: number;
-}
-
-interface AugMaxProps {
-  Augment: number;
-
-  power: number;
-
-  totalLevels: number;
-}
-
-const AugmentNames: string[] = [
-  "",
-  "Safety Scissors",
-  "Milk Infusion",
-  "Cannon Implant",
-  "Shoulder Mounted",
-  "Energy Buster",
+const testCols: tableCols = [
+  {
+    Header: "Column 1",
+    accessor: "col1", // accessor is the "key" in the data
+  },
+  {
+    Header: "Column 2",
+    accessor: "col2",
+  },
 ];
-const UpgradeNames: string[] = [
-  "Danger Scissors",
-  "Drinking the Milk Too",
-  "Missile Launcher",
-  "Actual Ammunition",
-  "Charge Shot",
+
+const NGU100TableCols: tableCols = [
+  { Header: "Augment", accessor: "AugLev" },
+  { Header: "Upgrade", accessor: "upgLev" },
+  { Header: "Multiplier", accessor: "value" },
+  { Header: "Exponent", accessor: "exponent" },
 ];
 
 // const SlideStyle = require("./NGU.css");
 const NGU100: React.FC<NGU100Props> = ({}) => {
-  let augNumber: number = 1;
-  let laser: number = 0;
-  let maxLevel: number = 100;
-  function augSet(value: number) {
-    augNumber = value;
-    AugMax();
-  }
-  function laserSet(value: number) {
-    laser = value;
-    AugMax();
-  }
-  function maxLevelSet(value: number) {
-    maxLevel = value;
-    AugMax();
-  }
+  const [augNumber, augSet] = useState(0);
+  const [laserLevel, laserSet] = useState(0);
+  const [totalLevels, totalLevelsSet] = useState(100);
+  const [DisplayValues, DisplayValuesSet] = useState<
+    TableData<string, NGU100TableData<string>>
+  >([{ AugLev: "", exponent: "", upgLev: "", value: "" }]);
 
-  function power(props: PowerProps) {
-    return props.x ** props.p;
-  }
-
-  function upgrade(upgradeLevel: number) {
-    return upgradeLevel ** 2 + 1;
-  }
-
-  function AugCalc(props: AugProps) {
-    const [x, p, u, s] = [
-      props.level,
-      props.power,
-      props.upgrade,
-      props.scaler,
-    ];
-    return Math.round(s * power({ x, p }) * upgrade(u));
-  }
-  interface DisplayItem {
-    id: number;
-    value: number;
-  }
-  let DisplayValues: DisplayItem[] = [];
-  function AugMax() {
-    DisplayValues = [];
-    const powers = getPowers();
-    for (let u = 0; u <= maxLevel; u++) {
-      let x = maxLevel - u;
-      let p = 1 + augNumber * powers[laser];
-      let s = 25 ** (augNumber - 1);
-
-      DisplayValues[u] = {
-        id: u,
-        value: AugCalc({
-          level: x,
-          power: p,
-          upgrade: u,
-          scaler: s,
-        }),
-      };
-    }
-    console.log(DisplayValues);
-  }
   return (
     <>
       <h1>NGU</h1>
       <div style={{ display: "flex" }}>
         <div style={{ height: 100, margin: 50, marginTop: 0 }}>
           <Slider
-            min={1}
-            max={5}
+            min={0}
+            max={4}
             marks={AugmentNames}
             step={1}
             onChange={augSet}
@@ -125,8 +88,8 @@ const NGU100: React.FC<NGU100Props> = ({}) => {
             max={20}
             step={1}
             onChange={laserSet}
-            marks={laserString()}
-            defaultValue={laser}
+            marks={laserString}
+            defaultValue={laserLevel}
             vertical={true}
             reverse={true}
             included={false}
@@ -135,20 +98,32 @@ const NGU100: React.FC<NGU100Props> = ({}) => {
 
         <div style={{ height: 400, margin: 50, marginTop: 0 }}>
           <Slider
-            min={0}
+            min={1}
             max={100}
             step={1}
-            onChange={maxLevelSet}
+            onChange={totalLevelsSet}
             marks={get100()}
-            defaultValue={maxLevel}
+            defaultValue={totalLevels}
             vertical={true}
             reverse={true}
             included={false}
           />
         </div>
+        <button
+          onClick={() => {
+            DisplayValuesSet(
+              AugMaxToString(AugMax({ augNumber, laserLevel, totalLevels })),
+            );
+          }}
+          style={{ width: 100, height: 25 }}
+        >
+          run
+        </button>
         <div>Value goes here.</div>
-        <>{DisplayValues.toString()}</>
-        <table>
+        <StringTableDisplay d={DisplayValues} c={NGU100TableCols} />
+
+        {/* <>{DisplayValues.toString()}</> */}
+        {/* <table>
           {DisplayValues.map((item) => (
             <tr>
               <td key={item}>{DisplayValues[item]}</td>
@@ -169,49 +144,9 @@ const NGU100: React.FC<NGU100Props> = ({}) => {
               ))}
             </tr>
           ))}
-        </table>
+        </table> */}
       </div>
     </>
   );
 };
 export default NGU100;
-function getLaserSword() {
-  let vals: number[] = [];
-
-  for (let i = 0; i <= 20; i++) {
-    vals[i] = (110 + (i * 1 + 5)) / 100;
-  }
-  vals[0] = 1.1;
-  vals[20] = 1.4;
-  return vals;
-}
-
-function getPowers() {
-  let vals: number[] = [];
-
-  for (let i = 0; i <= 20; i++) {
-    vals[i] = (10 + (i * 1 + 5)) / 100;
-  }
-  return vals;
-}
-function laserString() {
-  const vals = getLaserSword();
-
-  let strs: string[] = [];
-  for (let i = 0; i <= 20; i++) {
-    strs[i] = vals[i].toString();
-  }
-  strs[0] = "1.1";
-  strs[20] = "1.40";
-
-  return strs;
-}
-
-function get100() {
-  let strs: string[] = [];
-
-  for (let i = 0; i <= 100; i++) {
-    strs[i] = i.toString();
-  }
-  return strs;
-}
