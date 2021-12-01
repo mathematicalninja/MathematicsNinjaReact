@@ -4,6 +4,11 @@ import React, { CSSProperties } from "react";
 interface TableDisplayProps<Type, Signature extends TableDataUnit<Type>> {
   d: TableData<Type, Signature>;
   c: tableCols;
+  s?: {
+    tableGlobalStyle?: CSSProperties;
+    tableHeadStyle?: CSSProperties;
+    tableBodyStyle?: CSSProperties;
+  };
 }
 
 export interface tableCols
@@ -17,16 +22,6 @@ export interface TableDataUnit<Type> {
 }
 export interface TableData<Type, Signature extends TableDataUnit<Type>>
   extends Array<Signature> {}
-
-// export interface stringTableDataUnit {
-//   [key: string]: string;
-// }
-// export interface stringTableData extends Array<stringTableDataUnit> {}
-
-// export interface numberTableDataUnit {
-//   [key: string]: number;
-// }
-// export interface numberTableData extends Array<numberTableDataUnit> {}
 
 const tableGlobalStyle: CSSProperties = { border: "solid 1px var(--Grey-3)" };
 const tableHeadStyle: CSSProperties = {
