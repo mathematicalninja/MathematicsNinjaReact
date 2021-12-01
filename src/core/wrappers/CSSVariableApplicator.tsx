@@ -28,9 +28,9 @@ class CSSVariableApplicator extends React.Component<CSSVariableApplicatorProps> 
 
     colourClasses.forEach((colourClass) => {
       const colourKeys = Object.keys(themeObject[colourClass]);
-      colourKeys.forEach((colourkey) => {
-        const colourCode = themeObject[colourClass][colourkey];
-        const cssVariable = `--${colourClass}-${colourkey}`;
+      colourKeys.forEach((colourKey) => {
+        const colourCode = themeObject[colourClass][colourKey];
+        const cssVariable = `--${colourClass}-${colourKey}`;
         // here is where we update the css that is already loaded's variable's values
         document.documentElement.style.setProperty(cssVariable, colourCode);
       });
