@@ -9,6 +9,10 @@ import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 // ReactDOM.render(<App page="HomePage" />, document.getElementById("root"));
 
 export default class Document extends NextDocument {
+  // static async getInitialProps(ctx) {
+  //   const initialProps = await Document.getInitialProps(ctx)
+  //   return { ...initialProps }
+  // }
   render() {
     return (
       <Html>

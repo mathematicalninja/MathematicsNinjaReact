@@ -2,6 +2,7 @@ import React from "react";
 import Banner, { BannerProps } from "./banner";
 import Logo, { logoProps } from "./logo";
 import SelfPortrait, { SelfPortraitProps } from "./SelfPortrait";
+import SiteNavigation, { SiteNavigationProps } from "./SiteNavigation";
 
 import { getDesktopProps } from "./utils/getDesktopProps";
 
@@ -35,6 +36,10 @@ const DesktopHeader: React.FC<desktopHeaderProps> = (props) => {
     sizes: sizes,
   };
 
+  const NavigationInput: SiteNavigationProps = {
+    // Unnecessary?
+  };
+
   // const GTC = `${sizes.outerMargin} ${sizes.bannerHeight} ${sizes.textBannerWidth} ${sizes.halfHeight} ${sizes.outerMargin}`;
   // const GTC = `${sizes.outerMargin} ${sizes.bannerHeight} ${sizes.textBannerWidth} ${sizes.bannerHeight} ${sizes.outerMargin}`;
   const GTC = `auto ${sizes.bannerHeight} ${sizes.textBannerWidth} ${sizes.bannerHeight} auto`;
@@ -56,6 +61,9 @@ const DesktopHeader: React.FC<desktopHeaderProps> = (props) => {
       <Banner {...BannerInputs} />
       <SelfPortrait {...PortraitInput} />
       <div />
+      <div />
+      <div />
+      <SiteNavigation {...NavigationInput} />
 
       {/* <SiteNavigation menuItems choosePage={choosePage} /> */}
       {
