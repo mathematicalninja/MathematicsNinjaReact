@@ -1,8 +1,8 @@
-import React from "react";
-import Board from "./gameParts/Board";
-import HistoryControls from "./gameParts/HistoryControls";
+// Square template
 
-// import "./TicTac.scss";
+import React from "react";
+import Board from "../components/games/gameParts/Board";
+import HistoryControls from "../components/games/gameParts/HistoryControls";
 
 export interface SquareGameProps {
   gridSize: [number, number];
@@ -28,7 +28,7 @@ export interface SquareGameState {
   winningLines: number[][][];
 }
 
-export default abstract class squareGame<
+abstract class squareGame<
   P extends SquareGameProps,
   S extends SquareGameState,
 > extends React.Component<SquareGameProps, SquareGameState> {
@@ -75,122 +75,6 @@ export default abstract class squareGame<
       winningLine: null,
       moveList: [],
     };
-  }
-
-  lineMakerParentAbstract(
-    gridSize: number[],
-    minLength?,
-    maxLength?,
-  ): number[][][] {
-    // old implimentation still in tack---> needs to be refactored to gridSize =[x,y] widths
-
-    // placeholder variable, to allow code to be tested
-    // let gridSize = gridSize[0];
-
-    // from here stems the flow of changes.
-
-    const xWidth = gridSize[0];
-    const yWidth = gridSize[1];
-    // min(A, B)
-    // is A < B ? Yes A: No B
-    // (A<B)?A:B
-    const minWidth = minLength ? minLength : xWidth < yWidth ? xWidth : yWidth;
-
-    // maxWidth mat be unnessessery
-
-    // max(A,B)
-    // is A>B? Yes A: No B
-    // (A>B)?A:B
-    // const maxWidth = maxLength ? maxLength : (xWidth > yWidth) ? xWidth : yWidth
-
-    // if the min digonal isn't set, it's assumed to be 3 (or 1,2 if the grid is stupid small)
-    // if max diagonal length isn't set, it's assumed to be the shorter of width/height (as that's the longest a diagonal can be)
-    minLength =
-      typeof minLength !== "undefined"
-        ? minLength
-        : minWidth < 3
-        ? minWidth
-        : 3;
-    maxLength = typeof maxLength !== "undefined" ? maxLength : minWidth;
-
-    let winLines: number[][][] = [];
-    // add rows
-    for (let y = 0; y < yWidth; y++) {
-      let winRow: number[][] = [];
-      for (let x = 0; x < xWidth; x++) {
-        winRow.push([x, y]);
-      }
-      winLines.push(winRow);
-    }
-    // add columns
-    for (let x = 0; x < xWidth; x++) {
-      let winColumn: number[][] = [];
-      for (let y = 0; y < yWidth; y++) {
-        winColumn.push([x, y]);
-      }
-      winLines.push(winColumn);
-    }
-
-    /*obolete code
-        // add \diagonal
-        // let diagOne = []
-        // for (let k = 0; k < gridSize; k++) {
-        //     diagOne.push([k, k])
-        // }
-        // winLines.push(diagOne)
-        obsolete code*/
-
-    // add minor \diagonals length>=3
-    if (minWidth >= 3) {
-      // d ranges between the minLength of a diagonal, and the minWidth of the grid
-      // minWidth -d = length of this minor diagonal
-      for (let d = minWidth - 3; d >= 3 - minWidth; d--) {
-        let minorDiag: number[][] = [];
-
-        for (let y = 0; y < yWidth; y++) {
-          let tileIndex = y * (1 + gridSize[1]) + d;
-          if (
-            // doesn't go off of the left
-            tileIndex >= y * gridSize[1] &&
-            //doesn't go off of the right
-            tileIndex < (y + 1) * gridSize[1]
-          ) {
-            minorDiag.push([tileIndex - y * gridSize[1], y]);
-          }
-        }
-        winLines.push(minorDiag);
-      }
-    }
-
-    // add /diagonal
-    // let diagTwo = []
-    // for (let k = 0; k < gridSize; k++) {
-    //     diagTwo.push([(gridSize - k - 1), k])
-    //     // diagTwo.push((gridSize - k - 1) + k * gridSize)
-    // }
-    // winLines.push(diagTwo)
-    // add minor /diagonals length>=3
-    if (gridSize[0] >= 3) {
-      // d is the range of differences in size (between 3 and gridSize), so gridSize-d is the length of the minor diagonal
-      for (let d = gridSize[0] - 3; d >= 3 - gridSize[0]; d--) {
-        let minorDiag: number[][] = [];
-
-        for (let y = 0; y < yWidth; y++) {
-          let tileIndex = gridSize[0] - y - 1 + y * gridSize[0] + d;
-          if (
-            // doesn't go off of the left
-            tileIndex >= y * gridSize[0] &&
-            //doesn't go off of the right
-            tileIndex < (y + 1) * gridSize[0]
-          ) {
-            minorDiag.push([tileIndex - y * gridSize[0], y]);
-            // minorDiag.push(tileIndex)
-          }
-        }
-        winLines.push(minorDiag);
-      }
-    }
-    return winLines;
   }
 
   calculateWinner(squares) {

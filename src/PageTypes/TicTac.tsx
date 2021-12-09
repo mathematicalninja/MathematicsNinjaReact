@@ -40,7 +40,7 @@ function FTTP(props: { gridSize?: number[] }) {
   return (
     <FullPageBody
       content={new TicTac({ gridSize })}
-      blogPost={
+      blogPostName={
         new BlogClass({
           blogName: "samplePageExplinations/TicTacBlogExplain.json",
         })
@@ -61,7 +61,7 @@ class TTP extends FullPageBody {
       //       {/* <TicTac gridSize={[5, 5]} /> */}
       //     </div>
       //   )
-      blogPost: new BlogClass({
+      blogPostName: new BlogClass({
         blogName: "samplePageExplinations/TicTacBlogExplain.json",
       }),
 
