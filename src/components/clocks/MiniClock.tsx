@@ -3,17 +3,15 @@ import QuirkClock from "./QuirkClock";
 import type { QuirkClockInputs } from "./QuirkClock";
 
 type MiniClockInputs = QuirkClockInputs & {
-  backgroundColor: string;
-  fontSize: string;
+  backgroundColor?: string;
+  fontSize?: string;
   name: string;
 
-  color: string;
-  paddingLeft: string;
-  paddingRight: string;
-  border: string;
-  textAlign: string;
-
-  flood: number; //test property, no functional use
+  color?: string;
+  paddingLeft?: string;
+  paddingRight?: string;
+  border?: string;
+  textAlign?: string;
 };
 
 class MiniClock extends QuirkClock<MiniClockInputs> {

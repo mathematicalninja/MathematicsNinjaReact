@@ -35,7 +35,7 @@ class PageLayout extends React.Component {
 
     return (
       <div className="pageLayout">
-        <SiteNavigation
+        {/* <SiteNavigation
           choosePage={(name: string) => {
             return;
           }}
@@ -44,8 +44,8 @@ class PageLayout extends React.Component {
           // choosePage={(ref) => this.updatePageContent(ref)}
         />
         {/* <Logo /> */}
-        <Logo className="Logo" key="Logo" />
-        <Banner />
+        {/* <Logo className="Logo" key="Logo" />
+        <Banner /> */}
         <div className="pageContent" key="pageContent">
           {/* {pageContent(this.state.pageContent)} */}
         </div>
