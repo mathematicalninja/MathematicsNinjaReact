@@ -86,3 +86,8 @@ export const themeNumbersList: colourVariableNumber[] = [
   "8",
   "9",
 ];
+
+export interface colourSpecifier {
+  colour: colourVariableSet;
+  value: colourVariableNumber;
+}
