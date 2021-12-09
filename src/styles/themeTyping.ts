@@ -63,3 +63,26 @@ export type themeStructure = {
   Green: themeColour;
   Grey: themeColour;
 };
+
+export const themeColoursList: colourVariableSet[] = [
+  "Primary",
+  "Secondary",
+  "Accent",
+  "Grey",
+  "Green",
+  "Amber",
+  "Red",
+  "Vivids",
+];
+export const themeNumbersList: colourVariableNumber[] = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+];
