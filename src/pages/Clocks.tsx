@@ -17,7 +17,6 @@ const FCClocks: React.FC<FCClocksProps> = ({}) => {
 
   return (
     <div>
-      {curTime.toString()}
       <RoundClock
         timeObject={curTime}
         fillHours="var(--Secondary-0)"
