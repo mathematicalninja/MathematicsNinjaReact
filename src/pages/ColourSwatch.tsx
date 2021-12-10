@@ -27,15 +27,22 @@ const FCColourSwatch: React.FC<FCColourSwatchProps> = ({}) => {
     colour: "Grey",
     value: "0",
   });
-  const ROW = getRow("Primary");
-  console.log(click);
   return (
     <div>
-      <colourClickContext.Provider value={{ click, setClick }}>
+      <div
+        style={{
+          textAlign: "center",
+          backgroundColor: getColourString({ colour: "Primary", value: "5" }),
+          marginTop: 5,
+          width: "50vw",
+        }}
+      >
         The current colour is: {click.colour} {click.value}
-        <br />
-        {getSwatchTable()}
+      </div>
+      <colourClickContext.Provider value={{ click, setClick }}>
+        {getSwatchTable(click)}
       </colourClickContext.Provider>
+      <BlogClass blogName={"samplePageExplinations/SwatchBlogExplain.json"} />
     </div>
   );
 };
@@ -69,17 +76,32 @@ function colourClickCallback(
 interface FCSwatchButtonProps {
   colour: colourVariableSet;
   value: colourVariableNumber;
+  RN: number;
 }
 
-const FCSwatchButton: React.FC<FCSwatchButtonProps> = ({ colour, value }) => {
+const FCSwatchButton: React.FC<FCSwatchButtonProps> = ({
+  colour,
+  value,
+  RN,
+}) => {
   const { click } = useContext(colourClickContext);
   const S = {
-    backgroundColor: getColourString(colour, value),
-    color: getColour(click).hex(),
+    backgroundColor: getColourString({ colour, value }),
+    color: getColourString(click),
+
+    width: "100px",
+    height: "100px",
+    // "color": `var(${cssVariable})`,
+    // "color": `var(${cssVariable})`,
+    border: "0px none",
+    margin: "3px",
+    gridRow: RN,
   };
   return (
     <button style={S} onClick={clickWrapper({ colour, value })}>
-      {getColourString(colour, value)}
+      {colour} {value}
+      <br />
+      {getColourString({ colour, value })}
     </button>
   );
 };
@@ -98,20 +120,32 @@ function clickWrapper(click: colourSpecifier) {
 //
 //
 
-function getRow(colour: colourVariableSet) {
+function getRow(colour: colourVariableSet, RowN: number) {
   let R: JSX.Element[] = [];
   for (let n of themeNumbersList) {
-    R.push(<FCSwatchButton colour={colour} value={n} />);
+    R.push(<FCSwatchButton colour={colour} value={n} RN={RowN + 1} />);
   }
   return R;
 }
 
-function getSwatchTable() {
+function getSwatchTable(click: colourSpecifier) {
   let R: JSX.Element[] = [];
-  for (let Col of themeColoursList) {
-    R = R.concat(getRow(Col));
+  for (let ColN in themeColoursList) {
+    R = R.concat(getRow(themeColoursList[ColN], ColN)); //For some reason TS thinks that the index of an array is a string...
   }
-  return R;
+  return (
+    <div
+      className="TheWholeColourThing"
+      style={{
+        backgroundColor: getColourString(click),
+        color: getColourString(click),
+        display: "grid",
+        justifyContent: "center",
+      }}
+    >
+      {R}
+    </div>
+  );
 }
 
 //
@@ -124,11 +158,8 @@ function getColour(colourPair: colourSpecifier) {
   return useContext(themeContext).theme[colourPair.colour][colourPair.value];
 }
 
-function getColourString(
-  colour: colourVariableSet,
-  value: colourVariableNumber,
-) {
-  return useContext(themeContext).theme[colour][value].hex();
+function getColourString(click: colourSpecifier) {
+  return useContext(themeContext).theme[click.colour][click.value].hex();
 }
 
 // class ColourSwatch extends React.Component {
@@ -177,10 +208,9 @@ function getColourString(
 //                 switchTheme={(themeName) => this.handleThemeChange(themeName)}
 //             /> */}
 //         </div>
-//         <BlogClass blogName={"samplePageExplinations/SwatchBlogExplain.json"} />
 //       </>
 //     );
 //   }
 // }
 
-// // export default ColourSwatch;
+// // // export default ColourSwatch;
