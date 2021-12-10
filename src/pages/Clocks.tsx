@@ -16,7 +16,7 @@ const FCClocks: React.FC<FCClocksProps> = ({}) => {
   const curTime = useTime(1000);
 
   return (
-    <div>
+    <div style={{ display: "grid", justifyItems: "center" }}>
       <RoundClock
         timeObject={curTime}
         fillHours="var(--Secondary-0)"
@@ -27,6 +27,7 @@ const FCClocks: React.FC<FCClocksProps> = ({}) => {
         timeOrder={[2, 1, 0]}
         // snapToPrev={1}
       />
+      <br />
       <div
         style={{
           paddingTop: "10px",
