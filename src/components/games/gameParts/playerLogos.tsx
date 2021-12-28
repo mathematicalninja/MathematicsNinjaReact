@@ -1,5 +1,7 @@
+export type logo = JSX.Element | string;
+
 interface logoTypes {
-  [key: string]: (JSX.Element | string)[];
+  [key: string]: logo[];
 }
 
 const playerLogos: logoTypes = {

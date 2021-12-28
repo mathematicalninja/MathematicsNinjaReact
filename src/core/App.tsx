@@ -88,7 +88,6 @@ class App extends React.Component<AppProps, AppState> {
         );
 
       case "TicTac":
-        console.log("HERE", <TicTacPage />);
         return (
           <div>
             <TicTacPage />

@@ -179,8 +179,6 @@ class ConnectFour extends squareGame<SquareGameProps, SquareGameState> {
     // let T = 0
     for (let line of this.state.winningLines) {
       // T += 1
-      // console.log(T)
-      // console.log(line)
 
       let newBoard;
       newBoard = Array(this.state.gridSize[0]).fill(
@@ -197,17 +195,15 @@ class ConnectFour extends squareGame<SquareGameProps, SquareGameState> {
       A.squares = Array(this.state.gridSize[0]).fill(
         Array(this.state.gridSize[1]).fill(null),
       );
-      // console.log("set to null at 0,0", A.squares[0][0])
 
       // A.statemoveList = []
-      // console.log("A", A)
+
       // for (let i = 0; i < A.squares.length; i++) {
       //     for (let j = 0; j < A.squares[i].length; j++) {
       //         A.moveList.push([i, j])
       //         A.squares[i][j] = null
       //     }
       // }
-      // console.log(A.squares)
 
       let X_array = Array(this.state.gridSize[0]).fill(
         Array(this.state.gridSize[1]).fill({
@@ -217,11 +213,8 @@ class ConnectFour extends squareGame<SquareGameProps, SquareGameState> {
         }),
       );
       for (let i = 0; i < line.length; i++) {
-        // console.log("should still be null at 0,0", A.squares[0][0])
-
         let x = line[i][0];
         let y = line[i][1];
-        // console.log(x, y, A.squares[x][y])
 
         let Y_array = Array(this.state.gridSize[1]).fill({
           // content: this.state.playerLogos[T % 2],
@@ -235,23 +228,13 @@ class ConnectFour extends squareGame<SquareGameProps, SquareGameState> {
           tileClass: "Tile-winner",
         };
         X_array[x] = Y_array;
-        // console.log("X_array", X_array)
 
-        // console.log(A.squares)
         A.squares = X_array;
-        // console.log(A.squares)
-        // console.log("suddenly it's not null at 0,0", A.squares[0][0])
-
-        // console.log("x,y", A.squares[x][y])
-        // console.log("0,0", A.squares[0][0])
       }
-
-      // console.log(A)
 
       newHistory.push(A);
     }
 
-    // console.log(newHistory)
     return newHistory;
   }
 }

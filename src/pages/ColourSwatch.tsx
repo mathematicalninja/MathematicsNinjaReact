@@ -109,7 +109,6 @@ const FCSwatchButton: React.FC<FCSwatchButtonProps> = ({
 function clickWrapper(click: colourSpecifier) {
   const { setClick } = useContext(colourClickContext);
   return () => {
-    // console.log(click); //here the colourSpecifier is correctly logged
     setClick(click);
   };
 }

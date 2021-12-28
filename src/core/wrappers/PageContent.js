@@ -3,7 +3,6 @@
 
 
 function PageContent(PageContent) {
-    // console.log("oops here we are again", props.PageContent)
     return (PageContent)
 }
 

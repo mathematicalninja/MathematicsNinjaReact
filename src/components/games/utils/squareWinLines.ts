@@ -71,7 +71,9 @@ export function makeWinLines({
     for (let x = 0; x < xWidth; x++) {
       winRow.push({ x: x, y: y });
     }
-    winLines.push(winRow);
+    if (!isBadArray(winRow)) {
+      winLines.push(winRow);
+    }
   }
   // add columns
   for (let x = 0; x < xWidth; x++) {
@@ -79,7 +81,9 @@ export function makeWinLines({
     for (let y = 0; y < yWidth; y++) {
       winColumn.push({ x: x, y: y });
     }
-    winLines.push(winColumn);
+    if (!isBadArray(winColumn)) {
+      winLines.push(winColumn);
+    }
   }
 
   // add minor \diagonals length>=3
@@ -100,7 +104,9 @@ export function makeWinLines({
           minorDiag.push({ x: tileIndex - y * gridSize[1], y: y });
         }
       }
-      winLines.push(minorDiag);
+      if (!isBadArray(minorDiag)) {
+        winLines.push(minorDiag);
+      }
     }
   }
 
@@ -129,8 +135,20 @@ export function makeWinLines({
           // minorDiag.push(tileIndex)
         }
       }
-      winLines.push(minorDiag);
+      if (!isBadArray(minorDiag)) {
+        winLines.push(minorDiag);
+      }
     }
   }
   return winLines;
+}
+
+function isBadArray(array: any[]) {
+  if (!array) {
+    return true;
+  }
+  if (array.length == 0) {
+    return true;
+  }
+  return false;
 }

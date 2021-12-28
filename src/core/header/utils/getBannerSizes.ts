@@ -85,8 +85,6 @@ export function getBannerSizeByHeight({
   //   innerMarginRight: addUnit((height * L) / 100 + height * 0.5, unit),
   //   halfHeight: addUnit(height * 0.5, unit),
   // };
-
-  console.log(2 * AM + 2 * FBW + TW, unit);
   const sizes = {
     bannerHeight: addUnit(BH, unit),
 

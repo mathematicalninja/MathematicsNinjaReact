@@ -7,7 +7,6 @@ class PageItemContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        // console.log("udate", this.props, prevProps)
         if (this.props.pageName !== prevProps.pageName) {
             this.updatePageContent(this.props.pageName);
         }

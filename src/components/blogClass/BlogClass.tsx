@@ -166,13 +166,13 @@ class BlogClass extends React.Component<BlogClassProps, BlogClassState> {
     for (let index = 0; index < paragraph.length; index++) {
       let sentence = paragraph[index];
       if (index === paragraph.length - 1) {
-        sentenceArray.push(<span>{sentence}</span>);
+        sentenceArray.push(<span key={index}>{sentence}</span>);
       } else {
         sentenceArray.push(
-          <span>
+          <span key={index}>
             {sentence}
             {this.state.endOfSentence}
-          </span>
+          </span>,
         );
       }
     }
@@ -191,13 +191,15 @@ class BlogClass extends React.Component<BlogClassProps, BlogClassState> {
       let paragraph = section.Content[index];
       if (index === section.Content.length) {
         paragraphArray.push(
-          <div>
+          <div key={index}>
             {this.sentenceSplit(paragraph)}
             {this.state.endOfParagraph}
-          </div>
+          </div>,
         );
       } else {
-        paragraphArray.push(<div>{this.sentenceSplit(paragraph)}</div>);
+        paragraphArray.push(
+          <div key={index}>{this.sentenceSplit(paragraph)}</div>,
+        );
       }
     }
     return paragraphArray;
@@ -210,17 +212,17 @@ class BlogClass extends React.Component<BlogClassProps, BlogClassState> {
       let section = FullText[index];
       if (index !== FullText.length - 1) {
         sectionArray.push(
-          <div style={this.state.mainTextStyle}>
+          <div style={this.state.mainTextStyle} key={index}>
             {this.paragraphSplit(section)}
             {this.state.endOfSection}
-          </div>
+          </div>,
         );
       } else {
         sectionArray.push(
-          <div style={this.state.mainTextStyle}>
+          <div style={this.state.mainTextStyle} key={index}>
             {this.paragraphSplit(section)}
             {this.state.endOfLastSection}
-          </div>
+          </div>,
         );
       }
     }

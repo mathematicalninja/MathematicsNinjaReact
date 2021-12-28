@@ -14,7 +14,6 @@ const canvasWidth = window.innerWidth;
 const canvasHeight = window.innerHeight;
 
 function draw(ctx, location) {
-  // console.log("attempting to draw")
   ctx.fillStyle = "red";
   ctx.shadowColor = "blue";
   ctx.shadowBlur = 15;

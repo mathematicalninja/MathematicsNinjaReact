@@ -8,12 +8,10 @@ import "./PageLayout.scss";
 class PageLayout extends React.Component {
   constructor(props) {
     super(props);
-    // console.log("Page Layout Load")
     this.state = {
       pageContent: props.pageContent,
       menuItems: props.menuItems,
     };
-    // console.log("knjgrpbetahpibaegr", props)
     // this.updatePageContent = (content) => props.updatePageContent(content);
   }
 
@@ -31,8 +29,6 @@ class PageLayout extends React.Component {
   }
 
   render() {
-    // console.log(this.state)
-
     return (
       <div className="pageLayout">
         {/* <SiteNavigation

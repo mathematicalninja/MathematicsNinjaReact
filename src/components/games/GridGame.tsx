@@ -113,14 +113,12 @@ class GridGame extends squareGame<GridGameProps, GridGameState> {
     // if this is the bottom row, we return saying that this tile is empty
 
     if (this.state.gridSize[1] === rowIndex + 1) {
-      // console.log("Bottom")
       return false;
     }
 
     // if the tile below is empty, we "click" there.
     // i.e. the tile moves down to that square.
     // otherwise, we say this tile is empty.
-    // console.log(currentBoard.squares[colIndex], currentBoard.squares[colIndex][rowIndex + 1])
     if (currentBoard.squares[colIndex][rowIndex + 1]) {
       return false;
     } else {
@@ -129,7 +127,6 @@ class GridGame extends squareGame<GridGameProps, GridGameState> {
     }
 
     // if (!currentBoard.squares[colIndex][rowIndex]) {
-    //     console.log("testing here", this.state.gridSize[1], rowIndex)
 
     //     if () {
     //         return currentBoard.squares[colIndex][rowIndex]
@@ -141,7 +138,6 @@ class GridGame extends squareGame<GridGameProps, GridGameState> {
   }
 
   lineMaker(gridSize, diags, xLens, yLens, shortest = true): number[][][] {
-    // console.log("hre", {gridSize, diags, xLens, yLens, shortest})
     const min = (A, B) => {
       return A < B ? A : B;
     };
@@ -337,8 +333,6 @@ class GridGame extends squareGame<GridGameProps, GridGameState> {
     // let T = 0
     for (let line of this.state.winningLines) {
       // T += 1
-      // console.log(T)
-      // console.log(line)
 
       let newBoard;
       newBoard = Array(this.state.gridSize[0]).fill(
@@ -355,17 +349,14 @@ class GridGame extends squareGame<GridGameProps, GridGameState> {
       A.squares = Array(this.state.gridSize[0]).fill(
         Array(this.state.gridSize[1]).fill(null),
       );
-      // console.log("set to null at 0,0", A.squares[0][0])
 
       // A.statemoveList = []
-      // console.log("A", A)
       // for (let i = 0; i < A.squares.length; i++) {
       //     for (let j = 0; j < A.squares[i].length; j++) {
       //         A.moveList.push([i, j])
       //         A.squares[i][j] = null
       //     }
       // }
-      // console.log(A.squares)
 
       let X_array = Array(this.state.gridSize[0]).fill(
         Array(this.state.gridSize[1]).fill({
@@ -375,11 +366,8 @@ class GridGame extends squareGame<GridGameProps, GridGameState> {
         }),
       );
       for (let i = 0; i < line.length; i++) {
-        // console.log("should still be null at 0,0", A.squares[0][0])
-
         let x = line[i][0];
         let y = line[i][1];
-        // console.log(x, y, A.squares[x][y])
 
         let Y_array = Array(this.state.gridSize[1]).fill({
           // content: this.state.playerLogos[T % 2],
@@ -393,23 +381,12 @@ class GridGame extends squareGame<GridGameProps, GridGameState> {
           tileClass: "Tile-winner",
         };
         X_array[x] = Y_array;
-        // console.log("X_array", X_array)
-
-        // console.log(A.squares)
         A.squares = X_array;
-        // console.log(A.squares)
-        // console.log("suddenly it's not null at 0,0", A.squares[0][0])
-
-        // console.log("x,y", A.squares[x][y])
-        // console.log("0,0", A.squares[0][0])
       }
-
-      // console.log(A)
 
       newHistory.push(A);
     }
 
-    // console.log(newHistory)
     return newHistory;
   }
 }

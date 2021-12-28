@@ -1,18 +1,22 @@
 import React, { useState } from "react";
-import { arrayStatePush } from "../../utils/react/arrayStatePush";
+import {
+  arrayStatePush,
+  historyArrayStatePush,
+} from "../../utils/react/arrayStatePush";
 import allPlayerLogos from "./gameParts/playerLogos";
-import {
-  gridLayout,
-  tileCoords,
-  squareWinner,
-  BoardState,
-} from "./interfaces/squareGame";
-import {
-  CheckTileProps,
-  handleClick,
-  staticCheckTile,
-} from "./utils/handleSquareClick";
-import { makeWinLines, winLineGrid } from "./utils/squareWinLines";
+import { BoardState, tileCoords } from "./interfaces/squareGame";
+import { makeButtonGrid } from "./utils/makeButtonGrid";
+import { getPlayer } from "./utils/getPlayer";
+import { getTile } from "./utils/getSquareValue";
+import { CheckTileProps, staticCheckTile } from "./utils/handleSquareClick";
+import { handleClick } from "./utils/handleClick";
+import { makeWinLines } from "./utils/squareWinLines";
+import { xyFunction, xyToClick } from "./utils/xyToClick";
+import { xyToStyle } from "./utils/xyToStyle";
+import { bannerStart } from "../../utils/devTools/bannerStart";
+import { bannerEnd } from "../../utils/devTools/bannerEnd";
+import { calculatePlayer } from "./utils/calculatePlayer";
+import CenterThis from "../../utils/react/centerThis";
 
 interface fcSquareGameProps {
   gridSize: tileCoords;
@@ -21,33 +25,34 @@ interface fcSquareGameProps {
   CheckTile?: (props: CheckTileProps) => tileCoords | null;
 }
 
-// export interface SquareGameProps {
-//   gridSize: tileCoords;
-//   minimumDiagonal?: number;
-//   maximumDiagonal?: number;
-//   CheckTile?: (props: CheckTileProps) => tileCoords | null;
-// }
-
-export interface SquareGameState {
-  playerLogos: (JSX.Element | string)[];
-  currentPlayer: number;
+interface BoardTiles {}
+interface gameSetupI {
   maxPlayers: number;
-  moveNumber: number;
   gridSize: tileCoords;
-  history: BoardState[];
-  winningLines: winLineGrid;
+}
+interface newBoardProps {
+  Board: BoardState;
+  setBoardHistory: React.Dispatch<React.SetStateAction<BoardState[]>>;
+  setCurrentBoard: React.Dispatch<React.SetStateAction<BoardState>>;
+}
+function newBoard({
+  Board,
+  setBoardHistory,
+  setCurrentBoard,
+}: newBoardProps): void {
+  arrayStatePush(setBoardHistory)(Board);
+  setCurrentBoard(Board);
 }
 
-interface BoardTiles {}
-interface gameSetupI {}
-
 const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
-  const [playerLogos, setPlayerLogos] = useState(allPlayerLogos.emoji);
+  bannerStart("FcSquareGame");
   const [gameSetup, setGameSetup] = useState<gameSetupI>({
     maxPlayers: 2,
     gridSize: props.gridSize,
   });
-  const [currentPlayer, setCurrentPlayer] = useState(0); // need to change player to be calculated from move number
+  const [playerLogos, setPlayerLogos] = useState(
+    allPlayerLogos.emoji.slice(0, gameSetup.maxPlayers),
+  );
   const [currentMove, setCurrentMove] = useState(0);
   const [winningLines, setWinningLines] = useState(
     makeWinLines({
@@ -57,14 +62,19 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
     }),
   );
   const [blankBoard, setBlankBoard] = useState<BoardState>({
-    squares: Array(props.gridSize[0]).fill(Array(props.gridSize[1]).fill(null)),
+    squares: Array(props.gridSize.x).fill(Array(props.gridSize.y).fill(null)),
     currentTile: undefined,
     moveList: [],
     winner: null,
   });
   const [boardHistory, setBoardHistory] = useState<BoardState[]>([blankBoard]);
   const [currentBoard, setCurrentBoard] = useState<BoardState>(blankBoard);
-  const addBoard = arrayStatePush(setBoardHistory);
+  // const addBoard = arrayStatePush(setBoardHistory);
+  const addBoard = historyArrayStatePush<BoardState>({
+    arraySetState: setBoardHistory,
+    elementSetState: setCurrentBoard,
+  });
+
   // TODO: Note this will mess up with Rewind, as the boards are only pushed and if the game is continued from a previous state, then new boards will appear in the wrong places, and old boards will still exist.
 
   // const [CheckTile, changeTileFall] = useState(
@@ -72,16 +82,44 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
   // ); //this creates an error as React messes with function types in useState
   const CheckTile = props.CheckTile ? props.CheckTile : staticCheckTile;
 
-  const click = (tile: tileCoords) =>
-    handleClick({
-      Board: currentBoard,
-      player: currentPlayer,
-      winningLines: winningLines,
-      x: tile.x,
-      y: tile.y,
-      CheckTile: CheckTile,
-    });
+  const click = currentBoard.winner
+    ? (tile: tileCoords) => {
+        return null;
+      }
+    : (tile: tileCoords) => {
+        handleClick({
+          Board: currentBoard,
+          player: currentPlayer,
+          winningLines: winningLines,
+          x: tile.x,
+          y: tile.y,
+          CheckTile: CheckTile,
+          addBoard: addBoard,
+        });
+      };
+  // const [currentPlayer, setCurrentPlayer] = useState(0); // need to change player to be calculated from move number
 
-  return <></>;
+  const currentPlayer = calculatePlayer(
+    currentBoard.moveList,
+    playerLogos,
+  ).curr;
+
+  bannerEnd("FcSquareGame");
+
+  const renderGrid = makeButtonGrid({
+    xMax: 4,
+    yMax: 4,
+    makeCallback: xyFunction(click),
+    makeStyle: xyToStyle,
+    makeContent: ({ x, y }: tileCoords) => {
+      return getPlayer({
+        player: getTile({ board: currentBoard, x, y }),
+        players: playerLogos,
+      });
+    },
+    board: currentBoard,
+  });
+
+  return renderGrid;
 };
 export default FcSquareGame;

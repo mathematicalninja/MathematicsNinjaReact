@@ -36,7 +36,6 @@ class MiniClock extends QuirkClock<MiniClockInputs> {
       });
     }, 10);
     this.setState({ intervalID: intervalID });
-    // console.log(this)
   }
 
   componentWillUnmount() {

@@ -85,7 +85,6 @@ export function AugMax({ totalLevels, augNumber, laserLevel }: AugMaxProps) {
       }),
     };
   }
-  console.log(DisplayValues);
   return DisplayValues;
 }
 
@@ -94,7 +93,6 @@ export function AugMaxToString(
 ) {
   let R: TableData<string, NGU100TableData<string>> = [];
   for (let i = 0; i < DisplayValues.length; i++) {
-    // console.log(DisplayValues[i]);
     R[i] = {
       AugLev: DisplayValues[i].AugLev.toString(),
       upgLev: DisplayValues[i].upgLev.toString(),
