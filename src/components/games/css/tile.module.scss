@@ -1,0 +1,79 @@
+// import { CSSProperties } from react;
+
+// export const defaultTileStyle: CSSProperties = {
+//   background: var(--Secondary-9),
+
+//   border: 1px solid var(--Secondary-0),
+//   margin: 1px,
+//   float: left,
+//   fontSize: 60px,
+//   fontWeight: bold,
+//   lineHeight: 34px,
+//   height: 120px,
+//   marginRight: -1px,
+//   marginTop: -1px,
+//   padding: 0,
+//   textAlign: center,
+//   width: 120px,
+// };
+
+// export const defaultWrapperStyle: CSSProperties = {
+//   background: var(--Secondary-9),
+// };
+
+// tile {
+//   background: var(--Secondary-9);
+
+//   border: 1px solid var(--Secondary-0);
+//   margin: 1px;
+//   float: left;
+//   font-size: 60px;
+//   font-weight: bold;
+//   line-height: 34px;
+//   height: 120px;
+//   margin-right: -1px;
+//   margin-top: -1px;
+//   padding: 0;
+//   text-align: center;
+//   width: 120px;
+// }
+
+@mixin tile-mixin($win, $last) {
+  border-radius: if($last or $win, 100%, 0%);
+
+  @if ($last) {
+    background-color: var(--Secondary-3);
+  } @else if ($win) {
+    background-color: var(--Accent-6);
+  } @else {
+    background-color: var(--Secondary-9);
+  }
+
+  border: 1px solid var(--Secondary-0);
+  margin: 1px;
+  float: left;
+  font-size: 60px;
+  // font-weight: bold;
+  line-height: 34px;
+  height: 120px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 120px;
+}
+
+.tile {
+  @include tile-mixin(false, false);
+}
+
+.win {
+  @include tile-mixin(true, false);
+}
+.last {
+  @include tile-mixin(false, true);
+}
+.tile-win-last,
+.tile-last-win {
+  @include tile-mixin(true, true);
+}

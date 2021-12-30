@@ -18,6 +18,8 @@ import { bannerEnd } from "../../utils/devTools/bannerEnd";
 import { calculatePlayer } from "./utils/calculatePlayer";
 import CenterThis from "../../utils/react/centerThis";
 
+import styles from "../css/tile.module.scss";
+
 interface fcSquareGameProps {
   gridSize: tileCoords;
   minimumDiagonal?: number;
@@ -53,7 +55,7 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
   const [playerLogos, setPlayerLogos] = useState(
     allPlayerLogos.emoji.slice(0, gameSetup.maxPlayers),
   );
-  const [currentMove, setCurrentMove] = useState(0);
+  // const [currentMove, setCurrentMove] = useState(0);
   const [winningLines, setWinningLines] = useState(
     makeWinLines({
       gridSize: props.gridSize,
@@ -121,5 +123,7 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
   });
 
   return renderGrid;
+
+  // return renderGrid;
 };
 export default FcSquareGame;

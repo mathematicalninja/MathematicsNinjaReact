@@ -26,3 +26,8 @@ export interface BoardState {
 
   winner: squareWinner | null;
 }
+
+export interface tileAndBoard {
+  tile: tileCoords;
+  board: BoardState;
+}

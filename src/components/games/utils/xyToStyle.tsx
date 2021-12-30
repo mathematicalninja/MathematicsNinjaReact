@@ -1,6 +1,9 @@
 import { CSSProperties } from "react";
 import { BoardState, tileCoords } from "../interfaces/squareGame";
+import { isLastClick } from "./isLastClick";
+import { isWinTile } from "./isWinTile";
 import { tileOnLine } from "./tileOnLine";
+import { defaultTileStyle } from "../css/defaultTileStyle";
 
 //
 export interface xyToStyleProps {
@@ -11,37 +14,49 @@ export function xyToStyle({ tile, board }: xyToStyleProps) {
   const [x, y] = [tile.x, tile.y];
   const curr = board.currentTile;
 
-  let bg: string = "var(--Secondary-9)";
-  if (curr) {
-    if (curr.x == x && curr.y == y) {
-      bg = "var(--Secondary-1)";
-    }
-  }
+  const isWin: Boolean = isWinTile({ tile, board });
+  const isClick: Boolean = isLastClick({ tile, board });
+  const isDefault = !(isWin || isClick);
 
-  const winLine = board.winner?.line;
+  let unionStyle: CSSProperties = {};
 
-  if (winLine) {
-    const B = tileOnLine(tile, winLine);
-    if (B) {
-      bg = "var(--Accent-0)";
-    }
-  }
-  const S: CSSProperties = {
-    background: bg,
-    border: "1px solid var(--Secondary-0)",
-    margin: "1px",
-    float: "left",
-    fontSize: "60px",
-    fontWeight: "bold",
-    lineHeight: "34px",
-    height: "120px",
-    marginRight: "-1px",
-    marginTop: "-1px",
-    padding: "0",
-    textAlign: "center",
-    width: "120px",
+  const lastClick: CSSProperties = {
+    backgroundColor: "var(--Secondary-1)",
+    borderRadius: "100%",
+  };
+
+  const winTile: CSSProperties = {
+    background: "var(--Accent-0)",
+    borderRadius: "100%",
+  };
+
+  const D = defaultTileStyle;
+  const defaultStyle: CSSProperties = {
+    background: "var(--Accent-0)",
     gridColumn: x + 1,
     gridRow: y + 1,
+    ...D,
   };
-  return S;
+
+  unionStyle = { ...defaultStyle };
+  if (isWin) {
+    unionStyle = { ...unionStyle, ...winTile };
+  }
+  if (isClick) {
+    unionStyle = { ...unionStyle, ...lastClick };
+  }
+
+  if (isDefault) {
+    unionStyle = {
+      gridColumn: x + 1,
+      gridRow: y + 1,
+      ...D,
+    };
+  }
+
+  return unionStyle;
+
+  // style = S -{union}- tile design.
+  // need to overwrite S's things with tile's preferences
+  // style = {...S,...Tile}
 }
