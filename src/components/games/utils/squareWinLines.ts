@@ -2,6 +2,8 @@ import { max } from "../../../utils/maths/max";
 import { min } from "../../../utils/maths/min";
 import { gridLayout, tileCoords } from "../interfaces/squareGame";
 
+// TODO: doesn't account for minimun Vertical or Horizontal line length
+
 /**
  Checks if the max diagonal is undefined.
  If so: returns longest side length.

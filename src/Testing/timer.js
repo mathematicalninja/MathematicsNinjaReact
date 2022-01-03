@@ -3,7 +3,7 @@ import React from "react";
 class Timer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {seconds: 0};
+        this.state = { seconds: 0 };
     }
 
     tick() {
@@ -23,7 +23,7 @@ class Timer extends React.Component {
     render() {
         return (
             <div>
-                Seconds: {this.state.seconds}
+                Seconds: { this.state.seconds }
             </div>
         );
     }

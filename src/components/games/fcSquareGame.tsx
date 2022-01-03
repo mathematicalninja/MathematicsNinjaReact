@@ -19,6 +19,7 @@ import { calculatePlayer } from "./utils/calculatePlayer";
 import CenterThis from "../../utils/react/centerThis";
 
 import styles from "../css/tile.module.scss";
+import { devLog } from "../../utils/devTools/devLog";
 
 interface fcSquareGameProps {
   gridSize: tileCoords;
@@ -63,6 +64,7 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
       minDiagonalLength: props.minimumDiagonal,
     }),
   );
+  devLog(props.gridSize);
   const [blankBoard, setBlankBoard] = useState<BoardState>({
     squares: Array(props.gridSize.x).fill(Array(props.gridSize.y).fill(null)),
     currentTile: undefined,
@@ -109,8 +111,8 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
   bannerEnd("FcSquareGame");
 
   const renderGrid = makeButtonGrid({
-    xMax: 4,
-    yMax: 4,
+    xMax: gameSetup.gridSize.x,
+    yMax: gameSetup.gridSize.y,
     makeCallback: xyFunction(click),
     makeStyle: xyToStyle,
     makeContent: ({ x, y }: tileCoords) => {

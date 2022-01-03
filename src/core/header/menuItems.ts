@@ -23,6 +23,7 @@ const menuItems: menuItemInterface[] = [
   },
   { text: "Clocks", uri: "/Clocks" },
   { text: "Colours", uri: "/ColourSwatch" },
+  { text: "connect4", uri: "/connect4" },
 ];
 
 export default menuItems;

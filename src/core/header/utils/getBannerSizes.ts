@@ -35,12 +35,11 @@ export function getBannerSizeByHeight({
   // inputs
   const BH: number = bannerHeight * ((1.1 * 5) / 6); // [BannerHeight]
   const FBW: number = bannerWidth ? bannerWidth : 100; // [FullBannerWidth]
-  // TODO:
 
   // get parent container width
 
   // default assumes "%" or "vw" as the units
-  //ToDo: make the input units account for the css possible units, then case out the possibilities toi define this as a default "full" width
+  //TODO: make the input units account for the css possible units, then case out the possibilities toi define this as a default "full" width
 
   const TR: number = textRatio ? textRatio : 8 / 1.1; // [TextRatio]
   const HR: number = heightRatio ? heightRatio : 1 / 1.1;
@@ -107,7 +106,7 @@ export function getBannerSizeByHeight({
 }
 
 // export function getBannerSizeByWidth(width: number, unit: string): textSizes {
-//   // ToDO: make this really works, rather than a placeholder
+//   // TODO: make this really works, rather than a placeholder
 //   const M: number = 30 / 2;
 //   const L: number = 25 / 2;
 //   const sizes = {

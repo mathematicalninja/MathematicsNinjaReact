@@ -19,13 +19,14 @@ export function fallingCheckTile({
   x,
   y,
 }: CheckTileProps): tileCoords | null {
+  console.log({ x, y });
   // note the use of n+!, due to HTML grid Layout rendering from the top right
   const val = getTile({ board: board, x: x, y: y });
   if (val !== null) {
     return null; //this tile is full, so the previous calling function should handle it.
   }
 
-  if (y === 0) {
+  if (y === board.squares[0].length - 1) {
     //this is the bottom row
     return { x, y };
   }

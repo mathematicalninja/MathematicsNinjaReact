@@ -41,7 +41,7 @@ export function handleClick({
   // T is the new tile, non-null
   B.moveList.push(T);
   B.currentTile = T;
-  B.squares = addTileToGrid(player, Board.squares, { x: x, y: y });
+  B.squares = addTileToGrid(player, Board.squares, T);
   B.winner = calculateWinner(B, winningLines);
 
   addBoard(B); // adding the board to the history
