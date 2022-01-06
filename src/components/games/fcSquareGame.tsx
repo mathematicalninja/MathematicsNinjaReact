@@ -10,7 +10,7 @@ import { getPlayer } from "./utils/getPlayer";
 import { getTile } from "./utils/getSquareValue";
 import { CheckTileProps, staticCheckTile } from "./utils/handleSquareClick";
 import { handleClick } from "./utils/handleClick";
-import { makeWinLines } from "./utils/squareWinLines";
+import { makeWinLines, winLinesInput } from "./utils/squareWinLines";
 import { xyFunction, xyToClick } from "./utils/xyToClick";
 import { xyToStyle } from "./utils/xyToStyle";
 import { bannerStart } from "../../utils/devTools/bannerStart";
@@ -21,10 +21,10 @@ import CenterThis from "../../utils/react/centerThis";
 import styles from "../css/tile.module.scss";
 import { devLog } from "../../utils/devTools/devLog";
 
-interface fcSquareGameProps {
-  gridSize: tileCoords;
-  minimumDiagonal?: number;
-  maximumDiagonal?: number;
+export interface fcSquareGameProps extends winLinesInput {
+  // gridSize: tileCoords;
+  // minDiagonalLength?: number;
+  // maxDiagonalLength?: number;
   CheckTile?: (props: CheckTileProps) => tileCoords | null;
 }
 
@@ -60,8 +60,8 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
   const [winningLines, setWinningLines] = useState(
     makeWinLines({
       gridSize: props.gridSize,
-      maxDiagonalLength: props.maximumDiagonal,
-      minDiagonalLength: props.minimumDiagonal,
+      maxDiagonalLength: props.maxDiagonalLength,
+      minDiagonalLength: props.minDiagonalLength,
     }),
   );
   devLog(props.gridSize);

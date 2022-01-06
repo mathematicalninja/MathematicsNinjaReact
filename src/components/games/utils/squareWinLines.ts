@@ -1,44 +1,21 @@
 import { max } from "../../../utils/maths/max";
 import { min } from "../../../utils/maths/min";
 import { gridLayout, tileCoords } from "../interfaces/squareGame";
+import { checkMaxLength, checkMinLength } from "./checkLengthBounds";
 
 // TODO: doesn't account for minimun Vertical or Horizontal line length
-
-/**
- Checks if the max diagonal is undefined.
- If so: returns longest side length.
- */
-function checkMaxDiagonal(props: { maxDiag?: number; long: number }): number {
-  let R = 0;
-  if (typeof props.maxDiag === "undefined") {
-    R = props.long;
-  } else {
-    R = props.maxDiag;
-  }
-  return R;
-}
-/**
- Checks if the min diagonal is undefined.
- If so: returns shortest side length or 3, whichever is smaller.
- */
-function checkMinDiagonal(props: { minDiag?: number; short: number }): number {
-  let R = 0;
-  if (typeof props.minDiag === "undefined") {
-    R = min(props.short, 3);
-  } else {
-    R = props.minDiag;
-  }
-  return R;
-}
 
 interface winLineSingle extends Array<tileCoords> {}
 export interface winLineGrid extends Array<winLineSingle> {}
 
-interface winLinesInput {
+export interface winLinesInput {
   gridSize: tileCoords;
   minDiagonalLength?: number;
   maxDiagonalLength?: number;
+  minHorizontalLength?: number;
+  maxHorizontalLength?: number;
 }
+
 /**
  * creates the winning lines for a square grid with the diagonal lengths possibly restricted
  */
@@ -57,13 +34,13 @@ export function makeWinLines({
   const [xWidth, yWidth] = [gridSize.x, gridSize.y];
   const [shortSide, longSide] = [min(xWidth, yWidth), max(xWidth, yWidth)];
 
-  const minDiag = checkMinDiagonal({
-    minDiag: minDiagonalLength,
-    short: shortSide,
+  const minDiag = checkMinLength({
+    length: minDiagonalLength,
+    minBound: shortSide,
   });
-  const maxDiag = checkMaxDiagonal({
-    maxDiag: maxDiagonalLength,
-    long: longSide,
+  const maxDiag = checkMaxLength({
+    length: maxDiagonalLength,
+    maxBound: longSide,
   });
 
   let winLines: winLineGrid = [];
