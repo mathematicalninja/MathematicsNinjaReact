@@ -11,19 +11,16 @@ const menuItems: menuItemInterface[] = [
     text: "Home",
     uri: `/`,
   },
-  {
-    text: "NGU100",
-    uri: "/NGU100",
-  },
+
   // need to add a "remove whitespace" so the gridtemplate columns can take e.g. `tic tac toe` as input
   {
     text: "TicTacToe",
     // uri: "Games/TicTacToe",
     uri: "/TicTacToe",
   },
+  { text: "connect4", uri: "/connect4" },
   { text: "Clocks", uri: "/Clocks" },
   { text: "Colours", uri: "/ColourSwatch" },
-  { text: "connect4", uri: "/connect4" },
 ];
 
 export default menuItems;
