@@ -22,7 +22,7 @@ const FTTP: React.FC = () => {
       CheckTile={fallingCheckTile}
       maxDiagonalLength={4}
       minDiagonalLength={4} //FIXME: doesn't seem to pass through to the winLine calculations
-      maxHorizontalLength={4}
+      maxHorizontalLength={7}
       minHorizontalLength={4}
     />
   );

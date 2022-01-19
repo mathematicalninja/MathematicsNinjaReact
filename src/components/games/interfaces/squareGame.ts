@@ -9,6 +9,8 @@ export interface tileCoords {
 /**
  * Array of winning Lines
  *  : Array<Array< number|null >>
+ *
+ * grid[x][y]
  */
 
 export interface gridLayout extends Array<Array<number | null>> {}

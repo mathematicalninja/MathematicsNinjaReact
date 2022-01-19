@@ -4,6 +4,7 @@ import FullPageBody from "../PageTypes/FullPageBody";
 import React from "react";
 import FcSquareGame from "../components/games/fcSquareGame";
 import FcTicTacToe from "../components/games/fcTicTacToe";
+import { staticCheckTile } from "../components/games/utils/handleSquareClick";
 
 // interface TicTacPageInterface{
 //     A:FullPageBody
@@ -45,14 +46,22 @@ interface TTTProps {
 
 const FTTP: React.FC = () => {
   // function FTTP(props: { gridSize?: number[] }) {
-  const TicTacToe = <FcTicTacToe gridSize={{ x: 4, y: 4 }} />;
+  const TicTacToe = (
+    <FcTicTacToe
+      gridSize={{ x: 5, y: 5 }}
+      CheckTile={staticCheckTile}
+      minDiagonalLength={5}
+      maxDiagonalLength={5}
+    />
+  );
   return (
     <>
       <FullPageBody
         content={TicTacToe}
         // content={new TicTac({ gridSize: [4, 4] })}
         // content={new TicTac({ gridSize: [4, 4] })}
-        blogPostName="samplePageExplinations/TicTacBlogExplain.json"
+        // blogPostName="samplePageExplinations/TicTacBlogExplain.json"
+        blogPostName="samplePageExplinations/TicTacBlogExplain_temp.json"
       />
     </>
   );
