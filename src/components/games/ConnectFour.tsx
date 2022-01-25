@@ -7,7 +7,7 @@
 import squareGame, { SquareGameProps, SquareGameState } from "./squareGame";
 
 interface ConnectFourProps extends SquareGameProps {
-  gridSize: number[];
+  gridSize: [number, number];
 }
 interface ConnectFourState extends SquareGameState {}
 
