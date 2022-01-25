@@ -129,8 +129,10 @@ function getRow(colour: colourVariableSet, RowN: number) {
 
 function getSwatchTable(click: colourSpecifier) {
   let R: JSX.Element[] = [];
+  let RowN = 0;
   for (let ColN in themeColoursList) {
-    R = R.concat(getRow(themeColoursList[ColN], ColN)); //For some reason TS thinks that the index of an array is a string...
+    R = R.concat(getRow(themeColoursList[ColN], RowN)); //For some reason TS thinks that the index of an array is a string...
+    RowN++;
   }
   return (
     <div
