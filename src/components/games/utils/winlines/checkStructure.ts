@@ -22,3 +22,5 @@ export function getLineStructure({
       return boardStructure.diagonalType;
   }
 }
+
+// :TODO:rename file correctly

@@ -1,3 +1,4 @@
+import { devLog } from "../../../../utils/devTools/devLog";
 import { boardBounds } from "../../interfaces/boardBounds";
 import { lineSignature } from "../../interfaces/lineSignature";
 import { boardStructure } from "../../interfaces/lineStructure";
@@ -44,7 +45,7 @@ export function subLine({
     // looping between the min and max value
     //
     if (!checkBounds({ sig, point, bounds, length })) {
-      continue;
+      break;
     }
     const D = makeLineFromSig({ length, point, sig });
     R = R.concat([D]);

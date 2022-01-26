@@ -45,70 +45,72 @@ interface TTTProps {
 }
 
 const FTTP: React.FC = () => {
-  // function FTTP(props: { gridSize?: number[] }) {
-  const TicTacToe = (
-    <FcTicTacToe
-      gridSize={{ x: 5, y: 5 }}
-      CheckTile={staticCheckTile}
-      minDiagonalLength={5}
-      maxDiagonalLength={5}
-    />
-  );
-  return (
-    <>
-      <FullPageBody
-        content={TicTacToe}
-        // content={new TicTac({ gridSize: [4, 4] })}
-        // content={new TicTac({ gridSize: [4, 4] })}
-        // blogPostName="samplePageExplinations/TicTacBlogExplain.json"
-        blogPostName="samplePageExplinations/TicTacBlogExplain_temp.json"
-      />
-    </>
-  );
+  return <></>;
 };
-
-const TTT: React.FC<TTTProps> = ({
-  gridSize,
-  minimumDiagonal,
-  maximumDiagonal,
-}) => {
-  return (
-    <>
-      {gridSize} {minimumDiagonal} {maximumDiagonal}
-      <br />
-    </>
-  );
-};
-// class TTP extends FullPageBody {
-//   constructor() {
-//     super({
-//       content: new TicTac({
-//         gridSize: [5, 5],
-//       }),
-//       //   (
-//       //     <div>
-//       //       Hello there, yes I am a game of Tic Tac Toe
-//       //       {/* <TicTac gridSize={[5, 5]} /> */}
-//       //     </div>
-//       //   )
-//       blogPost: new BlogClass({
-//         blogName: "samplePageExplinations/TicTacBlogExplain.json",
-//       }),
-
-//       //   (
-//       //     <BlogClass blogName={"samplePageExplinations/TicTacBlogExplain.json"} />
-//       //   ),
-//     });
-//   }
-// }
-
-// import React from 'react'
-
-// interface TicTacToeProps {}
-
-// const TicTacToe: React.FC<TicTacToeProps> = ({}) => {
-//   return <>Hello</>;
+//   // function FTTP(props: { gridSize?: number[] }) {
+//   const TicTacToe = (
+//     <FcTicTacToe
+//       gridSize={{ x: 5, y: 5 }}
+//       CheckTile={staticCheckTile}
+//       minDiagonalLength={5}
+//       maxDiagonalLength={5}
+//     />
+//   );
+//   return (
+//     <>
+//       <FullPageBody
+//         content={TicTacToe}
+//         // content={new TicTac({ gridSize: [4, 4] })}
+//         // content={new TicTac({ gridSize: [4, 4] })}
+//         // blogPostName="samplePageExplinations/TicTacBlogExplain.json"
+//         blogPostName="samplePageExplinations/TicTacBlogExplain_temp.json"
+//       />
+//     </>
+//   );
 // };
-// export default TicTacToe;
+
+// const TTT: React.FC<TTTProps> = ({
+//   gridSize,
+//   minimumDiagonal,
+//   maximumDiagonal,
+// }) => {
+//   return (
+//     <>
+//       {gridSize} {minimumDiagonal} {maximumDiagonal}
+//       <br />
+//     </>
+//   );
+// };
+// // class TTP extends FullPageBody {
+// //   constructor() {
+// //     super({
+// //       content: new TicTac({
+// //         gridSize: [5, 5],
+// //       }),
+// //       //   (
+// //       //     <div>
+// //       //       Hello there, yes I am a game of Tic Tac Toe
+// //       //       {/* <TicTac gridSize={[5, 5]} /> */}
+// //       //     </div>
+// //       //   )
+// //       blogPost: new BlogClass({
+// //         blogName: "samplePageExplinations/TicTacBlogExplain.json",
+// //       }),
+
+// //       //   (
+// //       //     <BlogClass blogName={"samplePageExplinations/TicTacBlogExplain.json"} />
+// //       //   ),
+// //     });
+// //   }
+// // }
+
+// // import React from 'react'
+
+// // interface TicTacToeProps {}
+
+// // const TicTacToe: React.FC<TicTacToeProps> = ({}) => {
+// //   return <>Hello</>;
+// // };
+// // export default TicTacToe;
 
 export default FTTP;

@@ -1,3 +1,4 @@
+import { devLog } from "../../../../utils/devTools/devLog";
 import { boardBounds } from "../../interfaces/boardBounds";
 import { lineSignature } from "../../interfaces/lineSignature";
 import { boardStructure } from "../../interfaces/lineStructure";
@@ -18,16 +19,16 @@ export function makeLinesHere({
   // lineStructure: "fullOnly" | "subLines" | "none",
   boardStructure: boardStructure;
   bounds: boardBounds;
-}): // length: number,
-winLineGrid {
+}): winLineGrid {
   // Makes line(s) (Horizontal, Vertical or Diagonal) based on the signature given and whether that signature allows only full lines, partial lines or no lines
   const lineStructure = getLineStructure({ boardStructure, sig });
+  devLog(sig, lineStructure);
   switch (lineStructure) {
     case "none":
       return [];
     case "subLines":
       return subLine({ sig, point, bounds, boardStructure });
     case "fullOnly":
-      return fullLine({ bounds, point, sig });
+      return fullLine({ bounds, point, sig, boardStructure });
   }
 }

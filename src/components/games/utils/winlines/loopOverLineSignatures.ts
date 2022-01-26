@@ -1,3 +1,4 @@
+import { devLog } from "../../../../utils/devTools/devLog";
 import { boardBounds } from "../../interfaces/boardBounds";
 import {
   downDiag,
@@ -15,12 +16,10 @@ import { makeLinesHere } from "./makeLinesHere";
 import sigToType from "./sigToType";
 
 export function loopOverLineSignatures({
-  length,
   point,
   boardStructure,
   bounds,
 }: {
-  length: number;
   point: tileCoords;
   boardStructure: boardStructure;
   bounds: boardBounds;

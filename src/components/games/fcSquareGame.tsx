@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import {
   arrayStatePush,
   historyArrayStatePush,
@@ -20,12 +20,17 @@ import CenterThis from "../../utils/react/centerThis";
 
 import styles from "../css/tile.module.scss";
 import { devLog } from "../../utils/devTools/devLog";
+import anyLine from "./utils/winlines/anyLine";
+import { boardStructure } from "./interfaces/lineStructure";
+import MakeTitle from "./makeTitle";
+import { MakeMoveList } from "./makeMoveList";
 
 export interface fcSquareGameProps extends winLinesInput {
   // gridSize: tileCoords;
   // minDiagonalLength?: number;
   // maxDiagonalLength?: number;
   CheckTile?: (props: CheckTileProps) => tileCoords | null;
+  boardStructure: boardStructure;
 }
 
 interface BoardTiles {}
@@ -58,13 +63,19 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
   );
   // const [currentMove, setCurrentMove] = useState(0);
   const [winningLines, setWinningLines] = useState(
-    makeWinLines({
-      gridSize: props.gridSize,
-      maxDiagonalLength: props.maxDiagonalLength,
-      minDiagonalLength: props.minDiagonalLength,
+    // makeWinLines({
+    //   gridSize: props.gridSize,
+    //   maxDiagonalLength: props.maxDiagonalLength,
+    //   minDiagonalLength: props.minDiagonalLength,
+    // }),
+
+    anyLine({
+      boardStructure: props.boardStructure,
+      gridSize: gameSetup.gridSize,
     }),
   );
-  devLog(props.gridSize);
+  devLog("Winning Lines:");
+  devLog(winningLines);
   const [blankBoard, setBlankBoard] = useState<BoardState>({
     squares: Array(props.gridSize.x).fill(Array(props.gridSize.y).fill(null)),
     currentTile: undefined,
@@ -124,7 +135,41 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
     board: currentBoard,
   });
 
-  return renderGrid;
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  // TODO: board History i sbeing SET using currentBoard, a stateful value.
+  // So it's the most current value in each step of the history
+  const changeToMove = (i) => {
+    setCurrentBoard(boardHistory[i]);
+  };
+  const moveList = MakeMoveList({ changeToMove, boardHistory });
+
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+
+  const title = MakeTitle({ currentPlayer, playerLogos });
+  return (
+    <>
+      {title}
+      {renderGrid}
+      {moveList}
+    </>
+  );
 
   // return renderGrid;
 };
