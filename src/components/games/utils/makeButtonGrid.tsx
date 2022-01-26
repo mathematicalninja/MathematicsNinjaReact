@@ -51,8 +51,8 @@ export function makeButtonGrid({
     }
   }
   return (
-    <CenterThis>
-      <div style={{ display: "grid", margin: "0 auto" }}>{G}</div>;
-    </CenterThis>
+    // <CenterThis>
+    <div style={{ display: "grid", margin: "0 auto" }}>{G}</div>
+    // </CenterThis>
   );
 }

@@ -24,6 +24,7 @@ import anyLine from "./utils/winlines/anyLine";
 import { boardStructure } from "./interfaces/lineStructure";
 import MakeTitle from "./makeTitle";
 import { MakeMoveList } from "./makeMoveList";
+import { squareGameLayoutDiv } from "./css/squareGameLayoutDiv";
 
 export interface fcSquareGameProps extends winLinesInput {
   // gridSize: tileCoords;
@@ -164,11 +165,14 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
 
   const title = MakeTitle({ currentPlayer, playerLogos });
   return (
-    <>
-      {title}
-      {renderGrid}
-      {moveList}
-    </>
+    <div style={squareGameLayoutDiv}>
+      <div />
+      <div>{title}</div>
+      <div />
+      <div />
+      <div>{renderGrid}</div>
+      <div>{moveList}</div>
+    </div>
   );
 
   // return renderGrid;
