@@ -1,43 +1,45 @@
+import { CSSProperties } from "react";
 import devCheck from "./devCheck";
 import { devLog } from "./devLog";
 
-export function bannerStart(functionName: string, value?: string) {
+const functionText = "color: steelblue";
+// const C: CSSProperties = { color: "sandybrown" };
+const C: CSSProperties = { color: "powderblue" };
+// const C: CSSProperties = { color: "paleturquoise" };
+// const C: CSSProperties = { color: "orchid" };
+// const C: CSSProperties = { color: "orange" };
+const valueText = `color: ${C.color}`;
+
+const redText = " color: palevioletred;";
+// const greenText = " color: palegreen;";
+const greenText = " color: olivedrab;";
+const clearStyles = "";
+
+export function bannerNote(
+  functionName: string,
+  note: string,
+  noteStyle: string,
+  value?: string,
+) {
   if (!devCheck()) {
     return;
   }
-  const pValue = value ? ", " + value : "";
+  const pValue = value ? ", %c" + value : "%c";
   devLog(
-    `---%c${functionName}%c${pValue}%c: %cstart%c---`,
+    `---%c${functionName}${pValue}%c: %c${note}%c---`,
     functionText,
     valueText,
     clearStyles,
-    greenText,
+    noteStyle,
     clearStyles,
   );
   return;
-  // add in a if(dev) check
+}
+
+export function bannerStart(functionName: string, value?: string) {
+  bannerNote(functionName, "start", greenText, value);
 }
 
 export function bannerEnd(functionName: string, value?: string) {
-  if (!devCheck()) {
-    return;
-  }
-  const pValue = value ? ", " + value : "";
-  devLog(
-    `---%c${functionName}%c${pValue}%c: %cend%c---`,
-    functionText,
-    valueText,
-    clearStyles,
-    redText,
-    clearStyles,
-  );
-  return;
-  // add in a if(dev) check
+  bannerNote(functionName, "end", redText, value);
 }
-
-const functionText = "";
-const valueText = "";
-
-const redText = " color: red;";
-const greenText = " color: green;";
-const clearStyles = "";
