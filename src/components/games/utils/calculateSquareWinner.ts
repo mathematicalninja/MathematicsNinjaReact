@@ -1,8 +1,8 @@
-import { bannerEnd } from "../../../utils/devTools/bannerEnd";
-import { bannerStart } from "../../../utils/devTools/bannerStart";
+import { bannerEnd } from "../../../utils/devTools/banner";
+import { bannerStart } from "../../../utils/devTools/banner";
 import { devLog } from "../../../utils/devTools/devLog";
 import { logGridValues } from "../../../utils/devTools/logGridValues";
-import { BoardState, squareWinner, tileCoords } from "../interfaces/squareGame";
+import { BoardState, squareWinner } from "../interfaces/squareGame";
 import { getTile } from "./getSquareValue";
 import { winLineGrid } from "./squareWinLines";
 

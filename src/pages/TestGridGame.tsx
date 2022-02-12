@@ -8,23 +8,22 @@ interface TestGridGameProps {}
 const TestGridGame: React.FC<TestGridGameProps> = ({}) => {
   return (
     <FcSquareGame
-      //
+      //TODO: switch all gridSize's to being type gridSize, which is 1-indexed
       gridSize={{ x: 5, y: 4 }}
       CheckTile={staticCheckTile}
       //
       boardStructure={{
-        diagonalType: "fullOnly",
-        HorizontalType: "fullOnly",
-        verticalType: "fullOnly",
+        diagonalType: "subLines",
+        minDiagonal: 2,
+        maxDiagonal: 5,
 
+        HorizontalType: "subLines",
         minHorizontal: 3,
         maxHorizontal: 5,
 
-        minVertical: 4,
+        verticalType: "subLines",
+        minVertical: 3,
         maxVertical: 4,
-
-        minDiagonal: 2,
-        maxDiagonal: 5,
       }}
     />
   );

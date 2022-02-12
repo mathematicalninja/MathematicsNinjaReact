@@ -1,7 +1,4 @@
 import React from "react";
-import { JsxElement } from "typescript";
-import { devLog } from "../../utils/devTools/devLog";
-import { BoardState } from "./interfaces/squareGame";
 
 interface makeMoveListProps {
   changeToMove: (i: number) => void;
@@ -23,7 +20,6 @@ export function MakeMoveList({
       <li key={move}>
         <button
           onClick={() => {
-            console.log(boardHistory);
             changeToMove(move);
           }}
         >
@@ -37,7 +33,6 @@ export function MakeMoveList({
   //     <button
   //       onClick={() => {
   //         const f = echo(i);
-  //         console.log("Board history check: ", boardHistory, echo(f));
   //         setCurrentBoard(board);
   //       }}
   //     >
@@ -49,10 +44,6 @@ export function MakeMoveList({
   return list;
 }
 // export default MakeMoveList;
-
-function echo(n: number): number {
-  return n;
-}
 
 // // import "./HistoryControls.scss"
 

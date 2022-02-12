@@ -1,14 +1,12 @@
 import loopOverTileGrid from "../../../../utils/arrays/loopOverTileGrid";
 import sortDoubleArray from "../../../../utils/arrays/sort";
+import { bannerEnd } from "../../../../utils/devTools/banner";
+import { bannerStart } from "../../../../utils/devTools/banner";
 import { devLog } from "../../../../utils/devTools/devLog";
 import { boardStructure } from "../../interfaces/lineStructure";
 import { tileCoords } from "../../interfaces/squareGame";
 import { winLineGrid } from "../squareWinLines";
-import { checkBounds } from "./checkBounds";
-import diagonals from "./diagonals";
 import { loopOverLineSignatures } from "./loopOverLineSignatures";
-import { loopOverTiles } from "./loopOverTiles";
-import { makeLinesHere } from "./makeLinesHere";
 
 export interface anyLineInput {
   boardInfo: boardInfo;
@@ -27,20 +25,26 @@ function anyLine({
   boardStructure,
 }: boardInfo) {
   const min = { x: 0, y: 0 };
+  // TODO: take in boardStructure with optionals for mins and maxs then replace them if undefined
 
   let R: winLineGrid = [];
   function callback(point: tileCoords) {
-    devLog("POINT: ", point);
+    bannerStart("anyLineCallback", `[${point.x}, ${point.y}]`);
+    // `---callback start [${point.x}, ${point.y}]---`);
+    // devLog("POINT: ", point);
     R = R.concat(
       loopOverLineSignatures({
-        bounds: { max: gridSize, min },
+        // gridSize is 1-indexed, so max is off by 1
+        boardMinMax: { max: { x: gridSize.x - 1, y: gridSize.y - 1 }, min },
         boardStructure,
         point,
       }),
     );
+    bannerEnd("anyLineCallback", `[${point.x}, ${point.y}]`);
+    // devLog(`---callback end   [${point.x}, ${point.y}]---`);
   }
   loopOverTileGrid({ gridSize: gridSize, callFunction: callback });
-  return sortDoubleArray(R);
-  // return R;
+  // return sortDoubleArray(R);
+  return R;
 }
 export default anyLine;

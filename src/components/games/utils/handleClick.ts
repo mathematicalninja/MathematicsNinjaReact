@@ -8,8 +8,8 @@ import calculateWinner from "./calculateSquareWinner";
 import { CheckTileProps } from "./handleSquareClick";
 import { addTileToGrid } from "./addToGrid";
 import { winLineGrid } from "./squareWinLines";
-import { bannerEnd } from "../../../utils/devTools/bannerEnd";
-import { bannerStart } from "../../../utils/devTools/bannerStart";
+import { bannerEnd } from "../../../utils/devTools/banner";
+import { bannerStart } from "../../../utils/devTools/banner";
 import { logGridValues } from "../../../utils/devTools/logGridValues";
 
 /**

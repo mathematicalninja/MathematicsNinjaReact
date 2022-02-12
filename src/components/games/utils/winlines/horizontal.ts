@@ -1,5 +1,3 @@
-import { gridSizeToTileArray } from "../../../../utils/arrays/gridSizeToTileArray";
-import { devLog } from "../../../../utils/devTools/devLog";
 import { isBadArray } from "../../../../utils/react/isBadArray";
 import { tileCoords } from "../../interfaces/squareGame";
 import { winLineGrid } from "../squareWinLines";
@@ -32,7 +30,6 @@ function horizontal({
   //   });
   //   // let winRow: tileCoords[] = makeHorizonal(xStart, yStart, length);
   //   if (!isBadArray(T)) {
-  //     // devLog("T", T);
   //     R = R.concat(T);
   //   }
   // });
@@ -101,7 +98,6 @@ function addHorizontals({
     length <= maxHorizontalLength;
     length++
   ) {
-    // devLog({ length });
     if (
       !checkHorizontal({
         length,

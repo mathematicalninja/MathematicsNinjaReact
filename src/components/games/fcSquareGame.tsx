@@ -1,30 +1,29 @@
-import React, { Children, useState } from "react";
+import React, { useState } from "react";
+import { bannerEnd } from "../../utils/devTools/banner";
+import { bannerStart } from "../../utils/devTools/banner";
+import { devLog } from "../../utils/devTools/devLog";
+import pause from "../../utils/other/pause";
 import {
   arrayStatePush,
   historyArrayStatePush,
 } from "../../utils/react/arrayStatePush";
+import PrintKeyValues from "../../utils/react/printKeyValues";
+import { squareGameLayoutDiv } from "./css/squareGameLayoutDiv";
 import allPlayerLogos from "./gameParts/playerLogos";
-import { BoardState, tileCoords } from "./interfaces/squareGame";
-import { makeButtonGrid } from "./utils/makeButtonGrid";
+import { boardStructure } from "./interfaces/lineStructure";
+import { BoardState, gridLayout, tileCoords } from "./interfaces/squareGame";
+import { MakeMoveList } from "./makeMoveList";
+import MakeTitle from "./makeTitle";
+import { calculatePlayer } from "./utils/calculatePlayer";
 import { getPlayer } from "./utils/getPlayer";
 import { getTile } from "./utils/getSquareValue";
-import { CheckTileProps, staticCheckTile } from "./utils/handleSquareClick";
 import { handleClick } from "./utils/handleClick";
-import { makeWinLines, winLinesInput } from "./utils/squareWinLines";
-import { xyFunction, xyToClick } from "./utils/xyToClick";
-import { xyToStyle } from "./utils/xyToStyle";
-import { bannerStart } from "../../utils/devTools/bannerStart";
-import { bannerEnd } from "../../utils/devTools/bannerEnd";
-import { calculatePlayer } from "./utils/calculatePlayer";
-import CenterThis from "../../utils/react/centerThis";
-
-import styles from "../css/tile.module.scss";
-import { devLog } from "../../utils/devTools/devLog";
+import { CheckTileProps, staticCheckTile } from "./utils/handleSquareClick";
+import { makeButtonGrid } from "./utils/makeButtonGrid";
+import { winLinesInput } from "./utils/squareWinLines";
 import anyLine from "./utils/winlines/anyLine";
-import { boardStructure } from "./interfaces/lineStructure";
-import MakeTitle from "./makeTitle";
-import { MakeMoveList } from "./makeMoveList";
-import { squareGameLayoutDiv } from "./css/squareGameLayoutDiv";
+import { xyFunction } from "./utils/xyToClick";
+import { xyToStyle } from "./utils/xyToStyle";
 
 export interface fcSquareGameProps extends winLinesInput {
   // gridSize: tileCoords;
@@ -149,6 +148,8 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
   // TODO: board History i sbeing SET using currentBoard, a stateful value.
   // So it's the most current value in each step of the history
   const changeToMove = (i) => {
+    devLog("move: ", i);
+    // devLog("move number: " + i);
     setCurrentBoard(boardHistory[i]);
   };
   const moveList = MakeMoveList({ changeToMove, boardHistory });
@@ -162,19 +163,131 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
   //
   //
   //
+  //
+  //
+  //
+  //
+
+  const populateBoard = (
+    line: tileCoords[],
+    gridSize: tileCoords,
+  ): BoardState => {
+    const winner = { line: line, player: 0 };
+    let squares: gridLayout = [];
+    for (let x = 0; x < gridSize.x; x++) {
+      let row: (number | null)[] = [];
+      for (let y = 0; y < gridSize.y; y++) {
+        row.push(null);
+      }
+      squares.push(row);
+    }
+    for (const tile of line) {
+      squares[tile.x][tile.y] = 0;
+    }
+
+    let R: BoardState = { winner, moveList: [], currentTile: line[0], squares };
+    return R;
+  };
+
+  const changeToWinner = (i) => {
+    devLog("winning line: ", i);
+
+    setCurrentBoard(populateBoard(winningLines[i], gameSetup.gridSize));
+  };
+  const winnerList = MakeMoveList({
+    changeToMove: changeToWinner,
+    boardHistory: winningLines,
+  });
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
 
   const title = MakeTitle({ currentPlayer, playerLogos });
+  // devLog(winningLines);
+
+  //
+
+  //
+  //
+  //
+  //
+  //
+
   return (
     <div style={squareGameLayoutDiv}>
       <div />
       <div>{title}</div>
       <div />
-      <div />
+      <div style={{ fontWeight: "bold" }}>
+        {PrintKeyValues(props.boardStructure)}
+      </div>
       <div>{renderGrid}</div>
-      <div>{moveList}</div>
+      {/* <div>
+        {moveList}
+        // <button
+        //   onClick={() => {
+        //     loopOverMoves(changeToMove, winnerList.length);
+        //   }}
+        // >
+        //   Replay
+        // </button>
+      </div> */}
+      <div>
+        {winnerList}
+        <button
+          onClick={() => {
+            loopOverMoves(changeToWinner, winnerList.length);
+          }}
+        >
+          Replay
+        </button>
+      </div>
     </div>
   );
 
   // return renderGrid;
 };
 export default FcSquareGame;
+
+function loopOverMoves(changeToMove: (i) => void, max: number) {
+  const recurFunction = (i: number) => {
+    pause(200);
+    changeToMove(i);
+  };
+  recursiveCallback(0, max, recurFunction);
+
+  // for (let move = 0; move < max; move++) {
+  //   // devLog("move: ", move);
+  //   // changeToMove(3);
+  //   pause(200, () => {
+  //     devLog("pause", move);
+  //   });
+  //   changeToMove(move);
+  // }
+}
+
+function recursiveCallback(i: number, max: number, callback: (number) => void) {
+  devLog("recur i: ", i, max);
+  if (i == max) {
+    //terminate
+    return;
+  } else {
+    //recur
+    callback(i);
+    return recursiveCallback(i + 1, max, callback);
+  }
+}
+// while (goOn) {
+//   // other code
+//   var [parents] = await Promise.all([
+//       listFiles(nextPageToken).then(requestParents),
+//       timeout(5000)
+//   ]);
+//   // other code
+// }

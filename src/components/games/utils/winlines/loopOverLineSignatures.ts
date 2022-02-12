@@ -1,8 +1,7 @@
-import { devLog } from "../../../../utils/devTools/devLog";
 import { boardBounds } from "../../interfaces/boardBounds";
 import {
   downDiag,
-  horzLine,
+  horizLine as horizLine,
   lineSignature,
   upDiag,
   vertLine,
@@ -10,24 +9,21 @@ import {
 import { boardStructure } from "../../interfaces/lineStructure";
 import { tileCoords } from "../../interfaces/squareGame";
 import { winLineGrid } from "../squareWinLines";
-import { getLineStructure } from "./checkStructure";
-import { makeLineFromSig } from "./makeLineFromSig";
 import { makeLinesHere } from "./makeLinesHere";
-import sigToType from "./sigToType";
 
 export function loopOverLineSignatures({
   point,
   boardStructure,
-  bounds,
+  boardMinMax,
 }: {
   point: tileCoords;
   boardStructure: boardStructure;
-  bounds: boardBounds;
+  boardMinMax: boardBounds;
 }): winLineGrid {
   /*  for each line signature, check it then make it if viable.*/
-  const SIGS: lineSignature[] = [vertLine, horzLine, downDiag, upDiag];
+  const SIGS: lineSignature[] = [vertLine, horizLine, downDiag, upDiag];
 
-  let R: tileCoords[][] = [];
+  let R: winLineGrid = [];
 
   SIGS.forEach((sig) => {
     R = R.concat(
@@ -35,7 +31,7 @@ export function loopOverLineSignatures({
         point,
         sig,
         boardStructure,
-        bounds,
+        boardMinMax,
       }),
     );
   });

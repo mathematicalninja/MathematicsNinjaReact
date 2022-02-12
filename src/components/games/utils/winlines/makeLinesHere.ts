@@ -6,29 +6,41 @@ import { tileCoords } from "../../interfaces/squareGame";
 import { winLineGrid } from "../squareWinLines";
 import { getLineStructure } from "./checkStructure";
 import { fullLine } from "./fullLine";
+import sigToType from "./sigToType";
 import { subLine } from "./subLine";
+import { testingNewLineStructure } from "./testingNewLineStructure";
 
 export function makeLinesHere({
   point,
   sig,
   boardStructure,
-  bounds,
+  boardMinMax,
 }: {
   point: tileCoords;
   sig: lineSignature;
-  // lineStructure: "fullOnly" | "subLines" | "none",
   boardStructure: boardStructure;
-  bounds: boardBounds;
+  boardMinMax: boardBounds;
 }): winLineGrid {
   // Makes line(s) (Horizontal, Vertical or Diagonal) based on the signature given and whether that signature allows only full lines, partial lines or no lines
   const lineStructure = getLineStructure({ boardStructure, sig });
-  devLog(sig, lineStructure);
-  switch (lineStructure) {
-    case "none":
-      return [];
-    case "subLines":
-      return subLine({ sig, point, bounds, boardStructure });
-    case "fullOnly":
-      return fullLine({ bounds, point, sig, boardStructure });
-  }
+  devLog(
+    `makeLinesHere [${point.x}, ${point.y}]`,
+    sigToType(sig),
+    sig,
+    lineStructure,
+  );
+  return testingNewLineStructure({
+    point,
+    sig,
+    boardStructure,
+    boardMinMax,
+  });
+  // switch (lineStructure) {
+  //   case "none":
+  //     return [];
+  //   case "subLines":
+  //     return subLine({ sig, point, bounds, boardStructure });
+  //   case "fullOnly":
+  //     return fullLine({ bounds, point, sig, boardStructure });
+  // }
 }

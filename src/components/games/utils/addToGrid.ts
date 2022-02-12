@@ -1,5 +1,5 @@
-import { bannerEnd } from "../../../utils/devTools/bannerEnd";
-import { bannerStart } from "../../../utils/devTools/bannerStart";
+import { bannerEnd } from "../../../utils/devTools/banner";
+import { bannerStart } from "../../../utils/devTools/banner";
 import { logGridValues } from "../../../utils/devTools/logGridValues";
 import { arrayStatePush } from "../../../utils/react/arrayStatePush";
 import { BoardState, gridLayout, tileCoords } from "../interfaces/squareGame";

@@ -1,8 +1,7 @@
 import { gridSizeToTileArray } from "../../../../utils/arrays/gridSizeToTileArray";
 import sortDoubleArray from "../../../../utils/arrays/sort";
-import { devLog } from "../../../../utils/devTools/devLog";
 import { isBadArray } from "../../../../utils/react/isBadArray";
-import { gridLayout, tileCoords } from "../../interfaces/squareGame";
+import { tileCoords } from "../../interfaces/squareGame";
 import { winLineGrid } from "../squareWinLines";
 
 interface diagonalsInput {
