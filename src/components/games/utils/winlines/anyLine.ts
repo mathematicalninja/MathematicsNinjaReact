@@ -1,8 +1,4 @@
 import loopOverTileGrid from "../../../../utils/arrays/loopOverTileGrid";
-import sortDoubleArray from "../../../../utils/arrays/sort";
-import { bannerEnd } from "../../../../utils/devTools/banner";
-import { bannerStart } from "../../../../utils/devTools/banner";
-import { devLog } from "../../../../utils/devTools/devLog";
 import { boardStructure } from "../../interfaces/lineStructure";
 import { tileCoords } from "../../interfaces/squareGame";
 import { winLineGrid } from "../squareWinLines";
@@ -29,9 +25,7 @@ function anyLine({
 
   let R: winLineGrid = [];
   function callback(point: tileCoords) {
-    bannerStart("anyLineCallback", `[${point.x}, ${point.y}]`);
     // `---callback start [${point.x}, ${point.y}]---`);
-    // devLog("POINT: ", point);
     R = R.concat(
       loopOverLineSignatures({
         // gridSize is 1-indexed, so max is off by 1
@@ -40,8 +34,6 @@ function anyLine({
         point,
       }),
     );
-    bannerEnd("anyLineCallback", `[${point.x}, ${point.y}]`);
-    // devLog(`---callback end   [${point.x}, ${point.y}]---`);
   }
   loopOverTileGrid({ gridSize: gridSize, callFunction: callback });
   // return sortDoubleArray(R);

@@ -1,17 +1,10 @@
-import {
-  bannerEnd,
-  bannerNote,
-  bannerStart,
-} from "../../../../utils/devTools/banner";
-import { devKeyValue } from "../../../../utils/devTools/devKeyValue";
-import { devLog } from "../../../../utils/devTools/devLog";
 import { max } from "../../../../utils/maths/max";
 import { min } from "../../../../utils/maths/min";
 import { boardBounds } from "../../interfaces/boardBounds";
 import { lineSignature } from "../../interfaces/lineSignature";
 import { boardStructure } from "../../interfaces/lineStructure";
 import { tileCoords } from "../../interfaces/squareGame";
-import { winLineGrid, winLineSingle } from "../squareWinLines";
+import { winLineGrid } from "../squareWinLines";
 import sigToType from "./sigToType";
 
 export function testingNewLineStructure({
@@ -25,15 +18,10 @@ export function testingNewLineStructure({
   boardStructure: boardStructure;
   boardMinMax: boardBounds;
 }): winLineGrid {
-  devKeyValue("point", `[${point.x},${point.y}]`);
-
-  // devKeyValue("min coord", `[${boardMinMax.min.x},${boardMinMax.min.y}]`);
-  // devKeyValue("max coord", `[${boardMinMax.max.x},${boardMinMax.max.y}]`);
   let min: number, max: number;
   let lineType: "fullOnly" | "subLines" | "none";
   let xMultiplier: 0 | 1;
   let yMultiplier: 0 | 1 | -1;
-  devKeyValue(`(${sig.horizontal},${sig.vertical})`, sigToType(sig));
   switch (sigToType(sig)) {
     // Sets the min and max depending on the line type
     case "horizontal":
@@ -61,32 +49,12 @@ export function testingNewLineStructure({
       break;
   }
   if (lineType == "none") {
-    devKeyValue("lineType", "none");
     return [];
   }
   let R: winLineGrid = [];
-  devKeyValue("min length", min);
-  devKeyValue("max length", max);
   // -----------------loop-----------------
   for (let length = min; length <= max; length++) {
     //   // looping between the min and max value
-    devKeyValue("length", length);
-
-    if (
-      //line is in bounds
-      !checkLineIsInBounds({
-        point,
-        length,
-        xMultiplier,
-        yMultiplier,
-        boardMinMax,
-      })
-    ) {
-      continue;
-    }
-    //   const D = makeLineFromSig({ length, point, sig });
-    //   R = R.concat([D]);
-
     if (lineType == "fullOnly") {
       // checks if line touches the edges only if the line needs to be a full line
       if (
@@ -102,6 +70,19 @@ export function testingNewLineStructure({
       }
     }
 
+    if (
+      //line is in bounds
+      !checkLineIsInBounds({
+        point,
+        length,
+        xMultiplier,
+        yMultiplier,
+        boardMinMax,
+      })
+    ) {
+      continue;
+    }
+
     //
 
     // const D = makeLineFromSig({ length, point, sig });
@@ -112,7 +93,6 @@ export function testingNewLineStructure({
   // -----------------loop-----------------
 
   return R;
-  bannerEnd("testingNewLineStructure");
 }
 
 function makeLine({
@@ -126,13 +106,6 @@ function makeLine({
   xMultiplier: 0 | 1;
   yMultiplier: 0 | 1 | -1;
 }): tileCoords[] {
-  devLog(
-    `%cline%c at [${point.x},${point.y}] length %c${length}%c sig: (${xMultiplier},${yMultiplier})`,
-    "color: red",
-    "",
-    "color: teal",
-    "",
-  );
   let Line: tileCoords[] = [];
   for (let i = 0; i < length; i++) {
     const x = point.x + i * xMultiplier;
@@ -141,6 +114,7 @@ function makeLine({
   }
   return Line;
 }
+
 function checkTouchesEdges({
   point,
   length,
@@ -160,11 +134,10 @@ function checkTouchesEdges({
     xMultiplier,
     yMultiplier,
   });
-
-  let xMinCheck: boolean = yMin == boardMinMax.min.y;
-  let xMaxCheck: boolean = yMax == boardMinMax.max.y;
-  let yMinCheck: boolean = xMin == boardMinMax.min.x;
-  let yMaxCheck: boolean = xMax == boardMinMax.max.x;
+  let xMinCheck: boolean = xMin == boardMinMax.min.x;
+  let xMaxCheck: boolean = xMax == boardMinMax.max.x;
+  let yMinCheck: boolean = yMin == boardMinMax.min.y;
+  let yMaxCheck: boolean = yMax == boardMinMax.max.y;
 
   if (xMultiplier == 0) {
     //no horizontal movement i.e. vertical line, so only y checks
@@ -216,10 +189,6 @@ function checkLineIsInBounds({
     yMultiplier,
   });
 
-  // devKeyValue("xMin", `${xMin}, ${boardMinMax.min.x}`);
-  // devKeyValue("xMax", `${xMax}, ${boardMinMax.max.x}`);
-  // devKeyValue("yMin", `${yMin}, ${boardMinMax.min.y}`);
-  // devKeyValue("yMax", `${yMax}, ${boardMinMax.max.y}`);
   // case: xMax < grid x max
   const X: boolean = xMax <= boardMinMax.max.x;
 

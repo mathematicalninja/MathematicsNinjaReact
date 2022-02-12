@@ -45,7 +45,27 @@ interface TTTProps {
 }
 
 const FTTP: React.FC = () => {
-  return <></>;
+  return (
+    <FcSquareGame
+      //TODO: switch all gridSize's to being type gridSize, which is 1-indexed
+      gridSize={{ x: 5, y: 5 }}
+      CheckTile={staticCheckTile}
+      //
+      boardStructure={{
+        diagonalType: "fullOnly",
+        minDiagonal: 3,
+        maxDiagonal: 5,
+
+        HorizontalType: "fullOnly",
+        minHorizontal: 3,
+        maxHorizontal: 5,
+
+        verticalType: "fullOnly",
+        minVertical: 3,
+        maxVertical: 4,
+      }}
+    />
+  );
 };
 //   // function FTTP(props: { gridSize?: number[] }) {
 //   const TicTacToe = (

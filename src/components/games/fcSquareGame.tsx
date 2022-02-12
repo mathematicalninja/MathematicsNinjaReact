@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { bannerEnd } from "../../utils/devTools/banner";
-import { bannerStart } from "../../utils/devTools/banner";
 import { devLog } from "../../utils/devTools/devLog";
 import pause from "../../utils/other/pause";
 import {
@@ -53,7 +51,6 @@ function newBoard({
 }
 
 const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
-  bannerStart("FcSquareGame");
   const [gameSetup, setGameSetup] = useState<gameSetupI>({
     maxPlayers: 2,
     gridSize: props.gridSize,
@@ -74,8 +71,6 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
       gridSize: gameSetup.gridSize,
     }),
   );
-  devLog("Winning Lines:");
-  devLog(winningLines);
   const [blankBoard, setBlankBoard] = useState<BoardState>({
     squares: Array(props.gridSize.x).fill(Array(props.gridSize.y).fill(null)),
     currentTile: undefined,
@@ -118,8 +113,6 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
     currentBoard.moveList,
     playerLogos,
   ).curr;
-
-  bannerEnd("FcSquareGame");
 
   const renderGrid = makeButtonGrid({
     xMax: gameSetup.gridSize.x,
@@ -225,20 +218,20 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
       <div>{title}</div>
       <div />
       <div style={{ fontWeight: "bold" }}>
-        {PrintKeyValues(props.boardStructure)}
+        {/* {PrintKeyValues(props.boardStructure)} */}
       </div>
       <div>{renderGrid}</div>
-      {/* <div>
-        {moveList}
-        // <button
-        //   onClick={() => {
-        //     loopOverMoves(changeToMove, winnerList.length);
-        //   }}
-        // >
-        //   Replay
-        // </button>
-      </div> */}
       <div>
+        {moveList}
+        {/* <button
+          onClick={() => {
+            loopOverMoves(changeToMove, winnerList.length);
+          }}
+        >
+          Replay
+        </button> */}
+      </div>
+      {/* <div>
         {winnerList}
         <button
           onClick={() => {
@@ -247,7 +240,7 @@ const FcSquareGame: React.FC<fcSquareGameProps> = (props) => {
         >
           Replay
         </button>
-      </div>
+      </div> */}
     </div>
   );
 

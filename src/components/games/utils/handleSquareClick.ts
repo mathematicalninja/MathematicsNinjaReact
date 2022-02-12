@@ -1,6 +1,4 @@
-import { bannerEnd } from "../../../utils/devTools/banner";
-import { bannerStart } from "../../../utils/devTools/banner";
-import { devLog } from "../../../utils/devTools/devLog";
+import { bannerEnd, bannerStart } from "../../../utils/devTools/banner";
 import { logGridValues } from "../../../utils/devTools/logGridValues";
 import { BoardState, tileCoords } from "../interfaces/squareGame";
 import { getTile } from "./getSquareValue";
@@ -11,6 +9,18 @@ export interface CheckTileProps {
   y: number;
 }
 
+export function yIndependentFallingCheckTile({
+  board,
+  x,
+  y,
+}: CheckTileProps): tileCoords | null {
+  return fallingCheckTile({
+    board,
+    x,
+    y: 0,
+  });
+}
+
 /**
  * if this tile is full, returns null, otherwise returns the {x, y} of the lowest empty tile in the column
  */
@@ -19,7 +29,6 @@ export function fallingCheckTile({
   x,
   y,
 }: CheckTileProps): tileCoords | null {
-  devLog({ x, y });
   // note the use of n+!, due to HTML grid Layout rendering from the top right
   const val = getTile({ board: board, x: x, y: y });
   if (val !== null) {

@@ -6,7 +6,10 @@ const keyColor = "color: powderblue";
 const valueColor = "color: orchid";
 const clearColor = "";
 
-export function devKeyValue(key: string, value: string | number) {
+export function devKeyValue(
+  key: string | number,
+  value: string | number | boolean | (number | string | boolean)[],
+) {
   if (!devCheck()) {
     return;
   }
