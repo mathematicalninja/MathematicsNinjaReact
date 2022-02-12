@@ -10,16 +10,18 @@ const C: CSSProperties = { color: "powderblue" };
 // const C: CSSProperties = { color: "orange" };
 const valueText = `color: ${C.color}`;
 
-const redText = " color: palevioletred;";
+const redText = "color: palevioletred;";
 // const greenText = " color: palegreen;";
-const greenText = " color: olivedrab;";
+const greenText = "color: olivedrab;";
+const defaultNote = "color: orchid";
+
 const clearStyles = "";
 
 export function bannerNote(
   functionName: string,
-  note: string,
-  noteStyle: string,
   value?: string,
+  note?: string,
+  noteStyle?: string,
 ) {
   if (!devCheck()) {
     return;
@@ -30,16 +32,16 @@ export function bannerNote(
     functionText,
     valueText,
     clearStyles,
-    noteStyle,
+    noteStyle ? noteStyle : defaultNote,
     clearStyles,
   );
   return;
 }
 
 export function bannerStart(functionName: string, value?: string) {
-  bannerNote(functionName, "start", greenText, value);
+  bannerNote(functionName, value, "start", greenText);
 }
 
 export function bannerEnd(functionName: string, value?: string) {
-  bannerNote(functionName, "end", redText, value);
+  bannerNote(functionName, value, "end", redText);
 }
