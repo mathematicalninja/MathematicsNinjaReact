@@ -1,14 +1,13 @@
 export interface boardStructure {
   diagonalType: "fullOnly" | "subLines" | "none";
-  HorizontalType: "fullOnly" | "subLines" | "none";
-  verticalType: "fullOnly" | "subLines" | "none";
+  minDiagonal: number;
+  maxDiagonal: number;
 
+  HorizontalType: "fullOnly" | "subLines" | "none"; //TODO decapitalise HorizontalType
   minHorizontal: number;
   maxHorizontal: number;
 
+  verticalType: "fullOnly" | "subLines" | "none";
   minVertical: number;
   maxVertical: number;
-
-  minDiagonal: number;
-  maxDiagonal: number;
 }
