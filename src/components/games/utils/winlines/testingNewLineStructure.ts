@@ -82,7 +82,7 @@ export function testingNewLineStructure({
         boardMinMax,
       })
     ) {
-      break;
+      continue;
     }
     //   const D = makeLineFromSig({ length, point, sig });
     //   R = R.concat([D]);
@@ -98,7 +98,7 @@ export function testingNewLineStructure({
           boardMinMax,
         })
       ) {
-        break;
+        continue;
       }
     }
 
@@ -216,10 +216,10 @@ function checkLineIsInBounds({
     yMultiplier,
   });
 
-  devKeyValue("xMin", `${xMin}, ${boardMinMax.min.x}`);
-  devKeyValue("xMax", `${xMax}, ${boardMinMax.max.x}`);
-  devKeyValue("yMin", `${yMin}, ${boardMinMax.min.y}`);
-  devKeyValue("yMax", `${yMax}, ${boardMinMax.max.y}`);
+  // devKeyValue("xMin", `${xMin}, ${boardMinMax.min.x}`);
+  // devKeyValue("xMax", `${xMax}, ${boardMinMax.max.x}`);
+  // devKeyValue("yMin", `${yMin}, ${boardMinMax.min.y}`);
+  // devKeyValue("yMax", `${yMax}, ${boardMinMax.max.y}`);
   // case: xMax < grid x max
   const X: boolean = xMax <= boardMinMax.max.x;
 
