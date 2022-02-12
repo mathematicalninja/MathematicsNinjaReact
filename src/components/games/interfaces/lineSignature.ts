@@ -8,7 +8,7 @@ export const vertLine: lineSignature = {
   horizontal: 0,
 };
 
-export const horzLine: lineSignature = {
+export const horizLine: lineSignature = {
   vertical: 0,
   horizontal: 1,
 };
@@ -20,5 +20,5 @@ export const downDiag: lineSignature = {
 
 export const upDiag: lineSignature = {
   vertical: -1,
-  horizontal: 0,
+  horizontal: 1,
 };
