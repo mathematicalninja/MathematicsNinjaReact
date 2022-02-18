@@ -57,12 +57,12 @@ const FTTP: React.FC = () => {
         maxDiagonal: 5,
 
         HorizontalType: "fullOnly",
-        minHorizontal: 3,
+        minHorizontal: 5,
         maxHorizontal: 5,
 
         verticalType: "fullOnly",
-        minVertical: 3,
-        maxVertical: 4,
+        minVertical: 5,
+        maxVertical: 5,
       }}
     />
   );
