@@ -26,7 +26,7 @@ const SelfPortrait: React.FC<SelfPortraitProps> = ({
       }}
     >
       <img
-        src="me.png"
+        src="/me.png"
         alt="self portrait of me"
         style={{
           height: sizes.bannerHeight,
