@@ -1,5 +1,5 @@
 import React from "react";
-import { getPlayer } from "./utils/getPlayer";
+import { getPlayer } from "../utils/getPlayer";
 
 interface makeTitleProps {
   currentPlayer;

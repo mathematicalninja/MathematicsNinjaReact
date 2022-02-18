@@ -4,7 +4,7 @@ import React from "react";
 
 import squareGame from "./squareGame";
 
-import Disc from "./components/Disc";
+import Disc from "../components/Disc";
 
 import type { SquareGameProps } from "./squareGame";
 import type { SquareGameState } from "./squareGame";

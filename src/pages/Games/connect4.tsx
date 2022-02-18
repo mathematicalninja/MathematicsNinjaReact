@@ -1,7 +1,7 @@
 import React from "react";
 import FcSquareGame, {
   fcSquareGameProps,
-} from "../../components/games/fcSquareGame";
+} from "../../components/games/global/fcSquareGame";
 import { yIndependentFallingCheckTile } from "../../components/games/utils/handleSquareClick";
 import FullPageBody from "../../PageTypes/FullPageBody";
 

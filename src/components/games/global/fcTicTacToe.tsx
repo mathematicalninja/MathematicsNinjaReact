@@ -1,11 +1,11 @@
 import React from "react";
 import FcSquareGame, { fcSquareGameProps } from "./fcSquareGame";
-import { tileCoords } from "./interfaces/squareGame";
+import { tileCoords } from "../interfaces/squareGame";
 import {
   staticCheckTile,
   fallingCheckTile,
   CheckTileProps,
-} from "./utils/handleSquareClick";
+} from "../utils/handleSquareClick";
 
 interface fcTicTacToeProps extends fcSquareGameProps {
   // TODO: add in prop for gridsize and a Boolean for minor diagonals

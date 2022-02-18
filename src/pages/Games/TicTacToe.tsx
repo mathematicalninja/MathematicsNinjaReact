@@ -1,9 +1,9 @@
-import TicTac from "../../components/games/TicTac";
+// import TicTac from "../../components/games/__oudated/TicTac";
 import BlogClass from "../../components/blogClass/BlogClass";
 import FullPageBody from "../../PageTypes/FullPageBody";
 import React from "react";
-import FcSquareGame from "../../components/games/fcSquareGame";
-import FcTicTacToe from "../../components/games/fcTicTacToe";
+import FcSquareGame from "../../components/games/global/fcSquareGame";
+import FcTicTacToe from "../../components/games/global/fcTicTacToe";
 import { staticCheckTile } from "../../components/games/utils/handleSquareClick";
 
 // interface TicTacPageInterface{
