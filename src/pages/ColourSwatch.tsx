@@ -37,7 +37,8 @@ const FCColourSwatch: React.FC<FCColourSwatchProps> = ({}) => {
           width: "50vw",
         }}
       >
-        The current colour is: {click.colour} {click.value}
+        The current colour is: "{click.colour} {click.value}"{" "}
+        {getColourString({ colour: click.colour, value: click.value })}
       </div>
       <colourClickContext.Provider value={{ click, setClick }}>
         {getSwatchTable(click)}
