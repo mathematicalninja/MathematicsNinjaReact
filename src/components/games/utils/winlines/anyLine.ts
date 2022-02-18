@@ -1,4 +1,5 @@
 import loopOverTileGrid from "../../../../utils/arrays/loopOverTileGrid";
+import sortDoubleArray from "../../../../utils/arrays/sort";
 import { boardStructure } from "../../interfaces/lineStructure";
 import { tileCoords } from "../../interfaces/squareGame";
 import { winLineGrid } from "../squareWinLines";
@@ -36,7 +37,7 @@ function anyLine({
     );
   }
   loopOverTileGrid({ gridSize: gridSize, callFunction: callback });
-  // return sortDoubleArray(R);
-  return R;
+  return sortDoubleArray(R);
+  // return R;
 }
 export default anyLine;
