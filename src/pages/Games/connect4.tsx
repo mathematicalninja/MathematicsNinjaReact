@@ -1,9 +1,9 @@
 import React from "react";
 import FcSquareGame, {
   fcSquareGameProps,
-} from "../components/games/fcSquareGame";
-import { yIndependentFallingCheckTile } from "../components/games/utils/handleSquareClick";
-import FullPageBody from "../PageTypes/FullPageBody";
+} from "../../components/games/fcSquareGame";
+import { yIndependentFallingCheckTile } from "../../components/games/utils/handleSquareClick";
+import FullPageBody from "../../PageTypes/FullPageBody";
 
 interface TTTProps extends fcSquareGameProps {
   // gridSize: [number, number];

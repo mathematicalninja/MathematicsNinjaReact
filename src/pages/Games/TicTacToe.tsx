@@ -1,10 +1,10 @@
-import TicTac from "../components/games/TicTac";
-import BlogClass from "../components/blogClass/BlogClass";
-import FullPageBody from "../PageTypes/FullPageBody";
+import TicTac from "../../components/games/TicTac";
+import BlogClass from "../../components/blogClass/BlogClass";
+import FullPageBody from "../../PageTypes/FullPageBody";
 import React from "react";
-import FcSquareGame from "../components/games/fcSquareGame";
-import FcTicTacToe from "../components/games/fcTicTacToe";
-import { staticCheckTile } from "../components/games/utils/handleSquareClick";
+import FcSquareGame from "../../components/games/fcSquareGame";
+import FcTicTacToe from "../../components/games/fcTicTacToe";
+import { staticCheckTile } from "../../components/games/utils/handleSquareClick";
 
 // interface TicTacPageInterface{
 //     A:FullPageBody

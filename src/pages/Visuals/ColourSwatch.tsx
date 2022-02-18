@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import ColourSwatchGrid from "../components/colourThemes/ColourSwatchGrid";
+import ColourSwatchGrid from "../../components/colourThemes/ColourSwatchGrid";
 // import ThemeSwapControls from "../components/colourThemes/ThemeSwapControls"
-import BlogClass from "../components/blogClass/BlogClass";
-import themes from "../styles/ThemeTemplate";
+import BlogClass from "../../components/blogClass/BlogClass";
+import themes from "../../styles/ThemeTemplate";
 import {
   colourSpecifier,
   colourVariable,
@@ -10,9 +10,9 @@ import {
   colourVariableSet,
   themeColoursList,
   themeNumbersList,
-} from "../styles/themeTyping";
-import themeContext from "../styles/utils/ThemeProvider";
-import colourClickContext from "../styles/utils/ColourClickProvider";
+} from "../../styles/themeTyping";
+import themeContext from "../../styles/utils/ThemeProvider";
+import colourClickContext from "../../styles/utils/ColourClickProvider";
 
 // import "../components/colourThemes/ColourSwatch.scss"
 

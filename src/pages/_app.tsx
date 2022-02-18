@@ -8,7 +8,7 @@ import CSSVariableApplicator from "../core/wrappers/CSSVariableApplicator";
 import themes from "../styles/ThemeTemplate";
 // const ThemeContext = React.createContext(themes.Default);
 
-import "./NGU.css";
+import "./Testing/NGU.css";
 import themeContext from "../styles/utils/ThemeProvider";
 
 const ThemeContext = themeContext;

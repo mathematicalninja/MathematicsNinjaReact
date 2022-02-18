@@ -1,7 +1,7 @@
 import React from "react";
-import FcSquareGame from "../components/games/fcSquareGame";
-import SquareGridBasedGame from "../components/games/squareGridBasedGame";
-import { staticCheckTile } from "../components/games/utils/handleSquareClick";
+import FcSquareGame from "../../components/games/fcSquareGame";
+import SquareGridBasedGame from "../../components/games/squareGridBasedGame";
+import { staticCheckTile } from "../../components/games/utils/handleSquareClick";
 
 interface TestGridGameProps {}
 
