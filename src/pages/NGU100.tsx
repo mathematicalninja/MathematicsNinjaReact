@@ -15,7 +15,7 @@ import {
 import StringTableDisplay, {
   tableCols,
   TableData,
-} from "../components/global/StringTableDisplay";
+} from "../utils/react/StringTableDisplay";
 // import // numberTableDataUnit,
 // // stringTableData,
 // "../components/global/StringTableDisplay";

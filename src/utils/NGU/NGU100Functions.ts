@@ -3,7 +3,7 @@ import {
   // numberTableDataUnit,
   // stringTableData,
   TableData,
-} from "../../components/global/StringTableDisplay";
+} from "../react/StringTableDisplay";
 import { getPowers } from "./NGU100Init";
 
 interface PowerProps {
