@@ -1,7 +1,7 @@
 import { max } from "../../../utils/maths/max";
 import { min } from "../../../utils/maths/min";
 import { tileCoords } from "../interfaces/squareGame";
-import { checkMaxLength, checkMinLength } from "./checkboardMinMax";
+import { checkMaxLength, checkMinLength } from "./checkLengthBounds";
 import diagonals from "./winlines/diagonals";
 import horizontal from "./winlines/horizontal";
 import vertical from "./winlines/vertical";
