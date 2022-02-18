@@ -1,4 +1,4 @@
-import { logo } from "../gameParts/playerLogos";
+import { logo } from "../components/playerLogos";
 
 export function getPlayer({
   player,

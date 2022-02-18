@@ -1,5 +1,5 @@
 import React from "react";
-import { textSizes } from "./utils/textSizes";
+import { textSizes } from "../utils/textSizes";
 
 interface BannerMarginProps extends textSizes {
   // width: string;

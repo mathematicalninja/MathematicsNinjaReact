@@ -5,17 +5,17 @@ import {
   AugMaxToString,
   DisplayItem,
   NGU100TableData,
-} from "../utils/NGU/NGU100Functions";
+} from "../../utils/NGU/NGU100Functions";
 import {
   AugmentNames,
   get100,
   getPowers,
   laserString,
-} from "../utils/NGU/NGU100Init";
+} from "../../utils/NGU/NGU100Init";
 import StringTableDisplay, {
   tableCols,
   TableData,
-} from "../components/global/StringTableDisplay";
+} from "../../utils/react/StringTableDisplay";
 // import // numberTableDataUnit,
 // // stringTableData,
 // "../components/global/StringTableDisplay";

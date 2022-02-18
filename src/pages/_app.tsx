@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 // import App from "../core/App";
 import { AppProps } from "next/app";
 import "../styles/mainStyle.scss";
-import PageHeader from "../core/header/PageHeader";
+import PageHeader from "../core/header/global/PageHeader";
 import CSSVariableApplicator from "../core/wrappers/CSSVariableApplicator";
 
 import themes from "../styles/ThemeTemplate";
 // const ThemeContext = React.createContext(themes.Default);
 
-import "./NGU.css";
+import "./Testing/NGU.css";
 import themeContext from "../styles/utils/ThemeProvider";
 
 const ThemeContext = themeContext;

@@ -1,5 +1,5 @@
 import React from "react";
-import BlogClass from "../components/blogClass/BlogClass";
+import BlogClass from "../../components/blogClass/BlogClass";
 
 interface FullBodyPageProps {
   // TODO: change this any to the "React any"

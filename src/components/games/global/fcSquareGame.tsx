@@ -1,27 +1,27 @@
 import React, { useState } from "react";
-import { devLog } from "../../utils/devTools/devLog";
-import pause from "../../utils/other/pause";
+import { devLog } from "../../../utils/devTools/devLog";
+import pause from "../../../utils/other/pause";
 import {
   arrayStatePush,
   historyArrayStatePush,
-} from "../../utils/react/arrayStatePush";
-import PrintKeyValues from "../../utils/react/printKeyValues";
-import { squareGameLayoutDiv } from "./css/squareGameLayoutDiv";
-import allPlayerLogos from "./gameParts/playerLogos";
-import { boardStructure } from "./interfaces/lineStructure";
-import { BoardState, gridLayout, tileCoords } from "./interfaces/squareGame";
-import { MakeMoveList } from "./makeMoveList";
-import MakeTitle from "./makeTitle";
-import { calculatePlayer } from "./utils/calculatePlayer";
-import { getPlayer } from "./utils/getPlayer";
-import { getTile } from "./utils/getSquareValue";
-import { handleClick } from "./utils/handleClick";
-import { CheckTileProps, staticCheckTile } from "./utils/handleSquareClick";
-import { makeButtonGrid } from "./utils/makeButtonGrid";
-import { winLinesInput } from "./utils/squareWinLines";
-import anyLine from "./utils/winlines/anyLine";
-import { xyFunction } from "./utils/xyToClick";
-import { xyToStyle } from "./utils/xyToStyle";
+} from "../../../utils/react/arrayStatePush";
+import PrintKeyValues from "../../../utils/react/printKeyValues";
+import { squareGameLayoutDiv } from "../css/squareGameLayoutDiv";
+import allPlayerLogos from "../components/playerLogos";
+import { boardStructure } from "../interfaces/lineStructure";
+import { BoardState, gridLayout, tileCoords } from "../interfaces/squareGame";
+import { MakeMoveList } from "../components/makeMoveList";
+import MakeTitle from "../components/makeTitle";
+import { calculatePlayer } from "../utils/calculatePlayer";
+import { getPlayer } from "../utils/getPlayer";
+import { getTile } from "../utils/getSquareValue";
+import { handleClick } from "../utils/handleClick";
+import { CheckTileProps, staticCheckTile } from "../utils/handleSquareClick";
+import { makeButtonGrid } from "../utils/makeButtonGrid";
+import { winLinesInput } from "../utils/squareWinLines";
+import anyLine from "../utils/winlines/anyLine";
+import { xyFunction } from "../utils/xyToClick";
+import { xyToStyle } from "../utils/xyToStyle";
 
 export interface fcSquareGameProps extends winLinesInput {
   // gridSize: tileCoords;

@@ -1,10 +1,10 @@
-import TicTac from "../components/games/TicTac";
-import BlogClass from "../components/blogClass/BlogClass";
-import FullPageBody from "../PageTypes/FullPageBody";
+// import TicTac from "../../components/games/__oudated/TicTac";
+import BlogClass from "../../components/blogClass/BlogClass";
+import FullPageBody from "../../core/wrappers/FullPageBody";
 import React from "react";
-import FcSquareGame from "../components/games/fcSquareGame";
-import FcTicTacToe from "../components/games/fcTicTacToe";
-import { staticCheckTile } from "../components/games/utils/handleSquareClick";
+import FcSquareGame from "../../components/games/global/fcSquareGame";
+import FcTicTacToe from "../../components/games/global/fcTicTacToe";
+import { staticCheckTile } from "../../components/games/utils/handleSquareClick";
 
 // interface TicTacPageInterface{
 //     A:FullPageBody
@@ -57,12 +57,12 @@ const FTTP: React.FC = () => {
         maxDiagonal: 5,
 
         HorizontalType: "fullOnly",
-        minHorizontal: 3,
+        minHorizontal: 5,
         maxHorizontal: 5,
 
         verticalType: "fullOnly",
-        minVertical: 3,
-        maxVertical: 4,
+        minVertical: 5,
+        maxVertical: 5,
       }}
     />
   );

@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { textSizes } from "./utils/textSizes";
+import { textSizes } from "../utils/textSizes";
 
 export interface SelfPortraitProps {
   className?: string;
@@ -26,7 +26,7 @@ const SelfPortrait: React.FC<SelfPortraitProps> = ({
       }}
     >
       <img
-        src="me.png"
+        src="/me.png"
         alt="self portrait of me"
         style={{
           height: sizes.bannerHeight,
