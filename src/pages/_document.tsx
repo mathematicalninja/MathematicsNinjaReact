@@ -1,7 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 // import "./index.scss";
-import App from "../core/App";
+// import App from "../core/App";
 
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 // ========================================
