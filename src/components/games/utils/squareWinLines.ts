@@ -1,16 +1,14 @@
-import { devLog } from "../../../utils/devTools/devLog";
 import { max } from "../../../utils/maths/max";
 import { min } from "../../../utils/maths/min";
-import { gridLayout, tileCoords } from "../interfaces/squareGame";
+import { tileCoords } from "../interfaces/squareGame";
 import { checkMaxLength, checkMinLength } from "./checkLengthBounds";
-import { isBadArray } from "../../../utils/react/isBadArray";
+import diagonals from "./winlines/diagonals";
 import horizontal from "./winlines/horizontal";
 import vertical from "./winlines/vertical";
-import diagonals from "./winlines/diagonals";
 
 // TODO: doesn't account for minimun Vertical or Horizontal line length
 
-interface winLineSingle extends Array<tileCoords> {}
+export interface winLineSingle extends Array<tileCoords> {}
 export interface winLineGrid extends Array<winLineSingle> {}
 
 export interface winLinesInput {
@@ -177,6 +175,5 @@ export function makeWinLines({
   //   }
   // }
   let R: winLineGrid = winLines.concat(hWin, vWin, dWin);
-  // devLog(R);
   return R;
 }

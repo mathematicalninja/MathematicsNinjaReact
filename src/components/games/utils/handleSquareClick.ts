@@ -1,14 +1,24 @@
-import { bannerEnd } from "../../../utils/devTools/bannerEnd";
-import { bannerStart } from "../../../utils/devTools/bannerStart";
+import { bannerEnd, bannerStart } from "../../../utils/devTools/banner";
 import { logGridValues } from "../../../utils/devTools/logGridValues";
-import { BoardState, squareWinner, tileCoords } from "../interfaces/squareGame";
+import { BoardState, tileCoords } from "../interfaces/squareGame";
 import { getTile } from "./getSquareValue";
-import { winLineGrid } from "./squareWinLines";
 
 export interface CheckTileProps {
   board: BoardState;
   x: number;
   y: number;
+}
+
+export function yIndependentFallingCheckTile({
+  board,
+  x,
+  y,
+}: CheckTileProps): tileCoords | null {
+  return fallingCheckTile({
+    board,
+    x,
+    y: 0,
+  });
 }
 
 /**
@@ -19,7 +29,6 @@ export function fallingCheckTile({
   x,
   y,
 }: CheckTileProps): tileCoords | null {
-  console.log({ x, y });
   // note the use of n+!, due to HTML grid Layout rendering from the top right
   const val = getTile({ board: board, x: x, y: y });
   if (val !== null) {

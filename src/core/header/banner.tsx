@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import BannerMargin from "./BannerMargin";
 import { getBannerSizeByHeight } from "./utils/getBannerSizes";
 import { textSizes } from "./utils/textSizes";
@@ -13,9 +13,12 @@ export interface BannerProps {
 
 const MathsStyle = {};
 const IsStyle = {};
-const ArtStyle = {
+const ArtStyle: CSSProperties = {
   fontFamily: "DancingScript",
   color: "var(--Accent-1)",
+  // outlineColor: "var(--Accent-1)",
+  textShadow:
+    "-1px -1px 0 #640c4e, 1px -1px 0 #640c4e, -1px 1px 0 #640c4e, 1px 1px 0 #640c4e", //FIXME: not zoom independent
 };
 const layoutStyle = {
   display: "grid",
