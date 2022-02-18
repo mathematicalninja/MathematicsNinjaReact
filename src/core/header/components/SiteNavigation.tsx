@@ -1,8 +1,8 @@
 // import "./SiteNavigation.scss"
 
 import React from "react";
-import { menuItemsInterface } from "./menuItems";
-import menuItems from "./menuItems";
+import { menuItemsInterface } from "../menuItems";
+import menuItems from "../menuItems";
 import Link from "next/link";
 
 export interface SiteNavigationProps {

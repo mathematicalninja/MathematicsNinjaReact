@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { textSizes } from "./utils/textSizes";
+import { textSizes } from "../utils/textSizes";
 
 export interface SelfPortraitProps {
   className?: string;

@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
-import BannerMargin from "./BannerMargin";
-import { getBannerSizeByHeight } from "./utils/getBannerSizes";
-import { textSizes } from "./utils/textSizes";
+import BannerMargin from "../components/BannerMargin";
+import { getBannerSizeByHeight } from "../utils/getBannerSizes";
+import { textSizes } from "../utils/textSizes";
 
 export interface BannerProps {
   className?: string;

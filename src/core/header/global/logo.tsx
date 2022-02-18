@@ -1,7 +1,7 @@
 import React from "react";
 // import "./logo.scss";
-import Icon from "../testIcon";
-import { textSizes } from "./utils/textSizes";
+import Icon from "../assets/testIcon";
+import { textSizes } from "../utils/textSizes";
 
 export interface logoProps {
   className?: string;

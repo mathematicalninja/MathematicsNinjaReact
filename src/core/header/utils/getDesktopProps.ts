@@ -1,4 +1,4 @@
-import { desktopHeaderProps } from "../desktopHeader";
+import { desktopHeaderProps } from "../global/desktopHeader";
 import { getBannerSizeByHeight } from "./getBannerSizes";
 import {
   // getBannerSizeByWidth,

@@ -1,10 +1,10 @@
 import React from "react";
 import Banner from "./banner";
-import choosePage from "./choosePage";
+import choosePage from "../utils/choosePage";
 import DesktopHeader from "./desktopHeader";
 import Logo from "./logo";
-import SelfPortrait from "./SelfPortrait";
-import SiteNavigation from "./SiteNavigation";
+import SelfPortrait from "../assets/SelfPortrait";
+import SiteNavigation from "../components/SiteNavigation";
 
 interface PageHeaderProps {
   layout: "desktop" | "mobile";

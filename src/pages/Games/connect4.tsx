@@ -3,7 +3,7 @@ import FcSquareGame, {
   fcSquareGameProps,
 } from "../../components/games/global/fcSquareGame";
 import { yIndependentFallingCheckTile } from "../../components/games/utils/handleSquareClick";
-import FullPageBody from "../../PageTypes/FullPageBody";
+import FullPageBody from "../../core/wrappers/FullPageBody";
 
 interface TTTProps extends fcSquareGameProps {
   // gridSize: [number, number];

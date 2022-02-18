@@ -1,10 +1,12 @@
 import React from "react";
 import Banner, { BannerProps } from "./banner";
 import Logo, { logoProps } from "./logo";
-import SelfPortrait, { SelfPortraitProps } from "./SelfPortrait";
-import SiteNavigation, { SiteNavigationProps } from "./SiteNavigation";
+import SelfPortrait, { SelfPortraitProps } from "../assets/SelfPortrait";
+import SiteNavigation, {
+  SiteNavigationProps,
+} from "../components/SiteNavigation";
 
-import { getDesktopProps } from "./utils/getDesktopProps";
+import { getDesktopProps } from "../utils/getDesktopProps";
 
 export interface desktopHeaderProps {
   height?: number;

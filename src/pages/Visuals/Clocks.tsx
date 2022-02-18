@@ -3,7 +3,7 @@ import React from "react";
 import RoundClock from "../../components/clocks/RoundClock";
 import MiniClock from "../../components/clocks/MiniClock";
 import BlogClass from "../../components/blogClass/BlogClass";
-import FullPageBody from "../../PageTypes/FullPageBody";
+import FullPageBody from "../../core/wrappers/FullPageBody";
 import { useTime } from "../../utils/other/useTime";
 
 const NextFCClocks: React.FC<FCClocksProps> = ({}) => {

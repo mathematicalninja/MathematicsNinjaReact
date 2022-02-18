@@ -1,7 +1,7 @@
 import React from "react";
-import Banner from "../header/banner";
-import Logo from "../header/logo";
-import SiteNavigation from "../header/SiteNavigation";
+import Banner from "../header/global/banner";
+import Logo from "../header/global/logo";
+import SiteNavigation from "../header/components/SiteNavigation";
 import "./PageLayout.scss";
 
 class PageLayout extends React.Component {

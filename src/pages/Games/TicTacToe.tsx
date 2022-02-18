@@ -1,6 +1,6 @@
 // import TicTac from "../../components/games/__oudated/TicTac";
 import BlogClass from "../../components/blogClass/BlogClass";
-import FullPageBody from "../../PageTypes/FullPageBody";
+import FullPageBody from "../../core/wrappers/FullPageBody";
 import React from "react";
 import FcSquareGame from "../../components/games/global/fcSquareGame";
 import FcTicTacToe from "../../components/games/global/fcTicTacToe";
