@@ -1,6 +1,6 @@
 import React from "react";
-import Board from "./gameParts/Board";
-import HistoryControls from "./gameParts/HistoryControls";
+import Board from "./components/Board";
+import HistoryControls from "./components/HistoryControls";
 
 // import "./TicTac.scss";
 

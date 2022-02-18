@@ -1,4 +1,4 @@
-import { logo } from "../gameParts/playerLogos";
+import { logo } from "../components/playerLogos";
 import { tileCoords } from "../interfaces/squareGame";
 import { getDefinedPlayer } from "./getPlayer";
 

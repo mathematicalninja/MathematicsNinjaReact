@@ -7,7 +7,7 @@ import {
 } from "../../utils/react/arrayStatePush";
 import PrintKeyValues from "../../utils/react/printKeyValues";
 import { squareGameLayoutDiv } from "./css/squareGameLayoutDiv";
-import allPlayerLogos from "./gameParts/playerLogos";
+import allPlayerLogos from "./components/playerLogos";
 import { boardStructure } from "./interfaces/lineStructure";
 import { BoardState, gridLayout, tileCoords } from "./interfaces/squareGame";
 import { MakeMoveList } from "./makeMoveList";
