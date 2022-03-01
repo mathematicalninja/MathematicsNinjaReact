@@ -2,38 +2,83 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { CanvasHTMLAttributes } from "react";
 
-// Path2D for a Heart SVG
-const heartSVG =
-  "M0 200 v-200 h200 a100,100 90 0,1 0,200 a100,100 90 0,1 -200,0 z";
-const SVG_PATH = new Path2D(heartSVG);
+// import { Path2D } from "path2d-polyfill";
+import Path2D from "path2d-polyfill";
 
-// Scaling Constants for Canvas
-const SCALE = 0.1;
-const OFFSET = 80;
-const canvasWidth = window.innerWidth;
-const canvasHeight = window.innerHeight;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function draw(ctx, location) {
+function draw(
+  ctx: CanvasRenderingContext2D,
+  location: { x: number; y: number },
+  options: { SCALE: number; OFFSET: number },
+  svg,
+) {
   ctx.fillStyle = "red";
   ctx.shadowColor = "blue";
   ctx.shadowBlur = 15;
   ctx.save();
-  ctx.scale(SCALE, SCALE);
-  ctx.translate(location.x / SCALE - OFFSET, location.y / SCALE - OFFSET);
+  ctx.scale(options.SCALE, options.SCALE);
+  ctx.translate(
+    location.x / options.SCALE - options.OFFSET,
+    location.y / options.SCALE - options.OFFSET,
+  );
   ctx.rotate((225 * Math.PI) / 180);
   ctx.fill(SVG_PATH);
   // .restore(): Canvas 2D API restores the most recently saved canvas state
   ctx.restore();
 }
+//
+
+//
+
+//
+//
+//
+//
+//
+//
+//
+
+//
+
+//
 
 function useCanvas() {
-  const canvasRef = useRef(null);
-  const [coordinates, setCoordinates] = useState([]);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [coordinates, setCoordinates] = useState<[number, number]>();
 
   useEffect(() => {
     const canvasObj = canvasRef.current;
+
+    // Path2D for a Heart SVG
+    const heartSVG =
+      "M0 200 v-200 h200 a100,100 90 0,1 0,200 a100,100 90 0,1 -200,0 z";
+    const SVG_PATH = Path2D;
+
+    // Scaling Constants for Canvas
+    const SCALE = 0.1;
+    const OFFSET = 80;
+    const canvasWidth = window.innerWidth;
+    const canvasHeight = window.innerHeight;
+
+    if (canvasObj == null) {
+      return;
+    }
     const ctx = canvasObj.getContext("2d");
     // clear the canvas area before rendering the coordinates held in state
+    if (ctx == null) {
+      return;
+    }
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     // draw all coordinates held in state
@@ -44,6 +89,19 @@ function useCanvas() {
 
   return [coordinates, setCoordinates, canvasRef, canvasWidth, canvasHeight];
 }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 function Canvas() {
   const [coordinates, setCoordinates, canvasRef, canvasWidth, canvasHeight] =
@@ -76,6 +134,17 @@ function Canvas() {
     </div>
   );
 }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+//
 
 class Graphs extends React.Component {
   constructor(props) {

@@ -23,6 +23,7 @@ const menuItems: menuItemInterface[] = [
   { text: "Colours", uri: "/Visuals/ColourSwatch" },
 
   { text: "About", uri: "/Info/About" },
+  { text: "Test", uri: "/Testing/Graphs" },
 ];
 
 export default menuItems;
