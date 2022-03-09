@@ -39,7 +39,7 @@ const FTTP: React.FC = () => {
     <>
       <FullPageBody
         content={TicTacToe}
-        blogPostName="samplePageExplinations/TicTacBlogExplain.json"
+        // blogPostName="samplePageExplinations/TicTacBlogExplain.json"
       />
     </>
   );
